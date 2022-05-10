@@ -1,0 +1,23 @@
+server:
+  port: 18004
+spring:
+  datasource:
+    username: gcxm
+    password: WFJ4ekTwkhRwAiHZ
+    url: jdbc:mysql://39.97.124.2:3306/gcxm?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai   #&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+structure:
+  jwt:
+    secret: 12345646
+    antMatchers:
+      unAuthenticated:
+      # 不经过身份验证的接口
+      - /login
+      - /verificationCode
+      - /doc.html
+      - /webjars/**
+      - /swagger-resources/**
+      - /v2/api-docs/**
+  log:
+    aop:
+      expression: execution(public * cn.structure.sa.controller..*Controller.*(..))
