@@ -2,9 +2,9 @@ server:
   port: 18004
 spring:
   datasource:
-    username: gcxm
-    password: WFJ4ekTwkhRwAiHZ
-    url: jdbc:mysql://39.97.124.2:3306/gcxm?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai   #&serverTimezone=UTC
+    username: admin
+    password: ZsS6XeXisst4ZWP5
+    url: jdbc:mysql://39.97.124.2:3306/admin?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai   #&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
 structure:
   jwt:
@@ -13,7 +13,6 @@ structure:
       unAuthenticated:
       # 不经过身份验证的接口
       - /login
-      - /verificationCode
       - /doc.html
       - /webjars/**
       - /swagger-resources/**

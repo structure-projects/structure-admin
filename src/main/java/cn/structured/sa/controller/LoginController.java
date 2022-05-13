@@ -10,6 +10,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,6 +37,9 @@ public class LoginController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
+    private UserDetailsService userDetailsService;
+
+    @Autowired
     private ITokenService tokenService;
 
     @PostMapping(value = "/login")
@@ -49,7 +54,8 @@ public class LoginController {
         }catch (Exception e) {
             return ResResultVO.exception("登录错误！");
         }
-        AuthUser authUser = (AuthUser) params.getPrincipal();
+        UserDetails userDetails = userDetailsService.loadUserByUsername((String) params.getPrincipal());
+        AuthUser authUser = (AuthUser) userDetails;
         String token = tokenService.generateToken(authUser);
         return ResResultVO.success(token);
     }
