@@ -1,6 +1,8 @@
 server:
   port: 18004
 spring:
+  application:
+    name: structure-admin-service
   datasource:
     username: admin
     password: ZsS6XeXisst4ZWP5
@@ -20,3 +22,7 @@ structure:
   log:
     aop:
       expression: execution(public * cn.structure.sa.controller..*Controller.*(..))
+swagger:
+  title: 集成后台API
+  description: structure-admin 集成后台API
+  version: v1.0.1

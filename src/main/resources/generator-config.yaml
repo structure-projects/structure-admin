@@ -34,14 +34,14 @@ strategyConfig:
   naming: underline_to_camel
   columnNaming: underline_to_camel
   entityLombokModel: true
-  superMapperClass: com.baomidou.mybatisplus.core.mapper.BaseMapper
+  superMapperClass: cn.structured.mybatis.plus.starter.base.IBaseMapper
   superServiceClass: com.baomidou.mybatisplus.extension.service.IService
   superServiceImplClass: com.baomidou.mybatisplus.extension.service.impl.ServiceImpl
   controllerMappingHyphenStyle: true
   restControllerStyle: true
   tablePrefix:
   include:
-  - user_info
+  - user
 tableFill:
   is_deleted: INSERT
   create_time: INSERT
