@@ -5,8 +5,10 @@ import cn.structure.common.exception.CommonException;
 import cn.structure.starter.jwt.dto.LoginRequestDTO;
 import cn.structure.starter.jwt.entity.AuthUser;
 import cn.structure.starter.jwt.interfaces.ITokenService;
+import cn.structured.sa.enums.BusinessErrorCodeEnum;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,28 +33,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Api(tags = "登录模块")
 @RequestMapping(value = "")
+@RequiredArgsConstructor
 public class LoginController {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
 
-    @Autowired
-    private ITokenService tokenService;
+    private final ITokenService tokenService;
 
     @PostMapping(value = "/login")
     @ApiOperation(value = "登录请求")
-    public ResResultVO<String> login(@Validated @RequestBody LoginRequestDTO loginDto){
+    public ResResultVO<String> login(@Validated @RequestBody LoginRequestDTO loginDto) {
         UsernamePasswordAuthenticationToken params = null;
         try {
             params = new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
             authenticationManager.authenticate(params);
-        } catch (CommonException e) {
-            return ResResultVO.fail(e.getCode(),e.getMessage());
-        }catch (Exception e) {
-            return ResResultVO.exception("登录错误！");
+        } catch (Exception e) {
+            return ResResultVO.fail(BusinessErrorCodeEnum.LOGIN_ERROR.getCode(), BusinessErrorCodeEnum.LOGIN_ERROR.getMessage());
         }
         UserDetails userDetails = userDetailsService.loadUserByUsername((String) params.getPrincipal());
         AuthUser authUser = (AuthUser) userDetails;
