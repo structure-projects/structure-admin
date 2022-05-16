@@ -80,7 +80,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>cn.structrurd</groupId>
+                <groupId>cn.structured</groupId>
                 <artifactId>structure-mybatis-plus-generate</artifactId>
                 <configuration>
                     <configurationFile>${basedir}/src/main/resources/generator-config.yaml</configurationFile>
