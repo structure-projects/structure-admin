@@ -5,52 +5,42 @@
 
     <groupId>cn.structured</groupId>
     <artifactId>structure-admin</artifactId>
+    <packaging>pom</packaging>
     <version>1.0.1</version>
+    <modules>
+        <module>structure-admin-boot</module>
+        <module>structure-admin-cloud</module>
+        <module>structure-admin-core</module>
+        <module>structure-admin-client</module>
+    </modules>
     <name>structure-admin</name>
     <description>脚手架集成管理平台</description>
 
     <properties>
         <spring-boot.version>2.1.4.RELEASE</spring-boot.version>
-        <structure.version>1.1.2.RELEASE</structure.version>
+        <structure.version>1.2.1.RELEASE</structure.version>
         <guava.version>20.0</guava.version>
         <mysql.version>8.0.13</mysql.version>
+        <hutool.version>5.1.0</hutool.version>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>cn.structured</groupId>
-            <artifactId>structure-restful-web-starter</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.structured</groupId>
-            <artifactId>structure-mybatis-plus-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>cn.structured</groupId>
-            <artifactId>structure-jwt-security-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>cn.structured</groupId>
-            <artifactId>structure-log-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>swagger-bootstrap-ui</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
-        </dependency>
-    </dependencies>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-parent</artifactId>
@@ -67,38 +57,5 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <finalName>structure-admin-service</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
-            </plugin>
-            <plugin>
-                <groupId>cn.structured</groupId>
-                <artifactId>structure-mybatis-plus-generate</artifactId>
-                <configuration>
-                    <configurationFile>${basedir}/src/main/resources/generator-config.yaml</configurationFile>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>${mysql.version}</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
