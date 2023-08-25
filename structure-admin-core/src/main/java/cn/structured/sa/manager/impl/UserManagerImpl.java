@@ -45,11 +45,11 @@ public class UserManagerImpl implements IUserManager {
         String password = passwordEncoder.encode(user.getPassword());
         user.setPassword(password);
 
-        //生成域账号
-        Organization organization = organizationManager.getOrganizationByOrganizationId(user.getOrganizationId());
-        String domain = organization.getDomain();
-        String domainUsername = user.getUsername() + StringConstant.AT + domain;
-        user.setDomainUsername(domainUsername);
+//        //生成域账号
+//        Organization organization = organizationManager.getOrganizationByOrganizationId(user.getOrganizationId());
+//        String domain = organization.getDomain();
+//        String domainUsername = user.getUsername() + StringConstant.AT + domain;
+//        user.setDomainUsername(domainUsername);
 
         //保存用户
         userMapper.insert(user);

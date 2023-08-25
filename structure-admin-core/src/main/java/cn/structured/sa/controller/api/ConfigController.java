@@ -21,7 +21,6 @@ import java.util.List;
 
 /**
  * 机构信息
- * todo 上传功能和加载用户自定义配置
  *
  * @author cqliut
  * @version 2023.0705
@@ -35,10 +34,10 @@ public class ConfigController {
 
     private final IConfigService configService;
 
-    @ApiOperation(value = "获取当前机构系统配置")
+    @ApiOperation(value = "获取机构系统配置")
     @GetMapping("/getSysConfig")
-    public ResResultVO<JSONObject> current() {
-        Long organizationId = UserUtil.getOrganizationId();
+    public ResResultVO<JSONObject> getSysConfig(@RequestParam(value = "organizationId", required = false) Long organizationId) {
+        organizationId = (null == organizationId) ? UserUtil.getOrganizationId() : organizationId;
         List<Config> list = configService.list(Wrappers.<Config>lambdaQuery().eq(Config::getOrganizationId, organizationId));
         return ResultUtilSimpleImpl.success(ConfigAssembler.assemblerSysConfig(list));
     }

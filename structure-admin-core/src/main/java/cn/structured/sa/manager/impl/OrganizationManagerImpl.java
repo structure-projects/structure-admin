@@ -36,4 +36,17 @@ public class OrganizationManagerImpl implements IOrganizationManager {
         }
         return organization;
     }
+
+    @Override
+    public Organization getOrganizationByHost(String host) {
+        //查询机构信息
+        Organization organization = organizationMapper.selectOne(Wrappers.<Organization>lambdaQuery()
+                .eq(ObjectUtil.isNotEmpty(host),Organization::getDomain, host));
+        //如果不存在组织信息则抛出异常信息
+        if (null == organization) {
+            //todo 不存在机构信息抛出业务异常！
+            throw new CommonException();
+        }
+        return organization;
+    }
 }

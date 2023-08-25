@@ -14,11 +14,16 @@ import java.util.List;
  * </p>
  *
  * @author chuck
- * @since 2023-07-06
+ * @since 2023-08-15
  */
 public interface UserRoleMapper extends IBaseMapper<UserRole> {
 
 
+    /**
+     * 查询用户角色
+     * @param userId 用户ID
+     * @return
+     */
     @Select("SELECT r.id, r.name, r.code from role r\n" +
             "    LEFT JOIN user_role ur on r.id = ur.role_id AND r.is_deleted = 0 ANd r.is_enabled = 1\n" +
             "WHERE ur.user_id = #{userId} ")

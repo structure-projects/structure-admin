@@ -44,12 +44,6 @@ public class User implements Serializable {
     private String username;
 
     /**
-     * 域用户名
-     */
-    @TableField("domain_username")
-    private String domainUsername;
-
-    /**
      * 加密后的密码
      */
     @TableField("password")
@@ -85,6 +79,12 @@ public class User implements Serializable {
     })
     @TableField("phone")
     private String phone;
+
+    /**
+     * 是否使用过的（不允许删除只能够禁用）
+     */
+    @TableField("is_used")
+    private Boolean used;
 
     /**
      * 是否启用 1:  启用 0:未启用
@@ -140,13 +140,6 @@ public class User implements Serializable {
      */
     @TableField(value = "update_by", fill = FieldFill.INSERT_UPDATE)
     private Long updateBy;
-
-    /**
-     * 组织ID
-     */
-    @TableField(value = "organization_id", fill = FieldFill.INSERT)
-    private Long organizationId;
-
 
     /**
      * <p>

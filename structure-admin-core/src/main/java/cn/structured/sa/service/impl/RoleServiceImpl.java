@@ -53,8 +53,9 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implement
     @Override
     @Transactional(rollbackFor = Exception.class)
     public boolean save(Role entity) {
+        boolean save = super.save(entity);
         saveRoleMenu(entity);
-        return super.save(entity);
+        return save;
     }
 
     @Override

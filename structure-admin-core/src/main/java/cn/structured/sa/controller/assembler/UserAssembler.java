@@ -3,9 +3,7 @@ package cn.structured.sa.controller.assembler;
 import cn.structured.sa.client.dto.user.CreateUserDTO;
 import cn.structured.sa.client.dto.user.UpdateUserDTO;
 import cn.structured.sa.client.dto.user.UserRegisterDTO;
-import cn.structured.sa.client.vo.UserMenuVO;
 import cn.structured.sa.client.vo.UserVO;
-import cn.structured.sa.entity.Menu;
 import cn.structured.sa.entity.Role;
 import cn.structured.sa.entity.User;
 import com.google.common.collect.Lists;
@@ -43,7 +41,6 @@ public class UserAssembler {
         user.setPhoto(register.getPhoto());
         user.setEmail(register.getEmail());
         user.setPhone(register.getPhone());
-        user.setOrganizationId(register.getOrganizationId());
         return user;
     }
 
@@ -90,12 +87,10 @@ public class UserAssembler {
         UserVO userVO = new UserVO();
         userVO.setId(user.getId());
         userVO.setUsername(user.getUsername());
-        userVO.setDomainUsername(user.getDomainUsername());
         userVO.setNickName(user.getNickName());
         userVO.setPhoto(user.getPhoto());
         userVO.setEmail(user.getEmail());
         userVO.setPhone(user.getPhone());
-        userVO.setOrganizationId(user.getOrganizationId());
         userVO.setEnabled(user.getEnabled());
         userVO.setLocked(!user.getUnlocked());
         userVO.setRole(Optional

@@ -19,4 +19,12 @@ public interface IOrganizationManager {
      */
     Organization getOrganizationByOrganizationId(Long organizationId);
 
+
+    /**
+     * 通过host获取机构信息
+     * @param host 域名
+     * @return
+     */
+    Organization getOrganizationByHost(String host);
+
 }

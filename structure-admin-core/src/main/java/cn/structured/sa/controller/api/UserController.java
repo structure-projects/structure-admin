@@ -68,6 +68,7 @@ public class UserController {
         return ResultUtilSimpleImpl.success(userId);
     }
 
+
     @ApiOperation(value = "获取当前用户信息")
     @GetMapping(value = "/current")
     public ResResultVO<CurrentUserVO> current() {
@@ -144,7 +145,6 @@ public class UserController {
         //构建数据实体
         User user = new User();
         user.setEnabled(searchUser.getEnabled());
-        user.setOrganizationId(UserUtil.getOrganizationId());
         if (null != searchUser.getLocked()) {
             user.setUnlocked(!searchUser.getLocked());
         }
@@ -167,7 +167,6 @@ public class UserController {
         //构建数据实体
         User user = new User();
         user.setId(userId);
-        user.setOrganizationId(UserUtil.getOrganizationId());
         //构建查询参数
         QueryJoinPageListWrapper<User> queryWrapper = new QueryJoinPageListWrapper<>(user);
         queryWrapper.setIsJoin(true);

@@ -61,6 +61,12 @@ public class DictItem implements Serializable {
     private Integer sequence;
 
     /**
+     * 是否使用过的（不允许删除只能够禁用）
+     */
+    @TableField("is_used")
+    private Boolean used;
+
+    /**
      * 是否启用 0 否 ，1 是
      */
     @TableField(value = "is_enabled", fill = FieldFill.INSERT)

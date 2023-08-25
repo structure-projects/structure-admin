@@ -12,6 +12,7 @@ import cn.structured.sa.service.IOrganizationService;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +41,13 @@ public class OrganizationController {
     public ResResultVO<OrganizationVO> current() {
         Long organizationId = UserUtil.getOrganizationId();
         Organization organization = organizationManager.getOrganizationByOrganizationId(organizationId);
+        return ResultUtilSimpleImpl.success(OrganizationAssembler.assembler(organization));
+    }
+
+    @ApiOperation(value = "获取租户信息")
+    @GetMapping("/getTenant")
+    public ResResultVO<OrganizationVO> getTenant(@ApiParam(value = "host") @RequestParam("host") String host) {
+        Organization organization = organizationManager.getOrganizationByHost(host);
         return ResultUtilSimpleImpl.success(OrganizationAssembler.assembler(organization));
     }
 

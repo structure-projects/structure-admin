@@ -76,21 +76,14 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
 
         // todo 更改用户登录逻辑 一个用户对应多个组织，支持多种认证方式和三方认证方式 ， 如果三方认证成功则颁发token 即可或者使用三方的token 看签约方式
         //获取组织ID
-        Long organizationId = UserUtil.getOrganizationId();
 
         //通过仓库查询用户信息（登录权限）
         LambdaQueryWrapper<User> userQuery;
         //如果存在组织信息
-        if (ObjectUtil.isNotNull(organizationId)) {
-            //使用用户名+组织ID查询用户
-            userQuery = Wrappers.<User>lambdaQuery()
-                    .eq(User::getUsername, username)
-                    .eq(User::getOrganizationId, organizationId);
-        } else {
-            //如果不存在组织信息则需要使用域账户查询用户
-            userQuery = Wrappers.<User>lambdaQuery()
-                    .eq(User::getDomainUsername, username);
-        }
+        //使用用户名+组织ID查询用户
+        userQuery = Wrappers.<User>lambdaQuery()
+                .eq(User::getUsername, username);
+
         User user = userMapper.selectOne(userQuery);
         if (null == user) {
             //不存在用户则返回错误信息
@@ -102,7 +95,6 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
 
         //构建扩展存储信息
         Map<String, String> extInfo = Maps.newHashMap();
-        extInfo.put(AuthConstant.ORGANIZATION_ID, user.getOrganizationId().toString());
 
         //用户的角色ID
         List<Long> userRoleId = userRoleMapper.selectList(Wrappers.<UserRole>lambdaQuery().eq(UserRole::getUserId, userId))

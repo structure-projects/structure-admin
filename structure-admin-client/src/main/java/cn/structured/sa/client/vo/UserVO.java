@@ -24,9 +24,6 @@ public class UserVO {
     @ApiModelProperty(value = "用户名")
     private String username;
 
-    @ApiModelProperty(value = "域用户名")
-    private String domainUsername;
-
     @ApiModelProperty(value = "昵称")
     private String nickName;
 
@@ -38,9 +35,6 @@ public class UserVO {
 
     @ApiModelProperty(value = "电话号码")
     private String phone;
-
-    @ApiModelProperty(value = "组织ID", example = "1645717015337684992")
-    private Long organizationId;
 
     @ApiModelProperty(value = "是否启用", example = "true")
     private Boolean enabled;
