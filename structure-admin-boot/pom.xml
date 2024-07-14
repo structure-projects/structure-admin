@@ -2,46 +2,89 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>structure-admin</artifactId>
-        <groupId>cn.structured</groupId>
-        <version>1.0.1</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.2.RELEASE</version>
+        <relativePath/><!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>cn.structured</groupId>
     <artifactId>structure-admin-boot</artifactId>
+    <version>1.0.1</version>
+
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <spring-boot.version>2.1.2.RELEASE</spring-boot.version>
+        <structure.version>1.2.1.RELEASE</structure.version>
+        <hutool.version>5.1.0</hutool.version>
+        <guava.version>20.0</guava.version>
     </properties>
 
     <dependencies>
-        <!--spring 生态依赖-->
+        <!-- spring 启动依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
+
+        <!-- web-restful风格依赖 -->
+        <dependency>
+            <groupId>cn.structured</groupId>
+            <artifactId>structure-restful-web-starter</artifactId>
+        </dependency>
+
+        <!-- 日志插件依赖 -->
+        <dependency>
+            <groupId>cn.structured</groupId>
+            <artifactId>structure-log-starter</artifactId>
+        </dependency>
+
+        <!--这里重新定义是因为组件中存在低版本的hutool工具包，structure-oauth-starter需要更高版本的包低版本会有FileNotFoundException 异常 -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
+
+        <!--这个一定要重新定义，是因为部分组件中存在低版本的冲突-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+
+        <!-- 基座核心 -->
         <dependency>
             <groupId>cn.structured</groupId>
             <artifactId>structure-admin-core</artifactId>
             <version>1.0.1</version>
         </dependency>
+
+        <!-- 管理核心 -->
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
+            <groupId>cn.structured</groupId>
+            <artifactId>structure-admin-core</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.structured</groupId>
+            <artifactId>structure-jwt-security-starter</artifactId>
+            <version>1.2.1.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.structured</groupId>
+            <artifactId>structure-oauth-user</artifactId>
+            <version>1.2.1.RELEASE</version>
         </dependency>
     </dependencies>
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-parent</artifactId>
-                <version>${spring-boot.version}</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
             <dependency>
                 <groupId>cn.structured</groupId>
                 <artifactId>structure-boot-parent</artifactId>
@@ -51,24 +94,5 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <finalName>structure-admin-service</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

@@ -1,0 +1,25 @@
+INSERT INTO user_bind (id, user_id, platform_user_id, platform_code, create_time) VALUES (1, 1, '18888888888', 'phone', '2024-07-13 12:21:38.853');
+INSERT INTO role (id, name, code, remark, data_scope, is_enabled, is_deleted, create_time, create_by, update_time, update_by, organization_id) VALUES (1812100202631475201, '测试', 'test', null, 0, 1, 0, '2024-07-13 12:22:10', null, '2024-07-13 12:22:10', null, 1);
+INSERT INTO member (id, user_id, phone, name, sex, dept_id, state, is_deleted, create_time, create_by, update_time, update_by, organization_id) VALUES (1812102383938011138, 1, '18888888888', '测试', 'M', 1, 1, 0, '2024-07-13 12:30:50', null, '2024-07-13 12:30:50', null, 1);
+
+INSERT INTO role_authority_mapping (id, role_id, authority_code, create_time) VALUES (26, 1812100202631475201, 'sys', '2024-07-13 12:25:58.523');
+INSERT INTO role_authority_mapping (id, role_id, authority_code, create_time) VALUES (27, 1812100202631475201, 'sys:member', '2024-07-13 12:25:58.524');
+INSERT INTO role_authority_mapping (id, role_id, authority_code, create_time) VALUES (28, 1812100202631475201, 'sys:member:add', '2024-07-13 12:25:58.524');
+INSERT INTO role_authority_mapping (id, role_id, authority_code, create_time) VALUES (29, 1812100202631475201, 'sys:member:edit', '2024-07-13 12:25:58.525');
+INSERT INTO role_authority_mapping (id, role_id, authority_code, create_time) VALUES (30, 1812100202631475201, 'sys:member:del', '2024-07-13 12:25:58.525');
+INSERT INTO role_authority_mapping (id, role_id, authority_code, create_time) VALUES (31, 1812100202631475201, 'sys:member:reset_pwd', '2024-07-13 12:25:58.526');
+INSERT INTO role_authority_mapping (id, role_id, authority_code, create_time) VALUES (32, 1812100202631475201, 'sys:role', '2024-07-13 12:25:58.526');
+INSERT INTO role_authority_mapping (id, role_id, authority_code, create_time) VALUES (33, 1812100202631475201, 'sys:role:add', '2024-07-13 12:25:58.526');
+INSERT INTO role_authority_mapping (id, role_id, authority_code, create_time) VALUES (34, 1812100202631475201, 'sys:role:edit', '2024-07-13 12:25:58.527');
+INSERT INTO role_authority_mapping (id, role_id, authority_code, create_time) VALUES (35, 1812100202631475201, 'sys:role:del', '2024-07-13 12:25:58.527');
+INSERT INTO role_authority_mapping (id, role_id, authority_code, create_time) VALUES (36, 1812100202631475201, 'sys:dept', '2024-07-13 12:25:58.528');
+INSERT INTO role_authority_mapping (id, role_id, authority_code, create_time) VALUES (37, 1812100202631475201, 'sys:dept:add', '2024-07-13 12:25:58.528');
+INSERT INTO role_authority_mapping (id, role_id, authority_code, create_time) VALUES (38, 1812100202631475201, 'sys:dept:edit', '2024-07-13 12:25:58.528');
+INSERT INTO role_authority_mapping (id, role_id, authority_code, create_time) VALUES (39, 1812100202631475201, 'sys:dept:del', '2024-07-13 12:25:58.529');
+INSERT INTO role_authority_mapping (id, role_id, authority_code, create_time) VALUES (40, 1812100202631475201, 'sys:dict', '2024-07-13 12:25:58.529');
+INSERT INTO role_authority_mapping (id, role_id, authority_code, create_time) VALUES (41, 1812100202631475201, 'sys:dict_type:add', '2024-07-13 12:25:58.529');
+INSERT INTO role_authority_mapping (id, role_id, authority_code, create_time) VALUES (42, 1812100202631475201, 'sys:dict_type:edit', '2024-07-13 12:25:58.530');
+INSERT INTO role_authority_mapping (id, role_id, authority_code, create_time) VALUES (43, 1812100202631475201, 'sys:dict_type:del', '2024-07-13 12:25:58.531');
+INSERT INTO role_authority_mapping (id, role_id, authority_code, create_time) VALUES (44, 1812100202631475201, 'sys:dict:add', '2024-07-13 12:25:58.531');
+INSERT INTO role_authority_mapping (id, role_id, authority_code, create_time) VALUES (45, 1812100202631475201, 'sys:dict:edit', '2024-07-13 12:25:58.532');
+INSERT INTO role_authority_mapping (id, role_id, authority_code, create_time) VALUES (46, 1812100202631475201, 'sys:dict:del', '2024-07-13 12:25:58.532');
