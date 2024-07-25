@@ -1,12 +1,14 @@
 package cn.structured.admin.manager;
 
-import cn.structure.starter.oauth.common.entity.StructureAuthUser;
 import cn.structured.oauth.user.api.dto.user.RegisterPlatformUserDto;
 import cn.structured.oauth.user.api.dto.user.UserDetailDto;
 import cn.structured.oauth.user.entity.Role;
 import cn.structured.oauth.user.entity.User;
 import cn.structured.oauth.user.service.IUserService;
-import groovy.util.logging.Slf4j;
+import cn.structured.security.entity.StructureAuthUser;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,11 +21,11 @@ import java.util.stream.Collectors;
  * @since 1.8
  */
 @Slf4j
-@Service
+@Component
+@RequiredArgsConstructor
 public class UserManagerImpl implements IUserManager {
 
-    @Resource
-    private IUserService userService;
+    private final IUserService userService;
 
     @Override
     public List<String> getUserAuthorities(Long userId) {
@@ -90,8 +92,4 @@ public class UserManagerImpl implements IUserManager {
         userService.removeByIds(userIds);
     }
 
-    @Override
-    public UserDetailDto getUserDetailByUserId(Long userId) {
-        return null;
-    }
 }

@@ -1,0 +1,33 @@
+package cn.structured.admin.endpoint.assembler;
+
+import cn.structured.admin.entity.Member;
+import cn.structured.admin.dto.MemberDto;
+import cn.structured.admin.vo.MemberVo;
+import cn.structured.basic.core.utils.SystemUtil;
+
+public class MemberAssembler {
+
+    public static MemberVo assembler(Member member) {
+        MemberVo memberVo = new MemberVo();
+        memberVo.setId(member.getId());
+        memberVo.setPhone(member.getPhone());
+        memberVo.setName(member.getName());
+        memberVo.setSex(member.getSex());
+        memberVo.setDeptId(member.getDeptId());
+        memberVo.setState(member.getState());
+        memberVo.setCreateTime(member.getCreateTime());
+        return memberVo;
+    }
+
+    public static Member assembler(MemberDto memberDto) {
+        Member member = new Member();
+        member.setPhone(memberDto.getPhone());
+        member.setName(memberDto.getName());
+        member.setSex(memberDto.getSex());
+        member.setDeptId(memberDto.getDeptId());
+        member.setState(memberDto.getState());
+        member.setOrganizationId(SystemUtil.getOrganizationId());
+        member.setRoleIds(memberDto.getRoleIds());
+        return member;
+    }
+}

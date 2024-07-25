@@ -7,20 +7,17 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.2.RELEASE</version>
+        <version>2.7.15</version>
         <relativePath/><!-- lookup parent from repository -->
     </parent>
 
     <groupId>cn.structured</groupId>
     <artifactId>structure-admin-boot</artifactId>
-    <version>1.0.1</version>
-
+    <version>${revision}</version>
 
     <properties>
-        <spring-boot.version>2.1.2.RELEASE</spring-boot.version>
         <structure.version>1.2.1.RELEASE</structure.version>
-        <hutool.version>5.1.0</hutool.version>
-        <guava.version>20.0</guava.version>
+        <revision>1.0.1</revision>
     </properties>
 
     <dependencies>
@@ -29,58 +26,49 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
         <!-- web-restful风格依赖 -->
         <dependency>
             <groupId>cn.structured</groupId>
             <artifactId>structure-restful-web-starter</artifactId>
         </dependency>
-
         <!-- 日志插件依赖 -->
         <dependency>
             <groupId>cn.structured</groupId>
             <artifactId>structure-log-starter</artifactId>
         </dependency>
-
-        <!--这里重新定义是因为组件中存在低版本的hutool工具包，structure-oauth-starter需要更高版本的包低版本会有FileNotFoundException 异常 -->
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>${hutool.version}</version>
-        </dependency>
-
-        <!--这个一定要重新定义，是因为部分组件中存在低版本的冲突-->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
-        </dependency>
-
-        <!-- 基座核心 -->
-        <dependency>
-            <groupId>cn.structured</groupId>
-            <artifactId>structure-admin-core</artifactId>
-            <version>1.0.1</version>
-        </dependency>
-
         <!-- 管理核心 -->
         <dependency>
             <groupId>cn.structured</groupId>
             <artifactId>structure-admin-core</artifactId>
-            <version>1.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
         <dependency>
             <groupId>cn.structured</groupId>
             <artifactId>structure-jwt-security-starter</artifactId>
-            <version>1.2.1.RELEASE</version>
         </dependency>
 
         <dependency>
             <groupId>cn.structured</groupId>
-            <artifactId>structure-oauth-user</artifactId>
-            <version>1.2.1.RELEASE</version>
+            <artifactId>structure-user-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-mysql</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>
@@ -92,7 +80,38 @@
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
+            <dependency>
+                <groupId>cn.structured</groupId>
+                <artifactId>structure-admin</artifactId>
+                <version>${revision}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <finalName>admin-center</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.7.15</version>
+                <configuration>
+                    <fork>
+                        true
+                    </fork>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
 
 </project>

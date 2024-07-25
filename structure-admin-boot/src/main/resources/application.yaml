@@ -5,5 +5,10 @@ spring:
     active: dev
   application:
     name: basic-admin
-#  main:
+  main:
+    allow-circular-references: true
 #    allow-bean-definition-overriding: true
+management:
+  endpoint:
+    health:
+      show-details: always

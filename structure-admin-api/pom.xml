@@ -4,16 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>cn.structured</groupId>
-        <artifactId>structure-dependencies</artifactId>
-        <version>1.2.0.RELEASE</version>
-        <relativePath/>
+        <artifactId>structure-admin</artifactId>
+        <version>${revision}</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>structure-admin-client</artifactId>
-    <version>1.0.1</version>
+    <artifactId>structure-admin-api</artifactId>
+    <version>${revision}</version>
     <packaging>jar</packaging>
+    <description>管理配置中心api</description>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

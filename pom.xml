@@ -3,43 +3,72 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>cn.structured</groupId>
+    <parent>
+        <groupId>cn.structured</groupId>
+        <artifactId>structure-dependencies</artifactId>
+        <version>1.2.1.RELEASE</version>
+        <relativePath/>
+    </parent>
+
     <artifactId>structure-admin</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.1</version>
+    <version>${revision}</version>
+
     <modules>
-        <module>structure-admin-boot</module>
-        <module>structure-admin-cloud</module>
         <module>structure-admin-core</module>
-        <module>structure-admin-client</module>
+        <module>structure-admin-api</module>
     </modules>
     <name>structure-admin</name>
     <description>脚手架集成管理平台</description>
 
     <properties>
-        <spring-boot.version>2.1.4.RELEASE</spring-boot.version>
+        <revision>1.0.1</revision>
         <structure.version>1.2.1.RELEASE</structure.version>
-        <guava.version>20.0</guava.version>
         <mysql.version>8.0.13</mysql.version>
-        <hutool.version>5.1.0</hutool.version>
+        <function.version>1.0.1</function.version>
+        <structure-security.version>1.0.1</structure-security.version>
+        <structure-user.version>1.0.1</structure-user.version>
+        <structure-basic.version>1.0.1</structure-basic.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>cn.structured</groupId>
+                <artifactId>structure-security-core</artifactId>
+                <version>${structure-security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.structured</groupId>
+                <artifactId>structure-user-api</artifactId>
+                <version>${structure-user.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.structured</groupId>
+                <artifactId>structure-basic-core</artifactId>
+                <version>${structure-basic.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.structured</groupId>
+                <artifactId>structure-admin-core</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.structured</groupId>
+                <artifactId>structure-jwt-security-starter</artifactId>
+                <version>${structure-security.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.structured</groupId>
+                <artifactId>structure-user-core</artifactId>
+                <version>${structure-user.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-all</artifactId>
-                <version>${hutool.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>${guava.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
