@@ -4,7 +4,12 @@ import cn.structured.admin.entity.Member;
 import cn.structured.admin.dto.MemberDto;
 import cn.structured.admin.vo.MemberVO;
 import cn.structured.basic.core.utils.SystemUtil;
-
+/**
+ * 成员装配器
+ * @author chuck
+ * @version 2024/07/19 下午11:40
+ * @since 1.8
+ */
 public class MemberAssembler {
 
     public static MemberVO assembler(Member member) {

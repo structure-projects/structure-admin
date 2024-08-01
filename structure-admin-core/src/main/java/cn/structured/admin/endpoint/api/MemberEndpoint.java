@@ -92,9 +92,7 @@ public class MemberEndpoint {
         if (resultPage.getTotal() > NumberEnum.ZERO.getValue()) {
             Set<Long> deptIds = resultPage.getRecords().stream().map(MemberVO::getDeptId).collect(Collectors.toSet());
             Map<Long, String> deptMap = deptService.listByIds(deptIds).stream().collect(Collectors.toMap(Dept::getId, Dept::getName));
-            resultPage.getRecords().forEach(memberVO -> {
-                memberVO.setDeptName(deptMap.get(memberVO.getDeptId()));
-            });
+            resultPage.getRecords().forEach(memberVO ->memberVO.setDeptName(deptMap.get(memberVO.getDeptId())));
         }
         return ResultUtilSimpleImpl.success(resultPage);
     }

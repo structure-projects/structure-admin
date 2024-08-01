@@ -19,13 +19,6 @@ import java.util.stream.Collectors;
  */
 public class OptionAssembler {
 
-
-    public static OptionVO assemblerOption(Object object) {
-        OptionVO option = new OptionVO();
-        BeanUtils.copyProperties(object, option);
-        return option;
-    }
-
     public static OptionVO assemblerOption(DictItem dictItem) {
         OptionVO option = new OptionVO();
         option.setLabel(dictItem.getName());

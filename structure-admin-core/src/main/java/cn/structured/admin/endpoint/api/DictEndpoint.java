@@ -55,7 +55,6 @@ public class DictEndpoint {
                 .eq(null != enabled, DictItem::getEnabled, enabled)
                 .like(StrUtil.isNotBlank(keywords), DictItem::getName, "%" + keywords + "%")
                 .orderByAsc(DictItem::getSort);
-        ;
         Page<DictItem> pageResult = dictService.page(new Page<>(page, pageSize), queryWrapper);
         ResPage<DictItemVO> result = ResPage.convert(pageResult, DictAssembler::assemblerDictItem);
         return ResultUtilSimpleImpl.success(result);

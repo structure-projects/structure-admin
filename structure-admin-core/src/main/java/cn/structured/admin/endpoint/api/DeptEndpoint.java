@@ -65,7 +65,6 @@ public class DeptEndpoint {
                 .eq(null != enabled, Dept::getEnabled, enabled)
                 .like(StrUtil.isNotBlank(keywords), Dept::getName, StringPool.PERCENT + keywords + StringPool.PERCENT)
                 .orderByAsc(Dept::getSort);
-        ;
         List<Dept> deptList = service.list(queryWrapper);
         Map<Long, DeptVO> optionMap = deptList
                 .stream()
@@ -115,8 +114,6 @@ public class DeptEndpoint {
                 .eq(Dept::getEnabled, Boolean.TRUE)
                 .select(Dept::getId, Dept::getName, Dept::getParentId)
                 .orderByAsc(Dept::getSort);
-        ;
-        ;
         List<Dept> deptList = service.list(queryWrapper);
         return ResultUtilSimpleImpl.success(OptionAssembler.assemblerForDept(deptList));
     }

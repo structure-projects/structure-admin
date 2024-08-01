@@ -4,7 +4,12 @@ import cn.structured.admin.dto.DeptDTO;
 import cn.structured.admin.entity.Dept;
 import cn.structured.admin.vo.DeptVO;
 import cn.structured.basic.core.utils.SystemUtil;
-
+/**
+ * 部门装配器
+ * @author chuck
+ * @version 2024/07/19 下午11:40
+ * @since 1.8
+ */
 public class DeptAssembler {
 
 

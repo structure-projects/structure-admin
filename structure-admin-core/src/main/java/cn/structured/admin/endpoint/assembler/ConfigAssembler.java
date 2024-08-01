@@ -19,7 +19,7 @@ public class ConfigAssembler {
      * 装配用户配置VO
      *
      * @param config 用户配置PO
-     * @return
+     * @return ConfigVO
      */
     public static ConfigVO assembler(Config config) {
         ConfigVO configVo = new ConfigVO();
