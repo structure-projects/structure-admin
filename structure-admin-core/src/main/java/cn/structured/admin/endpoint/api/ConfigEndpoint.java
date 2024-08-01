@@ -3,11 +3,11 @@ package cn.structured.admin.endpoint.api;
 import cn.hutool.core.util.StrUtil;
 import cn.structure.common.entity.ResResultVO;
 import cn.structure.common.utils.ResultUtilSimpleImpl;
-import cn.structured.admin.dto.ConfigDto;
+import cn.structured.admin.dto.ConfigDTO;
 import cn.structured.admin.endpoint.assembler.ConfigAssembler;
 import cn.structured.admin.entity.Config;
 import cn.structured.admin.service.IConfigService;
-import cn.structured.admin.vo.ConfigVo;
+import cn.structured.admin.vo.ConfigVO;
 import cn.structured.mybatis.plus.starter.vo.ResPage;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
@@ -32,7 +32,7 @@ public class ConfigEndpoint {
 
     @ApiOperation(value = "新增配置")
     @PostMapping(value = "/")
-    public ResResultVO<Long> add(@RequestBody @Validated ConfigDto create) {
+    public ResResultVO<Long> add(@RequestBody @Validated ConfigDTO create) {
         Config config = ConfigAssembler.assembler(create);
         service.save(config);
         return ResultUtilSimpleImpl.success(config.getId());
@@ -42,7 +42,7 @@ public class ConfigEndpoint {
     @PutMapping(value = "/{id}")
     public ResResultVO<Void> update(@ApiParam(value = "配置ID", example = "1645717015337684992")
                                     @PathVariable("id") Long id,
-                                    @RequestBody @Validated ConfigDto update) {
+                                    @RequestBody @Validated ConfigDTO update) {
         Config config = ConfigAssembler.assembler(update);
         config.setId(id);
         service.updateById(config);
@@ -51,7 +51,7 @@ public class ConfigEndpoint {
 
     @ApiOperation(value = "配置列表")
     @GetMapping(value = "/{page}/{pageSize}/page")
-    public ResResultVO<ResPage<ConfigVo>> page(@ApiParam(value = "关键字", example = "配置key") @RequestParam(required = false) String keywords,
+    public ResResultVO<ResPage<ConfigVO>> page(@ApiParam(value = "关键字", example = "配置key") @RequestParam(required = false) String keywords,
                                                @ApiParam(value = "页码", example = "1") @PathVariable(value = "page") Long page,
                                                @ApiParam(value = "页大小", example = "10") @PathVariable(value = "pageSize") Long pageSize) {
         LambdaQueryWrapper<Config> queryWrapper = Wrappers.<Config>lambdaQuery()
@@ -63,7 +63,7 @@ public class ConfigEndpoint {
 
     @ApiOperation(value = "查看配置详情")
     @GetMapping(value = "/{id}")
-    public ResResultVO<ConfigVo> get(@ApiParam(value = "配置ID", example = "1645717015337684992")
+    public ResResultVO<ConfigVO> get(@ApiParam(value = "配置ID", example = "1645717015337684992")
                                      @PathVariable("id")
                                      Long id) {
         Config config = service.getById(id);

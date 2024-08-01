@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Data
 @ApiModel(description = "下拉选-VO")
-public class OptionVo {
+public class OptionVO {
 
     @ApiModelProperty(value = "ID")
     private Long id;
@@ -28,6 +28,6 @@ public class OptionVo {
     private Serializable value;
 
     @ApiModelProperty(value = "子集", example = "[]")
-    private List<OptionVo> children;
+    private List<OptionVO> children;
 
 }

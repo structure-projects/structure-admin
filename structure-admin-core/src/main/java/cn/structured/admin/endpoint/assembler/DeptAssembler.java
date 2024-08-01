@@ -1,15 +1,15 @@
 package cn.structured.admin.endpoint.assembler;
 
-import cn.structured.admin.dto.DeptDto;
+import cn.structured.admin.dto.DeptDTO;
 import cn.structured.admin.entity.Dept;
-import cn.structured.admin.vo.DeptVo;
+import cn.structured.admin.vo.DeptVO;
 import cn.structured.basic.core.utils.SystemUtil;
 
 public class DeptAssembler {
 
 
-    public static DeptVo assemblerDept(Dept dept) {
-        DeptVo deptVo = new DeptVo();
+    public static DeptVO assemblerDept(Dept dept) {
+        DeptVO deptVo = new DeptVO();
         deptVo.setId(dept.getId());
         deptVo.setName(dept.getName());
         deptVo.setParentId(dept.getParentId());
@@ -21,7 +21,7 @@ public class DeptAssembler {
         return deptVo;
     }
 
-    public static Dept assembler(DeptDto deptDto) {
+    public static Dept assembler(DeptDTO deptDto) {
         Dept dept = new Dept();
         dept.setName(deptDto.getName());
         dept.setParentId(deptDto.getParentId());

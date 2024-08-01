@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Data
 @ApiModel(value = "菜单VO")
-public class MenuVo {
+public class MenuVO {
 
     @ApiModelProperty(value = "菜单ID")
     private Long id;
@@ -55,6 +55,6 @@ public class MenuVo {
     private String perm;
 
     @ApiModelProperty(value = "子菜单")
-    private List<MenuVo> children;
+    private List<MenuVO> children;
 
 }

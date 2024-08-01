@@ -13,7 +13,7 @@ import lombok.Data;
  */
 @Data
 @ApiModel(description = "搜索字典类")
-public class SearchDictCategoryDto {
+public class SearchDictCategoryDTO {
 
     @ApiModelProperty(value = "字典编号", example = "SEX")
     private String code;

@@ -10,9 +10,9 @@ import cn.structured.admin.manager.IUserManager;
 import cn.structured.admin.service.IDeptService;
 import cn.structured.admin.service.IMemberService;
 import cn.structured.admin.dto.MemberDto;
-import cn.structured.admin.dto.RestMemberPasswordDto;
+import cn.structured.admin.dto.RestMemberPasswordDTO;
 import cn.structured.admin.entity.Dept;
-import cn.structured.admin.vo.MemberVo;
+import cn.structured.admin.vo.MemberVO;
 import cn.structured.mybatis.plus.starter.vo.ResPage;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
@@ -29,7 +29,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-
+/**
+ * 成员管理
+ *
+ * @author cqliut
+ * @version 2023.0705
+ * @since 1.0.1
+ */
 @Api(tags = "成员管理")
 @RestController
 @RequestMapping(value = "/api/member")
@@ -62,7 +68,7 @@ public class MemberEndpoint {
 
     @ApiOperation(value = "成员列表")
     @GetMapping(value = "/{page}/{pageSize}/page")
-    public ResResultVO<ResPage<MemberVo>> page(@ApiParam(value = "关键字", example = "成员名词")
+    public ResResultVO<ResPage<MemberVO>> page(@ApiParam(value = "关键字", example = "成员名词")
                                                @RequestParam(required = false) String keywords,
                                                @ApiParam(value = "是否启用", example = "1")
                                                @RequestParam(required = false) Integer state,
@@ -81,13 +87,13 @@ public class MemberEndpoint {
                 .like(StrUtil.isNotBlank(keywords), Member::getPhone, StringPool.PERCENT + keywords + StringPool.PERCENT);
 
         Page<Member> memberPage = service.page(new Page<>(page, pageSize), queryWrapper);
-        ResPage<MemberVo> resultPage = ResPage.convert(memberPage, MemberAssembler::assembler);
+        ResPage<MemberVO> resultPage = ResPage.convert(memberPage, MemberAssembler::assembler);
         //有返回条目则需要对部门名称进行处理
         if (resultPage.getTotal() > NumberEnum.ZERO.getValue()) {
-            Set<Long> deptIds = resultPage.getRecords().stream().map(MemberVo::getDeptId).collect(Collectors.toSet());
+            Set<Long> deptIds = resultPage.getRecords().stream().map(MemberVO::getDeptId).collect(Collectors.toSet());
             Map<Long, String> deptMap = deptService.listByIds(deptIds).stream().collect(Collectors.toMap(Dept::getId, Dept::getName));
-            resultPage.getRecords().forEach(memberVo -> {
-                memberVo.setDeptName(deptMap.get(memberVo.getDeptId()));
+            resultPage.getRecords().forEach(memberVO -> {
+                memberVO.setDeptName(deptMap.get(memberVO.getDeptId()));
             });
         }
         return ResultUtilSimpleImpl.success(resultPage);
@@ -96,12 +102,12 @@ public class MemberEndpoint {
 
     @ApiOperation(value = "查看成员详情")
     @GetMapping(value = "/{id}")
-    public ResResultVO<MemberVo> get(@ApiParam(value = "成员ID", example = "1645717015337684992")
+    public ResResultVO<MemberVO> get(@ApiParam(value = "成员ID", example = "1645717015337684992")
                                      @PathVariable("id")
                                      Long id) {
         Member member = service.getById(id);
         List<Long> userRole = userManager.getUserRoleIds(member.getUserId());
-        MemberVo memberVo = MemberAssembler.assembler(member);
+        MemberVO memberVo = MemberAssembler.assembler(member);
         memberVo.setRoleIds(userRole);
         return ResultUtilSimpleImpl.success(memberVo);
     }
@@ -127,7 +133,7 @@ public class MemberEndpoint {
 
     @ApiOperation(value = "重置成员密码")
     @PutMapping(value = "/resetPassword")
-    public ResResultVO<Void> resetPassword(@Validated @RequestBody RestMemberPasswordDto restMemberPassword) {
+    public ResResultVO<Void> resetPassword(@Validated @RequestBody RestMemberPasswordDTO restMemberPassword) {
         service.resetPassword(restMemberPassword.getMemberId(), restMemberPassword.getPassword());
         return ResultUtilSimpleImpl.success(null);
     }

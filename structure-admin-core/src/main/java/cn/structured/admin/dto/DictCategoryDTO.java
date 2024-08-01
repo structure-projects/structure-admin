@@ -15,7 +15,7 @@ import javax.validation.constraints.NotBlank;
  */
 @Data
 @ApiModel(description = "字典类-DTO")
-public class DictCategoryDto {
+public class DictCategoryDTO {
 
     @NotBlank
     @ApiModelProperty(value = "字典类名称", example = "性别")

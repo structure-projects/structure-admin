@@ -1,4 +1,4 @@
-package cn.structured.admin.dto;
+package cn.structured.admin.vo;
 
 import cn.structured.admin.enums.MenuTypeEnum;
 import io.swagger.annotations.ApiModel;
@@ -6,15 +6,15 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
- * 创建功能菜单
+ * 菜单详情VO
  *
  * @author cqliut
- * @version 2023.0706
+ * @version 2023.0707
  * @since 1.0.1
  */
 @Data
-@ApiModel(description = "功能菜单")
-public class MenuDto {
+@ApiModel(value = "菜单详情VO")
+public class MenuDetailsVO {
 
     @ApiModelProperty(value = "菜单ID")
     private Long id;
@@ -57,7 +57,4 @@ public class MenuDto {
 
     @ApiModelProperty(value = "【目录】只有一个子路由是否始终显示", example = "1")
     private Boolean alwaysShow;
-
-    @ApiModelProperty(value = "树形结构")
-    private String treePath;
 }

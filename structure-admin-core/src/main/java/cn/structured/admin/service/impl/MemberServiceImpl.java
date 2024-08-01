@@ -2,14 +2,14 @@ package cn.structured.admin.service.impl;
 
 import cn.hutool.core.util.StrUtil;
 import cn.structure.common.enums.NumberEnum;
+import cn.structured.admin.entity.Dept;
 import cn.structured.admin.entity.Member;
 import cn.structured.admin.manager.IUserManager;
 import cn.structured.admin.mapper.DeptMapper;
 import cn.structured.admin.mapper.MemberMapper;
 import cn.structured.admin.service.IMemberService;
-import cn.structured.admin.entity.Dept;
 import cn.structured.mybatis.plus.starter.base.BaseServiceImpl;
-import cn.structured.oauth.user.api.dto.user.RegisterPlatformUserDto;
+import cn.structured.user.api.dto.user.RegisterPlatformUserDTO;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.google.common.collect.Lists;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-
+/**
+ * 成员管理
+ *
+ * @author chuck
+ * @version 2024/07/13 下午4:37
+ * @since 1.8
+ */
 @Service
 public class MemberServiceImpl extends BaseServiceImpl<MemberMapper, Member> implements IMemberService {
 
@@ -35,7 +41,7 @@ public class MemberServiceImpl extends BaseServiceImpl<MemberMapper, Member> imp
     @Override
     @Transactional(rollbackFor = Exception.class)
     public boolean save(Member entity) {
-        RegisterPlatformUserDto registerPlatformUserDto = new RegisterPlatformUserDto();
+        RegisterPlatformUserDTO registerPlatformUserDto = new RegisterPlatformUserDTO();
         registerPlatformUserDto.setNickname(entity.getName());
         registerPlatformUserDto.setPlatformUserId(entity.getPhone());
         registerPlatformUserDto.setType("phone");

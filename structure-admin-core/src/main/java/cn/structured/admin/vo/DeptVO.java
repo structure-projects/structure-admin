@@ -7,10 +7,16 @@ import lombok.Data;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
-
+/**
+ * 部门视图对象
+ *
+ * @author cqliut
+ * @version 2023.0706
+ * @since 1.0.1
+ */
 @Data
 @ApiModel(description = "部门视图对象")
-public class DeptVo {
+public class DeptVO {
 
 
     @ApiModelProperty(value = "部门ID")
@@ -33,7 +39,7 @@ public class DeptVo {
     private Boolean enabled;
 
     @ApiModelProperty(value = "子部门")
-    private List<DeptVo> children;
+    private List<DeptVO> children;
 
     @ApiModelProperty(value = "创建时间")
     private LocalDateTime createTime;

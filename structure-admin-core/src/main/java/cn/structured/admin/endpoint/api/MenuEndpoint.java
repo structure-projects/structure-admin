@@ -5,15 +5,15 @@ import cn.hutool.core.util.StrUtil;
 import cn.structure.common.entity.ResResultVO;
 import cn.structure.common.utils.ResultUtilSimpleImpl;
 import cn.structured.admin.manager.IUserManager;
-import cn.structured.admin.dto.MenuDto;
-import cn.structured.admin.dto.RouteVo;
+import cn.structured.admin.dto.MenuDTO;
+import cn.structured.admin.vo.RouteVO;
 import cn.structured.admin.endpoint.assembler.MenuAssembler;
 import cn.structured.admin.endpoint.assembler.OptionAssembler;
 import cn.structured.admin.entity.Menu;
 import cn.structured.admin.service.IMenuService;
-import cn.structured.admin.vo.MenuDetailsVo;
-import cn.structured.admin.vo.MenuVo;
-import cn.structured.admin.vo.OptionVo;
+import cn.structured.admin.vo.MenuDetailsVO;
+import cn.structured.admin.vo.MenuVO;
+import cn.structured.admin.vo.OptionVO;
 import cn.structured.security.util.SecurityUtils;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
@@ -52,7 +52,7 @@ public class MenuEndpoint {
 
     @ApiOperation(value = "新增功能")
     @PostMapping(value = "/")
-    public ResResultVO<Long> add(@RequestBody @Validated MenuDto createMenu) {
+    public ResResultVO<Long> add(@RequestBody @Validated MenuDTO createMenu) {
         Menu menu = MenuAssembler.assembler(createMenu);
         menuService.save(menu);
         return ResultUtilSimpleImpl.success(menu.getId());
@@ -62,7 +62,7 @@ public class MenuEndpoint {
     @PutMapping(value = "/{menuId}")
     public ResResultVO<Void> update(@ApiParam(value = "功能ID", example = "1645717015337684992")
                                     @PathVariable("menuId") Long menuId,
-                                    @RequestBody @Validated MenuDto updateMenu) {
+                                    @RequestBody @Validated MenuDTO updateMenu) {
         Menu assembler = MenuAssembler.assembler(updateMenu);
         assembler.setId(menuId);
         menuService.updateById(assembler);
@@ -71,24 +71,24 @@ public class MenuEndpoint {
 
     @ApiOperation(value = "功能列表")
     @GetMapping(value = "/list")
-    public ResResultVO<List<MenuVo>> list(@ApiParam(value = "关键字", example = "菜单名词") String keywords) {
+    public ResResultVO<List<MenuVO>> list(@ApiParam(value = "关键字", example = "菜单名词") String keywords) {
         LambdaQueryWrapper<Menu> queryWrapper = Wrappers.<Menu>lambdaQuery()
                 .like(StrUtil.isNotBlank(keywords), Menu::getName, StringPool.PERCENT + keywords + StringPool.PERCENT)
                 .orderByAsc(Menu::getSort);
         List<Menu> menuList = menuService.list(queryWrapper);
-        Map<Long, MenuVo> menuMap = menuList
+        Map<Long, MenuVO> menuMap = menuList
                 .stream()
                 .collect(Collectors.toMap(Menu::getId, MenuAssembler::assembler));
-        List<MenuVo> parentList = new ArrayList<>();
+        List<MenuVO> parentList = new ArrayList<>();
         menuList.forEach(item -> {
             Long pid = item.getParentId();
             Long id = item.getId();
-            MenuVo parentOption = menuMap.get(pid);
-            MenuVo currentOption = menuMap.get(id);
+            MenuVO parentOption = menuMap.get(pid);
+            MenuVO currentOption = menuMap.get(id);
             if (null == parentOption) {
                 parentList.add(currentOption);
             } else {
-                List<MenuVo> children = parentOption.getChildren();
+                List<MenuVO> children = parentOption.getChildren();
                 if (null == children) {
                     children = new ArrayList<>();
                     parentOption.setChildren(children);
@@ -102,7 +102,7 @@ public class MenuEndpoint {
 
     @ApiOperation(value = "查看功能详情")
     @GetMapping(value = "/{menuId}")
-    public ResResultVO<MenuDetailsVo> get(@ApiParam(value = "功能ID", example = "1645717015337684992")
+    public ResResultVO<MenuDetailsVO> get(@ApiParam(value = "功能ID", example = "1645717015337684992")
                                           @PathVariable("menuId")
                                           Long menuId) {
         Menu menu = menuService.getById(menuId);
@@ -135,7 +135,7 @@ public class MenuEndpoint {
 
     @ApiOperation(value = "功能菜单树", notes = "功能菜单树 TREE结构")
     @GetMapping(value = "/options")
-    public ResResultVO<List<OptionVo>> option() {
+    public ResResultVO<List<OptionVO>> option() {
         LambdaQueryWrapper<Menu> queryWrapper = Wrappers.<Menu>lambdaQuery()
                 .eq(Menu::getEnabled, Boolean.TRUE)
                 .select(Menu::getId, Menu::getCode, Menu::getPath, Menu::getName, Menu::getParentId)
@@ -146,7 +146,7 @@ public class MenuEndpoint {
 
     @ApiOperation(value = "获取当前用户的功能菜单", notes = "功能菜单树 TREE结构")
     @GetMapping(value = "/routes")
-    public ResResultVO<List<RouteVo>> getMenuList() {
+    public ResResultVO<List<RouteVO>> getMenuList() {
         Long userId = SecurityUtils.getUserId();
         List<String> userRole = userManager.getUserRole(userId);
         List<String> userAuthorities = userManager.getUserAuthorities(userId);
@@ -157,19 +157,19 @@ public class MenuEndpoint {
                     .in(Menu::getCode, userAuthorities)
                     .orderByAsc(Menu::getSort);
             List<Menu> menuList = menuService.list(queryWrapper);
-            Map<Long, RouteVo> groupMap = menuList
+            Map<Long, RouteVO> groupMap = menuList
                     .stream()
                     .collect(Collectors.toMap(Menu::getId, e -> MenuAssembler.assemblerRote(e, userRole)));
-            List<RouteVo> parenList = new ArrayList<>();
+            List<RouteVO> parenList = new ArrayList<>();
             menuList.forEach(menu -> {
                 Long pid = menu.getParentId();
                 Long id = menu.getId();
-                RouteVo parent = groupMap.get(pid);
-                RouteVo current = groupMap.get(id);
+                RouteVO parent = groupMap.get(pid);
+                RouteVO current = groupMap.get(id);
                 if (null == parent) {
                     parenList.add(current);
                 } else {
-                    List<RouteVo> children = parent.getChildren();
+                    List<RouteVO> children = parent.getChildren();
                     if (null == children) {
                         children = new ArrayList<>();
                         parent.setChildren(children);

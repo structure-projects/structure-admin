@@ -1,34 +1,39 @@
 package cn.structured.admin.manager;
 
-import cn.structured.oauth.user.api.dto.user.RegisterPlatformUserDto;
+import cn.structured.user.api.dto.user.RegisterPlatformUserDTO;
 import cn.structured.security.entity.StructureAuthUser;
 
 import java.util.List;
 import java.util.Set;
 
+/**
+ * 用户Manager
+ * @author chuck
+ * @since 1.8
+ */
 public interface IUserManager {
 
     /**
      * 获取用户权限
      *
      * @param userId 用户ID
-     * @return
+     * @return List<String>
      */
     List<String> getUserAuthorities(Long userId);
 
     /**
      * 查询用户角色
      *
-     * @param userId
-     * @return
+     * @param userId 用户ID
+     * @return List<String>
      */
     List<String> getUserRole(Long userId);
 
     /**
      * 查询用户角色
      *
-     * @param userId
-     * @return
+     * @param userId 用户ID
+     * @return List<Long>
      */
     List<Long> getUserRoleIds(Long userId);
 
@@ -36,9 +41,9 @@ public interface IUserManager {
      * 注册平台用户
      *
      * @param registerPlatformUserDto 注册平台DTO
-     * @return
+     * @return Long
      */
-    Long registerPlatformUser(RegisterPlatformUserDto registerPlatformUserDto);
+    Long registerPlatformUser(RegisterPlatformUserDTO registerPlatformUserDto);
 
     /**
      * 重置用户密码
@@ -51,7 +56,7 @@ public interface IUserManager {
      * 通过用户名查询用户详情
      *
      * @param username 用户名
-     * @return
+     * @return StructureAuthUser
      */
     StructureAuthUser loadUserByUsername(String username);
 
@@ -81,7 +86,7 @@ public interface IUserManager {
     /**
      * 删除用户
      *
-     * @param userId
+     * @param userId 用户ID
      */
     void removeById(Long userId);
 

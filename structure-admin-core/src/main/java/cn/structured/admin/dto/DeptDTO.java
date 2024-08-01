@@ -6,9 +6,16 @@ import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 
+/**
+ * 部门对象
+ *
+ * @author chuck
+ * @version 2024/07/13 下午4:37
+ * @since 1.8
+ */
 @Data
 @ApiModel(description = "部门对象")
-public class DeptDto {
+public class DeptDTO {
 
     @ApiModelProperty(value = "部门名称")
     private String name;

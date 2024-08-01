@@ -1,14 +1,20 @@
-package cn.structured.admin.dto;
+package cn.structured.admin.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.util.List;
-
+/**
+ * 路由-VO
+ *
+ * @author cqliut
+ * @version 2023.0731
+ * @since 1.0.1
+ */
 @Data
 @ApiModel(value = "路由-VO")
-public class RouteVo {
+public class RouteVO {
 
     @ApiModelProperty(value = "路由ID", example = "1")
 
@@ -55,6 +61,6 @@ public class RouteVo {
     }
 
     @ApiModelProperty(value = "子菜单")
-    private List<RouteVo> children;
+    private List<RouteVO> children;
 
 }

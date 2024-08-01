@@ -1,9 +1,8 @@
 package cn.structured.admin.endpoint.assembler;
 
-import cn.structured.admin.dto.ConfigDto;
+import cn.structured.admin.dto.ConfigDTO;
 import cn.structured.admin.entity.Config;
-import cn.structured.admin.vo.ConfigVo;
-import cn.structured.security.util.SecurityUtils;
+import cn.structured.admin.vo.ConfigVO;
 
 /**
  * 配置装配器
@@ -22,8 +21,8 @@ public class ConfigAssembler {
      * @param config 用户配置PO
      * @return
      */
-    public static ConfigVo assembler(Config config) {
-        ConfigVo configVo = new ConfigVo();
+    public static ConfigVO assembler(Config config) {
+        ConfigVO configVo = new ConfigVO();
         configVo.setId(config.getId());
         configVo.setKey(config.getCode());
         configVo.setValue(config.getValue());
@@ -31,7 +30,7 @@ public class ConfigAssembler {
         return configVo;
     }
 
-    public static Config assembler(ConfigDto userConfig) {
+    public static Config assembler(ConfigDTO userConfig) {
         Config config = new Config();
         config.setCode(userConfig.getKey());
         config.setValue(userConfig.getValue());

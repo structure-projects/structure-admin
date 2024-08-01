@@ -23,10 +23,10 @@ public enum DictType {
     /**
      * 类型值
      */
-    private Integer value;
+    private final Integer value;
 
     /**
      * 类型名
      */
-    private String title;
+    private final String title;
 }

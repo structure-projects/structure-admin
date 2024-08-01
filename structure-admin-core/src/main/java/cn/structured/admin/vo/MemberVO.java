@@ -4,14 +4,19 @@ package cn.structured.admin.vo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.luaj.vm2.ast.Str;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
+/**
+ * 成员-VO
+ *
+ * @author cqliut
+ * @version 2023.0706
+ * @since 1.0.1
+ */
 @Data
 @ApiModel(value = "成员 - VO")
-public class MemberVo {
+public class MemberVO {
 
     @ApiModelProperty(value = "成员ID")
     private Long id;

@@ -1,17 +1,14 @@
 package cn.structured.admin.manager;
 
-import cn.structured.oauth.user.api.dto.user.RegisterPlatformUserDto;
-import cn.structured.oauth.user.api.dto.user.UserDetailDto;
-import cn.structured.oauth.user.entity.Role;
-import cn.structured.oauth.user.entity.User;
-import cn.structured.oauth.user.service.IUserService;
+import cn.structured.user.api.dto.user.RegisterPlatformUserDTO;
+import cn.structured.user.entity.Role;
+import cn.structured.user.entity.User;
+import cn.structured.user.service.IUserService;
 import cn.structured.security.entity.StructureAuthUser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -43,7 +40,7 @@ public class UserManagerImpl implements IUserManager {
     }
 
     @Override
-    public Long registerPlatformUser(RegisterPlatformUserDto registerPlatformUserDto) {
+    public Long registerPlatformUser(RegisterPlatformUserDTO registerPlatformUserDto) {
         return userService.registerPlatformUser(registerPlatformUserDto);
     }
 

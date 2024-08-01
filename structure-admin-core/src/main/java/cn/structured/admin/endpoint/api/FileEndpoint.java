@@ -4,10 +4,12 @@ import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.structure.common.entity.ResResultVO;
+import cn.structure.common.exception.CommonException;
 import cn.structure.common.utils.ResultUtilSimpleImpl;
 import cn.structured.admin.configuration.AdminProperties;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.entity.ContentType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,6 +20,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 
 /**
  * 文件控制器
@@ -25,6 +28,7 @@ import java.io.InputStream;
  * @author chuck
  * @since JDK1.8
  */
+@Slf4j
 @Api(tags = "文件管理")
 @RestController
 @RequestMapping(value = "/api/files")
@@ -53,13 +57,13 @@ public class FileEndpoint {
     @ApiOperation(value = "预览图片")
     @GetMapping(value = "/viewImg/{fileName}")
     public void viewImg(@PathVariable(value = "fileName") String fileName, HttpServletResponse response) {
-        try (InputStream fileInputStream = new FileInputStream(new File(properties.getUploadPath(), fileName))) {
+        try (InputStream fileInputStream = Files.newInputStream(new File(properties.getUploadPath(), fileName).toPath())) {
             response.setContentType(ContentType.IMAGE_PNG.toString());
             IoUtil.copy(fileInputStream, response.getOutputStream());
             response.getOutputStream().close();
-        } catch (
-                IOException e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            log.error("image view error -> {}", e.getMessage());
+            throw new CommonException();
         }
     }
 
@@ -71,7 +75,8 @@ public class FileEndpoint {
             IoUtil.copy(fileInputStream, response.getOutputStream());
             response.getOutputStream().close();
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("download file error -> {}", e.getMessage());
+            throw new CommonException();
         }
     }
 }

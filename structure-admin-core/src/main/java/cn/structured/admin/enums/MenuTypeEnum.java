@@ -5,6 +5,10 @@ import lombok.Getter;
 
 /**
  * 菜单类型
+ *
+ * @author chuck
+ * @version 2024/07/13 下午4:37
+ * @since 1.8
  */
 @Getter
 public enum MenuTypeEnum {
@@ -14,13 +18,11 @@ public enum MenuTypeEnum {
     EXTLINK(3, "外链"),
     BUTTON(4, "按钮");
 
-    @Getter
     @EnumValue //  Mybatis-Plus 提供注解表示插入数据库时插入该值
-    private Integer value;
+    private final Integer value;
 
-    @Getter
     // @JsonValue //  表示对枚举序列化时返回此字段
-    private String label;
+    private final String label;
 
     MenuTypeEnum(Integer value, String label) {
         this.value = value;

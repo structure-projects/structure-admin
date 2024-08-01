@@ -3,11 +3,11 @@ package cn.structured.admin.endpoint.api;
 import cn.hutool.core.util.StrUtil;
 import cn.structure.common.entity.ResResultVO;
 import cn.structure.common.utils.ResultUtilSimpleImpl;
-import cn.structured.admin.dto.DictCategoryDto;
+import cn.structured.admin.dto.DictCategoryDTO;
 import cn.structured.admin.endpoint.assembler.DictAssembler;
 import cn.structured.admin.entity.DictCategory;
 import cn.structured.admin.service.IDictCategoryService;
-import cn.structured.admin.vo.DictCategoryVo;
+import cn.structured.admin.vo.DictCategoryVO;
 import cn.structured.basic.core.utils.SystemUtil;
 import cn.structured.mybatis.plus.starter.vo.ResPage;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -40,7 +40,7 @@ public class DictCategoryEndpoint {
 
     @ApiOperation(value = "新增字典类")
     @PostMapping(value = "/category/")
-    public ResResultVO<Long> add(@RequestBody @Validated DictCategoryDto dictCategoryDto) {
+    public ResResultVO<Long> add(@RequestBody @Validated DictCategoryDTO dictCategoryDto) {
         DictCategory dictCategory = DictAssembler.assemblerDictCategory(dictCategoryDto);
         dictCategory.setOrganizationId(SystemUtil.getOrganizationId());
         dictService.save(dictCategory);
@@ -51,7 +51,7 @@ public class DictCategoryEndpoint {
     @PutMapping(value = "/category/{dictCategoryId}")
     public ResResultVO<Void> update(@ApiParam(value = "字典类ID", example = "1645717015337684992")
                                     @PathVariable("dictCategoryId") Long dictCategoryId,
-                                    @RequestBody @Validated DictCategoryDto dictCategoryDto) {
+                                    @RequestBody @Validated DictCategoryDTO dictCategoryDto) {
         DictCategory dictCategory = DictAssembler.assemblerDictCategory(dictCategoryDto);
         dictCategory.setId(dictCategoryId);
         dictService.updateById(dictCategory);
@@ -60,7 +60,7 @@ public class DictCategoryEndpoint {
 
     @ApiOperation(value = "字典类分页列表")
     @GetMapping(value = "/category/{page}/{pageSize}/page")
-    public ResResultVO<ResPage<DictCategoryVo>> page(@ApiParam(value = "页码", required = true, example = "1")
+    public ResResultVO<ResPage<DictCategoryVO>> page(@ApiParam(value = "页码", required = true, example = "1")
                                                      @PathVariable(value = "page") Long page,
                                                      @ApiParam(value = "页大小", required = true, example = "20")
                                                      @PathVariable(value = "pageSize") Long pageSize,
@@ -71,12 +71,12 @@ public class DictCategoryEndpoint {
                 .or()
                 .like(StrUtil.isNotBlank(keywords), DictCategory::getName, StringPool.PERCENT + keywords + StringPool.PERCENT);
 
-        IPage<DictCategory> pageResult = dictService.page(new Page(page, pageSize), queryWrapper);
+        IPage<DictCategory> pageResult = dictService.page(new Page<>(page, pageSize), queryWrapper);
         return ResultUtilSimpleImpl.success(ResPage.convert(pageResult, DictAssembler::assemblerDictCategory));
     }
 
     @GetMapping(value = "/category/{dictCategoryId}")
-    public ResResultVO<DictCategoryVo> getCategory(@ApiParam(value = "字典类ID", example = "1645717015337684992")
+    public ResResultVO<DictCategoryVO> getCategory(@ApiParam(value = "字典类ID", example = "1645717015337684992")
                                                    @PathVariable("dictCategoryId") Long dictCategoryId) {
         DictCategory dictCategory = dictService.getById(dictCategoryId);
         return ResultUtilSimpleImpl.success(DictAssembler.assemblerDictCategory(dictCategory));

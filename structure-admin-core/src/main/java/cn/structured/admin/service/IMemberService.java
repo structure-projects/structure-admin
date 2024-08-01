@@ -2,7 +2,13 @@ package cn.structured.admin.service;
 
 import cn.structured.admin.entity.Member;
 import cn.structured.mybatis.plus.starter.base.IBaseService;
-
+/**
+ * 成员管理
+ *
+ * @author chuck
+ * @version 2024/07/13 下午4:37
+ * @since 1.8
+ */
 public interface IMemberService extends IBaseService<Member> {
 
     /**

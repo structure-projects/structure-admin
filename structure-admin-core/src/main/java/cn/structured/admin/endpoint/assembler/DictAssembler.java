@@ -1,11 +1,11 @@
 package cn.structured.admin.endpoint.assembler;
 
-import cn.structured.admin.dto.DictCategoryDto;
-import cn.structured.admin.dto.DictItemDto;
+import cn.structured.admin.dto.DictCategoryDTO;
+import cn.structured.admin.dto.DictItemDTO;
 import cn.structured.admin.entity.DictCategory;
 import cn.structured.admin.entity.DictItem;
-import cn.structured.admin.vo.DictCategoryVo;
-import cn.structured.admin.vo.DictItemVo;
+import cn.structured.admin.vo.DictCategoryVO;
+import cn.structured.admin.vo.DictItemVO;
 
 /**
  * 字典装配器
@@ -25,7 +25,7 @@ public class DictAssembler {
      * @param createDictCategory 创建字典类DTO
      * @return 字典类
      */
-    public static DictCategory assemblerDictCategory(DictCategoryDto createDictCategory) {
+    public static DictCategory assemblerDictCategory(DictCategoryDTO createDictCategory) {
         DictCategory dictCategory = new DictCategory();
         dictCategory.setName(createDictCategory.getName());
         dictCategory.setEnabled(createDictCategory.getEnabled());
@@ -40,8 +40,8 @@ public class DictAssembler {
      * @param dictCategory 字典类
      * @return 典类VO对象
      */
-    public static DictCategoryVo assemblerDictCategory(DictCategory dictCategory) {
-        DictCategoryVo dictCategoryVO = new DictCategoryVo();
+    public static DictCategoryVO assemblerDictCategory(DictCategory dictCategory) {
+        DictCategoryVO dictCategoryVO = new DictCategoryVO();
         dictCategoryVO.setId(dictCategory.getId());
         dictCategoryVO.setName(dictCategory.getName());
         dictCategoryVO.setCode(dictCategory.getCode());
@@ -58,7 +58,7 @@ public class DictAssembler {
      * @param dictItemDto 字典项DTO
      * @return 字典项数据实体
      */
-    public static DictItem assemblerDictItem(DictItemDto dictItemDto) {
+    public static DictItem assemblerDictItem(DictItemDTO dictItemDto) {
         DictItem dictItem = new DictItem();
         dictItem.setValue(dictItemDto.getValue());
         dictItem.setCode(dictItemDto.getCode());
@@ -74,8 +74,8 @@ public class DictAssembler {
      * @param dictItem 字典项数据实体
      * @return 字典项-VO
      */
-    public static DictItemVo assemblerDictItem(DictItem dictItem) {
-        DictItemVo dictItemVO = new DictItemVo();
+    public static DictItemVO assemblerDictItem(DictItem dictItem) {
+        DictItemVO dictItemVO = new DictItemVO();
         dictItemVO.setId(dictItem.getId());
         dictItemVO.setName(dictItem.getName());
         dictItemVO.setCode(dictItem.getCode());

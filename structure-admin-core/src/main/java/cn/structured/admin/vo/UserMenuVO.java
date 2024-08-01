@@ -15,7 +15,7 @@ import java.util.List;
  */
 @Data
 @ApiModel(description = "菜单VO")
-public class UserMenuVo {
+public class UserMenuVO {
 
 
     @ApiModelProperty(value = "ID", example = "1645717015337684992")
@@ -55,6 +55,6 @@ public class UserMenuVo {
     private String redirect;
 
     @ApiModelProperty(value = "子集", example = "[]")
-    private List<UserMenuVo> children;
+    private List<UserMenuVO> children;
 
 }

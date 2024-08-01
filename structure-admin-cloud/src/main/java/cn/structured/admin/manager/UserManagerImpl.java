@@ -1,9 +1,9 @@
 package cn.structured.admin.manager;
 
 import cn.structured.admin.client.UserFeignClient;
-import cn.structured.oauth.user.api.dto.user.AssigningRoleDto;
-import cn.structured.oauth.user.api.dto.user.RegisterPlatformUserDto;
-import cn.structured.oauth.user.api.dto.user.RestPasswordDto;
+import cn.structured.user.api.dto.user.AssigningRoleDTO;
+import cn.structured.user.api.dto.user.RegisterPlatformUserDTO;
+import cn.structured.user.api.dto.user.RestPasswordDTO;
 import cn.structured.security.entity.StructureAuthUser;
 import com.google.common.collect.Sets;
 import lombok.RequiredArgsConstructor;
@@ -40,13 +40,13 @@ public class UserManagerImpl implements IUserManager {
     }
 
     @Override
-    public Long registerPlatformUser(RegisterPlatformUserDto registerPlatformUserDto) {
+    public Long registerPlatformUser(RegisterPlatformUserDTO registerPlatformUserDto) {
         return userFeignClient.registerPlatformUser(registerPlatformUserDto).getData();
     }
 
     @Override
     public void resetPassword(Long userId, String newPassword) {
-        userFeignClient.resetPassword(new RestPasswordDto() {{
+        userFeignClient.resetPassword(new RestPasswordDTO() {{
             this.setUserId(userId);
             this.setPassword(newPassword);
         }});
@@ -59,7 +59,7 @@ public class UserManagerImpl implements IUserManager {
 
     @Override
     public void assigningRole(List<Long> roleIds, Long userId) {
-        userFeignClient.assigningRole(new AssigningRoleDto() {{
+        userFeignClient.assigningRole(new AssigningRoleDTO() {{
             setUserId(userId);
             setRoleIds(roleIds);
         }});

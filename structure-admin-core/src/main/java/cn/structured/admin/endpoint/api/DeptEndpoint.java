@@ -4,13 +4,13 @@ package cn.structured.admin.endpoint.api;
 import cn.hutool.core.util.StrUtil;
 import cn.structure.common.entity.ResResultVO;
 import cn.structure.common.utils.ResultUtilSimpleImpl;
-import cn.structured.admin.dto.DeptDto;
+import cn.structured.admin.dto.DeptDTO;
 import cn.structured.admin.endpoint.assembler.DeptAssembler;
 import cn.structured.admin.endpoint.assembler.OptionAssembler;
 import cn.structured.admin.entity.Dept;
 import cn.structured.admin.service.IDeptService;
-import cn.structured.admin.vo.DeptVo;
-import cn.structured.admin.vo.OptionVo;
+import cn.structured.admin.vo.DeptVO;
+import cn.structured.admin.vo.OptionVO;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -37,7 +37,7 @@ public class DeptEndpoint {
 
     @ApiOperation(value = "新增部门")
     @PostMapping(value = "/")
-    public ResResultVO<Long> add(@RequestBody @Validated DeptDto create) {
+    public ResResultVO<Long> add(@RequestBody @Validated DeptDTO create) {
         Dept dept = DeptAssembler.assembler(create);
         service.save(dept);
         return ResultUtilSimpleImpl.success(dept.getId());
@@ -47,7 +47,7 @@ public class DeptEndpoint {
     @PutMapping(value = "/{id}")
     public ResResultVO<Void> update(@ApiParam(value = "部门ID", example = "1645717015337684992")
                                     @PathVariable("id") Long id,
-                                    @RequestBody @Validated DeptDto update) {
+                                    @RequestBody @Validated DeptDTO update) {
         Dept dept = DeptAssembler.assembler(update);
         dept.setId(id);
         service.updateById(dept);
@@ -56,7 +56,7 @@ public class DeptEndpoint {
 
     @ApiOperation(value = "部门列表")
     @GetMapping(value = "/list")
-    public ResResultVO<List<DeptVo>> page(@ApiParam(value = "关键字", example = "部门key")
+    public ResResultVO<List<DeptVO>> page(@ApiParam(value = "关键字", example = "部门key")
                                           @RequestParam(required = false)
                                           String keywords,
                                           @ApiParam(value = "是否启用", example = "TRUE")
@@ -67,19 +67,19 @@ public class DeptEndpoint {
                 .orderByAsc(Dept::getSort);
         ;
         List<Dept> deptList = service.list(queryWrapper);
-        Map<Long, DeptVo> optionMap = deptList
+        Map<Long, DeptVO> optionMap = deptList
                 .stream()
                 .collect(Collectors.toMap(Dept::getId, DeptAssembler::assemblerDept));
-        List<DeptVo> parentDeptList = new ArrayList<>();
+        List<DeptVO> parentDeptList = new ArrayList<>();
         deptList.forEach(dept -> {
             Long pid = dept.getParentId();
             Long id = dept.getId();
-            DeptVo parentOption = optionMap.get(pid);
-            DeptVo currentOption = optionMap.get(id);
+            DeptVO parentOption = optionMap.get(pid);
+            DeptVO currentOption = optionMap.get(id);
             if (null == parentOption) {
                 parentDeptList.add(currentOption);
             } else {
-                List<DeptVo> children = parentOption.getChildren();
+                List<DeptVO> children = parentOption.getChildren();
                 if (null == children) {
                     children = new ArrayList<>();
                     parentOption.setChildren(children);
@@ -93,7 +93,7 @@ public class DeptEndpoint {
 
     @ApiOperation(value = "查看部门详情")
     @GetMapping(value = "/{id}")
-    public ResResultVO<DeptVo> get(@ApiParam(value = "部门ID", example = "1645717015337684992")
+    public ResResultVO<DeptVO> get(@ApiParam(value = "部门ID", example = "1645717015337684992")
                                    @PathVariable("id")
                                    Long id) {
         Dept dept = service.getById(id);
@@ -110,7 +110,7 @@ public class DeptEndpoint {
 
     @ApiOperation(value = "功能菜单树", notes = "功能菜单树 TREE结构")
     @GetMapping(value = "/options")
-    public ResResultVO<List<OptionVo>> option() {
+    public ResResultVO<List<OptionVO>> option() {
         LambdaQueryWrapper<Dept> queryWrapper = Wrappers.<Dept>lambdaQuery()
                 .eq(Dept::getEnabled, Boolean.TRUE)
                 .select(Dept::getId, Dept::getName, Dept::getParentId)

@@ -1,12 +1,12 @@
 package cn.structured.admin.endpoint.assembler;
 
 import cn.hutool.core.util.StrUtil;
-import cn.structured.admin.dto.MenuDto;
-import cn.structured.admin.dto.RouteVo;
+import cn.structured.admin.dto.MenuDTO;
+import cn.structured.admin.vo.RouteVO;
 import cn.structured.admin.entity.Menu;
 import cn.structured.admin.enums.MenuTypeEnum;
-import cn.structured.admin.vo.MenuDetailsVo;
-import cn.structured.admin.vo.MenuVo;
+import cn.structured.admin.vo.MenuDetailsVO;
+import cn.structured.admin.vo.MenuVO;
 import cn.structured.basic.core.utils.SystemUtil;
 import com.google.common.collect.Lists;
 import org.springframework.util.StringUtils;
@@ -31,7 +31,7 @@ public class MenuAssembler {
      * @param menuDto 创建菜单DTO
      * @return 菜单实体
      */
-    public static Menu assembler(MenuDto menuDto) {
+    public static Menu assembler(MenuDTO menuDto) {
         Menu menu = new Menu();
         menu.setId(menuDto.getId());
         menu.setCode(menuDto.getCode());
@@ -52,9 +52,9 @@ public class MenuAssembler {
         return menu;
     }
 
-    public static RouteVo assemblerRote(Menu menu, List<String> userRole) {
+    public static RouteVO assemblerRote(Menu menu, List<String> userRole) {
         String routeName = StringUtils.capitalize(StrUtil.toCamelCase(menu.getPath()));
-        RouteVo routeVo = new RouteVo();
+        RouteVO routeVo = new RouteVO();
         routeVo.setId(menu.getId());
         routeVo.setParentId(menu.getParentId());
         routeVo.setPath(menu.getPath());
@@ -62,7 +62,7 @@ public class MenuAssembler {
         routeVo.setRedirect(menu.getRedirect());
         routeVo.setName(routeName);
         routeVo.setChildren(Lists.newArrayList());
-        RouteVo.Meta meta = new RouteVo.Meta();
+        RouteVO.Meta meta = new RouteVO.Meta();
         meta.setTitle(menu.getName());
         meta.setIcon(menu.getIcon());
         meta.setHidden(!menu.getVisible());
@@ -79,8 +79,8 @@ public class MenuAssembler {
      * @param menu 菜单实体
      * @return 菜单列表VO
      */
-    public static MenuVo assembler(Menu menu) {
-        MenuVo menuVo = new MenuVo();
+    public static MenuVO assembler(Menu menu) {
+        MenuVO menuVo = new MenuVO();
         menuVo.setId(menu.getId());
         menuVo.setCode(menu.getCode());
         menuVo.setParentId(menu.getParentId());
@@ -102,8 +102,8 @@ public class MenuAssembler {
      * @param menu 菜单实体数据
      * @return 菜单详情
      */
-    public static MenuDetailsVo assemblerDetails(Menu menu) {
-        MenuDetailsVo menuDetailsVo = new MenuDetailsVo();
+    public static MenuDetailsVO assemblerDetails(Menu menu) {
+        MenuDetailsVO menuDetailsVo = new MenuDetailsVO();
         menuDetailsVo.setId(menu.getId());
         menuDetailsVo.setCode(menu.getCode());
         menuDetailsVo.setParentId(menu.getParentId());

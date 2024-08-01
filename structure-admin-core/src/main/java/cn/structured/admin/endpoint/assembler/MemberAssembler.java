@@ -2,13 +2,13 @@ package cn.structured.admin.endpoint.assembler;
 
 import cn.structured.admin.entity.Member;
 import cn.structured.admin.dto.MemberDto;
-import cn.structured.admin.vo.MemberVo;
+import cn.structured.admin.vo.MemberVO;
 import cn.structured.basic.core.utils.SystemUtil;
 
 public class MemberAssembler {
 
-    public static MemberVo assembler(Member member) {
-        MemberVo memberVo = new MemberVo();
+    public static MemberVO assembler(Member member) {
+        MemberVO memberVo = new MemberVO();
         memberVo.setId(member.getId());
         memberVo.setPhone(member.getPhone());
         memberVo.setName(member.getName());

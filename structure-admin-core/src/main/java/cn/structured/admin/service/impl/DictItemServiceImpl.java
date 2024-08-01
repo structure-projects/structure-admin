@@ -7,6 +7,13 @@ import cn.structured.mybatis.plus.starter.base.BaseServiceImpl;
 import groovy.util.logging.Slf4j;
 import org.springframework.stereotype.Service;
 
+/**
+ * 字典项
+ *
+ * @author chuck
+ * @version 2024/07/13 下午4:37
+ * @since 1.8
+ */
 @Slf4j
 @Service
 public class DictItemServiceImpl extends BaseServiceImpl<DictItemMapper, DictItem> implements IDictService {

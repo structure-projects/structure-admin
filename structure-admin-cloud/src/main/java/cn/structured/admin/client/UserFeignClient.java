@@ -1,9 +1,9 @@
 package cn.structured.admin.client;
 
 import cn.structure.common.entity.ResResultVO;
-import cn.structured.oauth.user.api.dto.user.RegisterPlatformUserDto;
-import cn.structured.oauth.user.api.dto.user.RestPasswordDto;
-import cn.structured.oauth.user.api.dto.user.AssigningRoleDto;
+import cn.structured.user.api.dto.user.AssigningRoleDTO;
+import cn.structured.user.api.dto.user.RegisterPlatformUserDTO;
+import cn.structured.user.api.dto.user.RestPasswordDTO;
 import cn.structured.security.entity.StructureAuthUser;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -52,10 +52,10 @@ public interface UserFeignClient {
      * 注册平台用户
      *
      * @param registerPlatformUser 注册平台DTO
-     * @return
+     * @return Long
      */
     @PostMapping(value = "/open-api/register")
-    ResResultVO<Long> registerPlatformUser(@RequestBody RegisterPlatformUserDto registerPlatformUser);
+    ResResultVO<Long> registerPlatformUser(@RequestBody RegisterPlatformUserDTO registerPlatformUser);
 
     /**
      * 重置用户密码
@@ -63,35 +63,34 @@ public interface UserFeignClient {
      * @param restPasswordDto 重置用户密码DTO
      */
     @PutMapping(value = "/open-api/resetPassword")
-    ResResultVO<Void> resetPassword(@RequestBody RestPasswordDto restPasswordDto);
+    ResResultVO<Void> resetPassword(@RequestBody RestPasswordDTO restPasswordDto);
 
     /**
      * 通过用户名查询用户详情
      *
      * @param username 用户名
-     * @return
+     * @return StructureAuthUser
      */
     @GetMapping(value = "/open-api/getUserByUsername")
     ResResultVO<StructureAuthUser> getUserByUsername(@ApiParam(value = "用户名", example = "admin")
-                                                            @RequestParam("username") String username) ;
+                                                     @RequestParam("username") String username);
 
     @PutMapping(value = "/open-api/assigningRole}")
-    ResResultVO<Void> assigningRole(@RequestBody @Validated AssigningRoleDto assigningRoleDto);
+    ResResultVO<Void> assigningRole(@RequestBody @Validated AssigningRoleDTO assigningRoleDto);
 
 
     @PutMapping(value = "/open-api/enable/{userId}")
     ResResultVO<Void> enable(@ApiParam(value = "用户ID", example = "1645717015337684992")
-                                    @PathVariable("userId") Long userId);
+                             @PathVariable("userId") Long userId);
 
 
     @PutMapping(value = "/open-api/disable/{userId}")
     ResResultVO<Void> disable(@ApiParam(value = "用户ID", example = "1645717015337684992")
-                                     @PathVariable("userId") Long userId);
-
+                              @PathVariable("userId") Long userId);
 
 
     @DeleteMapping(value = "/open-api/{ids}")
     ResResultVO<Void> removeByIds(@ApiParam(value = "用户ID", example = "1645717015337684992")
-                                    @PathVariable Set<Long> ids);
+                                  @PathVariable Set<Long> ids);
 
 }

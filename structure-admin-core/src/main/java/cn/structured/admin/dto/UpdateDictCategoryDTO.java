@@ -13,7 +13,7 @@ import lombok.Data;
  */
 @Data
 @ApiModel(description = "更新字典类")
-public class UpdateDictCategoryDto {
+public class UpdateDictCategoryDTO {
 
     @ApiModelProperty(value = "字典类名称", example = "性别")
     private String name;

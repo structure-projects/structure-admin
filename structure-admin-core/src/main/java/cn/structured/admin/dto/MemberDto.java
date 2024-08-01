@@ -5,7 +5,12 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.util.List;
-
+/**
+ * 成员 - DTO
+ * @author chuck
+ * @version 2024/07/13 下午4:37
+ * @since 1.8
+ */
 @Data
 @ApiModel(value = "成员 - DTO")
 public class MemberDto {

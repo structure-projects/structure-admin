@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
  */
 @Data
 @ApiModel(description = "字典项VO")
-public class DictItemVo {
+public class DictItemVO {
 
     @ApiModelProperty(value = "字典项ID", example = "1645717015337684994")
     private Long id;

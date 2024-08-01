@@ -6,7 +6,13 @@ import cn.structured.admin.mapper.DeptMapper;
 import cn.structured.admin.service.IDeptService;
 import cn.structured.mybatis.plus.starter.base.BaseServiceImpl;
 import org.springframework.stereotype.Service;
-
+/**
+ * 部门管理
+ *
+ * @author chuck
+ * @version 2024/07/13 下午4:37
+ * @since 1.8
+ */
 @Service
 public class DeptServiceImpl extends BaseServiceImpl<DeptMapper, Dept> implements IDeptService {
 

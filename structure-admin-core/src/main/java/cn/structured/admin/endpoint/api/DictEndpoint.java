@@ -3,13 +3,13 @@ package cn.structured.admin.endpoint.api;
 import cn.hutool.core.util.StrUtil;
 import cn.structure.common.entity.ResResultVO;
 import cn.structure.common.utils.ResultUtilSimpleImpl;
-import cn.structured.admin.dto.DictItemDto;
+import cn.structured.admin.dto.DictItemDTO;
 import cn.structured.admin.endpoint.assembler.DictAssembler;
 import cn.structured.admin.endpoint.assembler.OptionAssembler;
 import cn.structured.admin.entity.DictItem;
 import cn.structured.admin.service.IDictService;
-import cn.structured.admin.vo.DictItemVo;
-import cn.structured.admin.vo.OptionVo;
+import cn.structured.admin.vo.DictItemVO;
+import cn.structured.admin.vo.OptionVO;
 import cn.structured.basic.api.groups.Create;
 import cn.structured.basic.api.groups.Update;
 import cn.structured.mybatis.plus.starter.vo.ResPage;
@@ -38,7 +38,7 @@ public class DictEndpoint {
 
     @ApiOperation(value = "字典项列表")
     @GetMapping(value = "/{page}/{pageSize}/page")
-    public ResResultVO<ResPage<DictItemVo>> itemList(@ApiParam(value = "字典类CODE", example = "SEX")
+    public ResResultVO<ResPage<DictItemVO>> itemList(@ApiParam(value = "字典类CODE", example = "SEX")
                                                      @RequestParam(value = "code") String code,
                                                      @ApiParam(value = "关键字", example = "部门key")
                                                      @RequestParam(required = false)
@@ -57,13 +57,13 @@ public class DictEndpoint {
                 .orderByAsc(DictItem::getSort);
         ;
         Page<DictItem> pageResult = dictService.page(new Page<>(page, pageSize), queryWrapper);
-        ResPage<DictItemVo> result = ResPage.convert(pageResult, DictAssembler::assemblerDictItem);
+        ResPage<DictItemVO> result = ResPage.convert(pageResult, DictAssembler::assemblerDictItem);
         return ResultUtilSimpleImpl.success(result);
     }
 
     @ApiOperation(value = "创建字典项")
     @PostMapping(value = "/")
-    public ResResultVO<Long> addItem(@RequestBody @Validated(value = Create.class) DictItemDto create) {
+    public ResResultVO<Long> addItem(@RequestBody @Validated(value = Create.class) DictItemDTO create) {
         DictItem item = DictAssembler.assemblerDictItem(create);
         dictService.save(item);
         return ResultUtilSimpleImpl.success(item.getId());
@@ -71,7 +71,7 @@ public class DictEndpoint {
 
     @ApiOperation(value = "获取字典项详情")
     @GetMapping(value = "/{id}")
-    public ResResultVO<DictItemVo> get(@PathVariable(value = "id") Long id) {
+    public ResResultVO<DictItemVO> get(@PathVariable(value = "id") Long id) {
         DictItem dictItem = dictService.getById(id);
         return ResultUtilSimpleImpl.success(DictAssembler.assemblerDictItem(dictItem));
     }
@@ -79,7 +79,7 @@ public class DictEndpoint {
 
     @ApiOperation(value = "更新字典项")
     @PutMapping(value = "/{id}")
-    public ResResultVO<Void> editItem(@PathVariable(value = "id") Long id, @RequestBody @Validated(value = Update.class) DictItemDto update) {
+    public ResResultVO<Void> editItem(@PathVariable(value = "id") Long id, @RequestBody @Validated(value = Update.class) DictItemDTO update) {
         DictItem dictItem = DictAssembler.assemblerDictItem(update);
         dictItem.setId(id);
         dictService.updateById(dictItem);
@@ -114,7 +114,7 @@ public class DictEndpoint {
 
     @ApiOperation(value = "下拉选", notes = "当前组织某个字典类的全部启用字典项")
     @GetMapping(value = "/{codeType}/options")
-    public ResResultVO<List<OptionVo>> option(@ApiParam(value = "字典类CODE", example = "SEX")
+    public ResResultVO<List<OptionVO>> option(@ApiParam(value = "字典类CODE", example = "SEX")
                                               @PathVariable(value = "codeType") String dictCategoryCode,
                                               @ApiParam(value = "关键字", example = "SEX")
                                               @RequestParam(value = "keywords", required = false) String keywords
