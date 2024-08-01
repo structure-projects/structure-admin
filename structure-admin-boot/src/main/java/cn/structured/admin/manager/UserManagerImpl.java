@@ -1,13 +1,11 @@
 package cn.structured.admin.manager;
 
+import cn.structured.security.entity.StructureAuthUser;
 import cn.structured.user.api.dto.user.RegisterPlatformUserDTO;
 import cn.structured.user.entity.Role;
 import cn.structured.user.entity.User;
 import cn.structured.user.service.IUserService;
-import cn.structured.security.entity.StructureAuthUser;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
