@@ -7,8 +7,10 @@ import cn.structured.user.service.IUserService;
 import cn.structured.security.entity.StructureAuthUser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -19,10 +21,10 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @Component
-@RequiredArgsConstructor
 public class UserManagerImpl implements IUserManager {
 
-    private final IUserService userService;
+    @Resource
+    private IUserService userService;
 
     @Override
     public List<String> getUserAuthorities(Long userId) {

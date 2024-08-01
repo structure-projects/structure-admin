@@ -26,7 +26,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.stream.Collectors;
-
+/**
+ * 字典管理
+ * @author chuck
+ * @version 2024/07/19 下午11:40
+ * @since 1.8
+ */
 @Api(tags = "字典管理")
 @RestController
 @RequestMapping(value = "/api/dict")

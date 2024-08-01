@@ -4,7 +4,6 @@ import cn.structured.admin.entity.Dept;
 import cn.structured.admin.entity.DictItem;
 import cn.structured.admin.entity.Menu;
 import cn.structured.admin.vo.OptionVO;
-import org.springframework.beans.BeanUtils;
 
 import java.util.ArrayList;
 import java.util.List;

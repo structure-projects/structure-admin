@@ -25,8 +25,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-
+/**
+ * 部门管理
+ * @author chuck
+ * @version 2024/07/19 下午11:40
+ * @since 1.8
+ */
 @Api(tags = "部门管理")
 @RestController
 @RequestMapping(value = "/api/dept")
