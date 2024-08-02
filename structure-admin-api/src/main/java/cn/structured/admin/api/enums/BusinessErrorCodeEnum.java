@@ -1,4 +1,4 @@
-package cn.structured.admin.enums;
+package cn.structured.admin.api.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

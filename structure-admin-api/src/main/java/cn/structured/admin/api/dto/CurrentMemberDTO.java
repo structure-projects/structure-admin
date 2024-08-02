@@ -1,4 +1,4 @@
-package cn.structured.admin.dto;
+package cn.structured.admin.api.dto;
 
 import cn.structured.user.api.dto.user.UserDetailDTO;
 import io.swagger.annotations.ApiModel;

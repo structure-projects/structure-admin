@@ -1,4 +1,4 @@
-package cn.structured.admin.dto;
+package cn.structured.admin.api.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

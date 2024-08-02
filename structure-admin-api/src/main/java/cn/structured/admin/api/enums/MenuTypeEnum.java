@@ -1,6 +1,5 @@
-package cn.structured.admin.enums;
+package cn.structured.admin.api.enums;
 
-import com.baomidou.mybatisplus.annotation.EnumValue;
 import lombok.Getter;
 
 /**
@@ -18,10 +17,8 @@ public enum MenuTypeEnum {
     EXTLINK(3, "外链"),
     BUTTON(4, "按钮");
 
-    @EnumValue //  Mybatis-Plus 提供注解表示插入数据库时插入该值
     private final Integer value;
 
-    // @JsonValue //  表示对枚举序列化时返回此字段
     private final String label;
 
     MenuTypeEnum(Integer value, String label) {

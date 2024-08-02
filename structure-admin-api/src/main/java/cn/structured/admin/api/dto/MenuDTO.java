@@ -1,6 +1,6 @@
-package cn.structured.admin.dto;
+package cn.structured.admin.api.dto;
 
-import cn.structured.admin.enums.MenuTypeEnum;
+import cn.structured.admin.api.enums.MenuTypeEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

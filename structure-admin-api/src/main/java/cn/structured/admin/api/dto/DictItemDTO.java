@@ -1,4 +1,4 @@
-package cn.structured.admin.dto;
+package cn.structured.admin.api.dto;
 
 import cn.structured.basic.api.groups.Create;
 import io.swagger.annotations.ApiModel;

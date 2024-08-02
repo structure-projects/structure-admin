@@ -47,7 +47,7 @@
       </dependency>
       <dependency>
         <groupId>cn.structured</groupId>
-        <artifactId>structure-basic-core</artifactId>
+        <artifactId>structure-basic-api</artifactId>
         <version>${structure-basic.version}</version>
       </dependency>
       <dependency>

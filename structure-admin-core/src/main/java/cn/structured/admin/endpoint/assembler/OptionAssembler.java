@@ -3,7 +3,7 @@ package cn.structured.admin.endpoint.assembler;
 import cn.structured.admin.entity.Dept;
 import cn.structured.admin.entity.DictItem;
 import cn.structured.admin.entity.Menu;
-import cn.structured.admin.vo.OptionVO;
+import cn.structured.admin.api.vo.OptionVO;
 
 import java.util.ArrayList;
 import java.util.List;

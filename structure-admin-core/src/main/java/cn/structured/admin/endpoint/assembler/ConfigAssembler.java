@@ -1,8 +1,8 @@
 package cn.structured.admin.endpoint.assembler;
 
-import cn.structured.admin.dto.ConfigDTO;
+import cn.structured.admin.api.dto.ConfigDTO;
 import cn.structured.admin.entity.Config;
-import cn.structured.admin.vo.ConfigVO;
+import cn.structured.admin.api.vo.ConfigVO;
 
 /**
  * 配置装配器

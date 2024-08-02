@@ -1,4 +1,4 @@
-package cn.structured.admin.vo;
+package cn.structured.admin.api.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

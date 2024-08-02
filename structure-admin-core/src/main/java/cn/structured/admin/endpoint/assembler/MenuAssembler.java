@@ -1,13 +1,12 @@
 package cn.structured.admin.endpoint.assembler;
 
 import cn.hutool.core.util.StrUtil;
-import cn.structured.admin.dto.MenuDTO;
-import cn.structured.admin.vo.RouteVO;
+import cn.structured.admin.api.dto.MenuDTO;
+import cn.structured.admin.api.vo.RouteVO;
 import cn.structured.admin.entity.Menu;
-import cn.structured.admin.enums.MenuTypeEnum;
-import cn.structured.admin.vo.MenuDetailsVO;
-import cn.structured.admin.vo.MenuVO;
-import cn.structured.basic.core.utils.SystemUtil;
+import cn.structured.admin.api.enums.MenuTypeEnum;
+import cn.structured.admin.api.vo.MenuDetailsVO;
+import cn.structured.admin.api.vo.MenuVO;
 import com.google.common.collect.Lists;
 import org.springframework.util.StringUtils;
 
@@ -48,7 +47,6 @@ public class MenuAssembler {
         // todo menu.setTreePath();
         menu.setAlwaysShow(menuDto.getAlwaysShow());
         menu.setKeepAlive(menuDto.getKeepAlive());
-        menu.setOrganizationId(SystemUtil.getOrganizationId());
         return menu;
     }
 

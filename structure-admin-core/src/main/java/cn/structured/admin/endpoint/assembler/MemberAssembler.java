@@ -1,9 +1,8 @@
 package cn.structured.admin.endpoint.assembler;
 
 import cn.structured.admin.entity.Member;
-import cn.structured.admin.dto.MemberDto;
-import cn.structured.admin.vo.MemberVO;
-import cn.structured.basic.core.utils.SystemUtil;
+import cn.structured.admin.api.dto.MemberDto;
+import cn.structured.admin.api.vo.MemberVO;
 /**
  * 成员装配器
  * @author chuck
@@ -31,7 +30,6 @@ public class MemberAssembler {
         member.setSex(memberDto.getSex());
         member.setDeptId(memberDto.getDeptId());
         member.setState(memberDto.getState());
-        member.setOrganizationId(SystemUtil.getOrganizationId());
         member.setRoleIds(memberDto.getRoleIds());
         return member;
     }

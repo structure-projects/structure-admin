@@ -1,11 +1,11 @@
 package cn.structured.admin.endpoint.assembler;
 
-import cn.structured.admin.dto.DictCategoryDTO;
-import cn.structured.admin.dto.DictItemDTO;
+import cn.structured.admin.api.dto.DictCategoryDTO;
+import cn.structured.admin.api.dto.DictItemDTO;
 import cn.structured.admin.entity.DictCategory;
 import cn.structured.admin.entity.DictItem;
-import cn.structured.admin.vo.DictCategoryVO;
-import cn.structured.admin.vo.DictItemVO;
+import cn.structured.admin.api.vo.DictCategoryVO;
+import cn.structured.admin.api.vo.DictItemVO;
 
 /**
  * 字典装配器

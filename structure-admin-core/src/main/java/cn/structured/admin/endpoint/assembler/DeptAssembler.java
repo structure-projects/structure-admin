@@ -1,9 +1,8 @@
 package cn.structured.admin.endpoint.assembler;
 
-import cn.structured.admin.dto.DeptDTO;
+import cn.structured.admin.api.dto.DeptDTO;
 import cn.structured.admin.entity.Dept;
-import cn.structured.admin.vo.DeptVO;
-import cn.structured.basic.core.utils.SystemUtil;
+import cn.structured.admin.api.vo.DeptVO;
 /**
  * 部门装配器
  * @author chuck
@@ -33,7 +32,6 @@ public class DeptAssembler {
         dept.setTreePath(deptDto.getTreePath());
         dept.setSort(deptDto.getSort());
         dept.setEnabled(deptDto.getEnabled());
-        dept.setOrganizationId(SystemUtil.getOrganizationId());
         return dept;
     }
 

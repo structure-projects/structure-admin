@@ -5,20 +5,19 @@ import cn.hutool.core.util.StrUtil;
 import cn.structure.common.entity.ResResultVO;
 import cn.structure.common.utils.ResultUtilSimpleImpl;
 import cn.structured.admin.manager.IUserManager;
-import cn.structured.admin.dto.MenuDTO;
-import cn.structured.admin.vo.RouteVO;
+import cn.structured.admin.api.dto.MenuDTO;
+import cn.structured.admin.api.vo.RouteVO;
 import cn.structured.admin.endpoint.assembler.MenuAssembler;
 import cn.structured.admin.endpoint.assembler.OptionAssembler;
 import cn.structured.admin.entity.Menu;
 import cn.structured.admin.service.IMenuService;
-import cn.structured.admin.vo.MenuDetailsVO;
-import cn.structured.admin.vo.MenuVO;
-import cn.structured.admin.vo.OptionVO;
+import cn.structured.admin.api.vo.MenuDetailsVO;
+import cn.structured.admin.api.vo.MenuVO;
+import cn.structured.admin.api.vo.OptionVO;
 import cn.structured.security.util.SecurityUtils;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import groovy.util.logging.Slf4j;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -39,7 +38,6 @@ import java.util.stream.Collectors;
  * @since 1.0.1
  */
 @Api(tags = "功能管理")
-@Slf4j
 @RestController
 @RequestMapping(value = "/api/menus")
 public class MenuEndpoint {

@@ -4,7 +4,6 @@ import cn.structured.admin.mapper.DictItemMapper;
 import cn.structured.admin.service.IDictService;
 import cn.structured.admin.entity.DictItem;
 import cn.structured.mybatis.plus.starter.base.BaseServiceImpl;
-import groovy.util.logging.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
  * @version 2024/07/13 下午4:37
  * @since 1.8
  */
-@Slf4j
 @Service
 public class DictItemServiceImpl extends BaseServiceImpl<DictItemMapper, DictItem> implements IDictService {
 

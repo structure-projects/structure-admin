@@ -65,12 +65,14 @@
             <artifactId>structure-security-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>cn.structured</groupId>
-            <artifactId>structure-user-api</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
+
         <dependency>
             <groupId>cn.structured</groupId>
-            <artifactId>structure-basic-core</artifactId>
+            <artifactId>structure-admin-api</artifactId>
+            <version>${revision}</version>
         </dependency>
     </dependencies>
     <dependencyManagement>

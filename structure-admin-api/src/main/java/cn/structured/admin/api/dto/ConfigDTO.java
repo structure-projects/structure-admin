@@ -1,22 +1,18 @@
-package cn.structured.admin.vo;
+package cn.structured.admin.api.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
- * 当前系统配置value
+ * 配置-DTO
  *
- * @author cqliut
- * @version 2023.0706
- * @since 1.0.1
+ * @author chuck
+ * @since JDK1.8
  */
 @Data
-@ApiModel(description = "当前系统配置value - VO")
-public class ConfigVO {
-
-    @ApiModelProperty(value = "配置ID")
-    private Long id;
+@ApiModel(description = "配置-DTO")
+public class ConfigDTO {
 
     @ApiModelProperty(value = "当前系统配置KEY", example = "themeColors", required = true)
     private String key;

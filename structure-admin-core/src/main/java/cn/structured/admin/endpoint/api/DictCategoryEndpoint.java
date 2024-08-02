@@ -3,12 +3,11 @@ package cn.structured.admin.endpoint.api;
 import cn.hutool.core.util.StrUtil;
 import cn.structure.common.entity.ResResultVO;
 import cn.structure.common.utils.ResultUtilSimpleImpl;
-import cn.structured.admin.dto.DictCategoryDTO;
+import cn.structured.admin.api.dto.DictCategoryDTO;
 import cn.structured.admin.endpoint.assembler.DictAssembler;
 import cn.structured.admin.entity.DictCategory;
 import cn.structured.admin.service.IDictCategoryService;
-import cn.structured.admin.vo.DictCategoryVO;
-import cn.structured.basic.core.utils.SystemUtil;
+import cn.structured.admin.api.vo.DictCategoryVO;
 import cn.structured.mybatis.plus.starter.vo.ResPage;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -42,7 +41,6 @@ public class DictCategoryEndpoint {
     @PostMapping(value = "/category/")
     public ResResultVO<Long> add(@RequestBody @Validated DictCategoryDTO dictCategoryDto) {
         DictCategory dictCategory = DictAssembler.assemblerDictCategory(dictCategoryDto);
-        dictCategory.setOrganizationId(SystemUtil.getOrganizationId());
         dictService.save(dictCategory);
         return ResultUtilSimpleImpl.success(dictCategory.getId());
     }
