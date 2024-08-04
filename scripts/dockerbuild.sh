@@ -1,8 +1,9 @@
 #!/bin/bash
 version=$1
 if [ -z "$version" ]; then
-    version=1.0.1
+    version=1.0.2
 fi
 echo 'docker-build'
 cd ../
-docker build -t registry.cn-hangzhou.aliyuncs.com/structured/structured-admin:$version .
+sudo docker build -t registry.cn-hangzhou.aliyuncs.com/structured/structured-admin:$version .
+sudo docker push registry.cn-hangzhou.aliyuncs.com/structured/structured-admin:$version

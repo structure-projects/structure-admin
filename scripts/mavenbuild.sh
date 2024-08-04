@@ -1,10 +1,9 @@
 #!/bin/bash
 version=$1
 if [ -z "$version" ]; then
-    version=1.0.1
+    version=1.0.2
 fi
 echo 'maven-build'
-cd ../structure-admin-boot
-mvn clean package -Dmaven.test.skip=true -Drevision=$version
-cd ../structure-admin-cloud
-mvn clean package -Dmaven.test.skip=true -Drevision=$version
+sh install.sh
+mvn clean package -f ../structure-admin-boot/pom.xml -Dmaven.test.skip=true -Drevision=$version
+mvn clean package -f ../structure-admin-cloud/pom.xml -Dmaven.test.skip=true -Drevision=$version

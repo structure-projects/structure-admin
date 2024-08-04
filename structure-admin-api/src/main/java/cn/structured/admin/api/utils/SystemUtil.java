@@ -2,6 +2,7 @@ package cn.structured.admin.api.utils;
 
 import cn.structure.common.constant.AuthConstant;
 import cn.structure.common.exception.CommonException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author chuck
  */
+@Slf4j
 public class SystemUtil {
 
     /**
@@ -28,8 +30,9 @@ public class SystemUtil {
         try {
             return Long.parseLong(headerOrganizationId);
         } catch (Exception e) {
-            throw new CommonException("", "租户不存在！");
+            log.warn("租户不存在!");
         }
+        return null;
     }
 
     public static Long getDeptId() {

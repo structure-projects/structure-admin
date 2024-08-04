@@ -22,7 +22,7 @@
     <description>脚手架集成管理平台</description>
 
     <properties>
-        <revision>1.0.1</revision>
+        <revision>1.0.2</revision>
         <structure.version>1.2.1.RELEASE</structure.version>
         <mysql.version>8.0.13</mysql.version>
         <function.version>1.0.1</function.version>

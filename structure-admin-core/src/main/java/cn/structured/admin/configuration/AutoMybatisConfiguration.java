@@ -14,6 +14,9 @@ import net.sf.jsqlparser.expression.LongValue;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 
+/**
+ * @author chuck
+ */
 @MapperScan(basePackages = "cn.structured.admin.mapper.**")
 public class AutoMybatisConfiguration {
 
@@ -29,7 +32,11 @@ public class AutoMybatisConfiguration {
             @Override
             public Expression getTenantId() {
                 // 默认租户为1
-                return new LongValue(SystemUtil.getOrganizationId());
+                Long organizationId = SystemUtil.getOrganizationId();
+                if (null == organizationId) {
+                    return new LongValue("1");
+                }
+                return new LongValue(organizationId);
             }
 
             @Override
