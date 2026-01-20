@@ -19,7 +19,10 @@ import java.util.List;
 public class MemberVO {
 
     @ApiModelProperty(value = "成员ID")
-    private Long id;
+    private Long mid;
+
+    @ApiModelProperty(value = "用户ID")
+    private Long userId;
 
     @ApiModelProperty(value = "成员手机号")
     private String phone;
@@ -35,9 +38,6 @@ public class MemberVO {
 
     @ApiModelProperty(value = "部门名")
     private String deptName;
-
-    @ApiModelProperty(value = "角色ID")
-    private List<Long> roleIds;
 
     @ApiModelProperty(value = "成员状态")
     private Integer state;

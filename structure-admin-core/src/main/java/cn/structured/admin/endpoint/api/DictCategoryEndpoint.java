@@ -3,12 +3,13 @@ package cn.structured.admin.endpoint.api;
 import cn.hutool.core.util.StrUtil;
 import cn.structure.common.entity.ResResultVO;
 import cn.structure.common.utils.ResultUtilSimpleImpl;
+import cn.structure.common.vo.ResPage;
 import cn.structured.admin.api.dto.DictCategoryDTO;
 import cn.structured.admin.endpoint.assembler.DictAssembler;
 import cn.structured.admin.entity.DictCategory;
 import cn.structured.admin.service.IDictCategoryService;
 import cn.structured.admin.api.vo.DictCategoryVO;
-import cn.structured.mybatis.plus.starter.vo.ResPage;
+import cn.structured.mybatis.plus.starter.convert.ResPageConvert;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
@@ -17,6 +18,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,6 +41,7 @@ public class DictCategoryEndpoint {
 
     @ApiOperation(value = "新增字典类")
     @PostMapping(value = "/category/")
+    @PreAuthorize("hasAuthority('sys:dict_type:add')")
     public ResResultVO<Long> add(@RequestBody @Validated DictCategoryDTO dictCategoryDto) {
         DictCategory dictCategory = DictAssembler.assemblerDictCategory(dictCategoryDto);
         dictService.save(dictCategory);
@@ -47,6 +50,7 @@ public class DictCategoryEndpoint {
 
     @ApiOperation(value = "修改字典类")
     @PutMapping(value = "/category/{dictCategoryId}")
+    @PreAuthorize("hasAuthority('sys:dict_type:edit')")
     public ResResultVO<Void> update(@ApiParam(value = "字典类ID", example = "1645717015337684992")
                                     @PathVariable("dictCategoryId") Long dictCategoryId,
                                     @RequestBody @Validated DictCategoryDTO dictCategoryDto) {
@@ -58,6 +62,7 @@ public class DictCategoryEndpoint {
 
     @ApiOperation(value = "字典类分页列表")
     @GetMapping(value = "/category/{page}/{pageSize}/page")
+    @PreAuthorize("hasAuthority('sys:dict_type:read')")
     public ResResultVO<ResPage<DictCategoryVO>> page(@ApiParam(value = "页码", required = true, example = "1")
                                                      @PathVariable(value = "page") Long page,
                                                      @ApiParam(value = "页大小", required = true, example = "20")
@@ -70,10 +75,12 @@ public class DictCategoryEndpoint {
                 .like(StrUtil.isNotBlank(keywords), DictCategory::getName, StringPool.PERCENT + keywords + StringPool.PERCENT);
 
         IPage<DictCategory> pageResult = dictService.page(new Page<>(page, pageSize), queryWrapper);
-        return ResultUtilSimpleImpl.success(ResPage.convert(pageResult, DictAssembler::assemblerDictCategory));
+        return ResultUtilSimpleImpl.success(ResPageConvert.convert(pageResult, DictAssembler::assemblerDictCategory));
     }
 
+    @ApiOperation(value = "字典类详情")
     @GetMapping(value = "/category/{dictCategoryId}")
+    @PreAuthorize("hasAuthority('sys:dict_type:read')")
     public ResResultVO<DictCategoryVO> getCategory(@ApiParam(value = "字典类ID", example = "1645717015337684992")
                                                    @PathVariable("dictCategoryId") Long dictCategoryId) {
         DictCategory dictCategory = dictService.getById(dictCategoryId);
@@ -82,6 +89,7 @@ public class DictCategoryEndpoint {
 
     @ApiOperation(value = "删除字典类")
     @DeleteMapping(value = "/category/{ids}")
+    @PreAuthorize("hasAuthority('sys:dict_type:del')")
     public ResResultVO<Void> remove(@ApiParam(value = "字典类ID", example = "1645717015337684992")
                                     @PathVariable("ids") List<Long> ids) {
         dictService.removeByIds(ids);
@@ -90,6 +98,7 @@ public class DictCategoryEndpoint {
 
     @ApiOperation(value = "启用")
     @PutMapping(value = "/category/enable/{dictCategoryId}")
+    @PreAuthorize("hasAuthority('sys:dict_type:enable')")
     public ResResultVO<Void> enable(@ApiParam(value = "字典类ID", example = "1645717015337684992")
                                     @PathVariable("dictCategoryId") Long dictCategoryId) {
         dictService.enable(dictCategoryId);
@@ -98,6 +107,7 @@ public class DictCategoryEndpoint {
 
     @ApiOperation(value = "停用")
     @PutMapping(value = "/category/disable/{dictCategoryId}")
+    @PreAuthorize("hasAuthority('sys:dict_type:disable')")
     public ResResultVO<Void> disable(@ApiParam(value = "字典类ID", example = "1645717015337684992")
                                      @PathVariable("dictCategoryId") Long dictCategoryId) {
         dictService.disable(dictCategoryId);

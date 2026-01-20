@@ -6,6 +6,7 @@ import cn.structured.user.entity.Role;
 import cn.structured.user.entity.User;
 import cn.structured.user.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -61,6 +62,11 @@ public class UserManagerImpl implements IUserManager {
         authUser.setUnexpired(user.getUnexpired());
         authUser.setCreateTime(user.getCreateTime());
         authUser.setUpdateTime(user.getUpdateTime());
+        List<String> userAuthorities = userService.getUserAuthorities(user.getId());
+        authUser.setAuthorities(userAuthorities
+                .stream()
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList()));
         return authUser;
     }
 

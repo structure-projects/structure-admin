@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Bean;
 @MapperScan(basePackages = "cn.structured.admin.mapper.**")
 public class AutoMybatisConfiguration {
 
-    private final static String TENANT_ID = "organization_id";
+    private static final String TENANT_ID = "organization_id";
 
 
     @Bean

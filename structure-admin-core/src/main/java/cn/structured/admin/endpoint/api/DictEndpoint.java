@@ -3,6 +3,7 @@ package cn.structured.admin.endpoint.api;
 import cn.hutool.core.util.StrUtil;
 import cn.structure.common.entity.ResResultVO;
 import cn.structure.common.utils.ResultUtilSimpleImpl;
+import cn.structure.common.vo.ResPage;
 import cn.structured.admin.api.dto.DictItemDTO;
 import cn.structured.admin.endpoint.assembler.DictAssembler;
 import cn.structured.admin.endpoint.assembler.OptionAssembler;
@@ -12,7 +13,8 @@ import cn.structured.admin.api.vo.DictItemVO;
 import cn.structured.admin.api.vo.OptionVO;
 import cn.structured.basic.api.groups.Create;
 import cn.structured.basic.api.groups.Update;
-import cn.structured.mybatis.plus.starter.vo.ResPage;
+
+import cn.structured.mybatis.plus.starter.convert.ResPageConvert;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -20,6 +22,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,9 +43,9 @@ public class DictEndpoint {
     @Resource
     private IDictService dictService;
 
-
     @ApiOperation(value = "字典项列表")
     @GetMapping(value = "/{page}/{pageSize}/page")
+    @PreAuthorize("hasAuthority('sys:dict:read')")
     public ResResultVO<ResPage<DictItemVO>> itemList(@ApiParam(value = "字典类CODE", example = "SEX")
                                                      @RequestParam(value = "code") String code,
                                                      @ApiParam(value = "关键字", example = "部门key")
@@ -61,12 +64,13 @@ public class DictEndpoint {
                 .like(StrUtil.isNotBlank(keywords), DictItem::getName, "%" + keywords + "%")
                 .orderByAsc(DictItem::getSort);
         Page<DictItem> pageResult = dictService.page(new Page<>(page, pageSize), queryWrapper);
-        ResPage<DictItemVO> result = ResPage.convert(pageResult, DictAssembler::assemblerDictItem);
+        ResPage<DictItemVO> result = ResPageConvert.convert(pageResult, DictAssembler::assemblerDictItem);
         return ResultUtilSimpleImpl.success(result);
     }
 
     @ApiOperation(value = "创建字典项")
     @PostMapping(value = "/")
+    @PreAuthorize("hasAuthority('sys:dict:add')")
     public ResResultVO<Long> addItem(@RequestBody @Validated(value = Create.class) DictItemDTO create) {
         DictItem item = DictAssembler.assemblerDictItem(create);
         dictService.save(item);
@@ -75,6 +79,7 @@ public class DictEndpoint {
 
     @ApiOperation(value = "获取字典项详情")
     @GetMapping(value = "/{id}")
+    @PreAuthorize("hasAuthority('sys:dict:read')")
     public ResResultVO<DictItemVO> get(@PathVariable(value = "id") Long id) {
         DictItem dictItem = dictService.getById(id);
         return ResultUtilSimpleImpl.success(DictAssembler.assemblerDictItem(dictItem));
@@ -83,6 +88,7 @@ public class DictEndpoint {
 
     @ApiOperation(value = "更新字典项")
     @PutMapping(value = "/{id}")
+    @PreAuthorize("hasAuthority('sys:dict:edit')")
     public ResResultVO<Void> editItem(@PathVariable(value = "id") Long id, @RequestBody @Validated(value = Update.class) DictItemDTO update) {
         DictItem dictItem = DictAssembler.assemblerDictItem(update);
         dictItem.setId(id);
@@ -92,6 +98,7 @@ public class DictEndpoint {
 
     @ApiOperation(value = "删除字典项")
     @DeleteMapping(value = "/{ids}")
+    @PreAuthorize("hasAuthority('sys:dict:del')")
     public ResResultVO<Void> removeItem(@ApiParam(value = "字典项ID", example = "1645717015337684992")
                                         @PathVariable("ids") List<Long> ids) {
         dictService.removeByIds(ids);
@@ -101,6 +108,7 @@ public class DictEndpoint {
 
     @ApiOperation(value = "启用字典项")
     @PutMapping(value = "/enable/{id}")
+    @PreAuthorize("hasAuthority('sys:dict:enable')")
     public ResResultVO<Void> enableItem(@ApiParam(value = "字典项ID", example = "1645717015337684992")
                                         @PathVariable("id") Long id) {
         dictService.enableItem(id);
@@ -109,6 +117,7 @@ public class DictEndpoint {
 
     @ApiOperation(value = "停用字典项")
     @PutMapping(value = "/disable/{id}")
+    @PreAuthorize("hasAuthority('sys:dict:disable')")
     public ResResultVO<Void> disableItem(@ApiParam(value = "字典项ID", example = "1645717015337684992")
                                          @PathVariable("id") Long id) {
         dictService.disableItem(id);

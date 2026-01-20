@@ -5,11 +5,12 @@
   <parent>
     <groupId>cn.structured</groupId>
     <artifactId>structure-admin</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.3</version>
   </parent>
   <groupId>cn.structured</groupId>
   <artifactId>structure-admin-api</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.3</version>
+  <name>structure-admin-apix</name>
   <description>管理配置中心api</description>
   <licenses>
     <license>

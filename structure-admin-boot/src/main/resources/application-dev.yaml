@@ -2,12 +2,12 @@ spring:
   datasource:
     username: root
     password: 123456
-    url: jdbc:mysql://172.16.0.249:3306/admin?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    url: jdbc:mysql://172.24.20.15:3306/admin?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
   redis:
     database: 0
     password: 123456
-    host: 172.16.0.249
+    host: 172.24.20.15
   mail:
     host: smtp.qq.com #邮件服务器地址
     port: 465 #端口号
@@ -32,16 +32,11 @@ spring:
     locations: classpath:migration
   # 配置数据库，flyway那边就无需再进行数据的配置了
 structure:
-  basic:
-    address-list:
-      - http://localhost:5173/src/assets/test.zip
   jwt:
     secret: 12345646
     antMatchers:
       unAuthenticated:
         # 不经过身份验证的接口
-        - /api/page/**
-        - /api/dict/**
         - /api/user/login
         - /doc.html
         - /webjars/**

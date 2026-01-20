@@ -17,6 +17,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,6 +42,7 @@ public class DeptEndpoint {
 
     @ApiOperation(value = "新增部门")
     @PostMapping(value = "/")
+    @PreAuthorize("hasAuthority('sys:dept:add')")
     public ResResultVO<Long> add(@RequestBody @Validated DeptDTO create) {
         Dept dept = DeptAssembler.assembler(create);
         service.save(dept);
@@ -49,6 +51,7 @@ public class DeptEndpoint {
 
     @ApiOperation(value = "修改部门")
     @PutMapping(value = "/{id}")
+    @PreAuthorize("hasAuthority('sys:dept:edit')")
     public ResResultVO<Void> update(@ApiParam(value = "部门ID", example = "1645717015337684992")
                                     @PathVariable("id") Long id,
                                     @RequestBody @Validated DeptDTO update) {
@@ -60,6 +63,7 @@ public class DeptEndpoint {
 
     @ApiOperation(value = "部门列表")
     @GetMapping(value = "/list")
+    @PreAuthorize("hasAuthority('sys:dept')")
     public ResResultVO<List<DeptVO>> page(@ApiParam(value = "关键字", example = "部门key")
                                           @RequestParam(required = false)
                                           String keywords,
@@ -96,6 +100,7 @@ public class DeptEndpoint {
 
     @ApiOperation(value = "查看部门详情")
     @GetMapping(value = "/{id}")
+    @PreAuthorize("hasAuthority('sys:dept')")
     public ResResultVO<DeptVO> get(@ApiParam(value = "部门ID", example = "1645717015337684992")
                                    @PathVariable("id")
                                    Long id) {
@@ -105,6 +110,7 @@ public class DeptEndpoint {
 
     @ApiOperation(value = "删除部门")
     @DeleteMapping(value = "/{ids}")
+    @PreAuthorize("hasAuthority('sys:dept:del')")
     public ResResultVO<Void> remove(@ApiParam(value = "部门ID", example = "1645717015337684992")
                                     @PathVariable("ids") List<Long> ids) {
         service.removeByIds(ids);

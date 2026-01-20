@@ -10,6 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <name>structure-admin-core</name>
     <artifactId>structure-admin-core</artifactId>
     <version>${revision}</version>
     <packaging>jar</packaging>
@@ -74,6 +75,8 @@
             <artifactId>structure-admin-api</artifactId>
             <version>${revision}</version>
         </dependency>
+
+
     </dependencies>
     <dependencyManagement>
         <dependencies>

@@ -3,12 +3,13 @@ package cn.structured.admin.endpoint.api;
 import cn.hutool.core.util.StrUtil;
 import cn.structure.common.entity.ResResultVO;
 import cn.structure.common.utils.ResultUtilSimpleImpl;
+import cn.structure.common.vo.ResPage;
 import cn.structured.admin.api.dto.ConfigDTO;
 import cn.structured.admin.endpoint.assembler.ConfigAssembler;
 import cn.structured.admin.entity.Config;
 import cn.structured.admin.service.IConfigService;
 import cn.structured.admin.api.vo.ConfigVO;
-import cn.structured.mybatis.plus.starter.vo.ResPage;
+import cn.structured.mybatis.plus.starter.convert.ResPageConvert;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -62,7 +63,7 @@ public class ConfigEndpoint {
         LambdaQueryWrapper<Config> queryWrapper = Wrappers.<Config>lambdaQuery()
                 .like(StrUtil.isNotBlank(keywords), Config::getCode, StringPool.PERCENT + keywords + StringPool.PERCENT);
         Page<Config> pageResult = service.page(new Page<>(page, pageSize), queryWrapper);
-        return ResultUtilSimpleImpl.success(ResPage.convert(pageResult, ConfigAssembler::assembler));
+        return ResultUtilSimpleImpl.success(ResPageConvert.convert(pageResult, ConfigAssembler::assembler));
     }
 
 

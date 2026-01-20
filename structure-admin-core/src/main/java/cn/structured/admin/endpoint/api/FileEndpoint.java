@@ -40,6 +40,10 @@ public class FileEndpoint {
     @ApiOperation(value = "上传文件", notes = "返回文件存储路径")
     @PostMapping(value = "/upload")
     public ResResultVO<String> upload(MultipartFile file) {
+        // 上传功能是否启用
+        if (properties.getUploadEnabled()) {
+            return ResultUtilSimpleImpl.fail("", "上传功能已关闭", null);
+        }
         String originalFilename = file.getOriginalFilename();
         assert originalFilename != null;
         String suffix = originalFilename.substring(originalFilename.lastIndexOf(StrUtil.DOT));

@@ -21,9 +21,14 @@ import org.springframework.context.annotation.Configuration;
 public class AdminProperties {
 
     /**
+     * 上传功能是否启用,生产环境请关闭，生产环境建议放置到对象存储系统。很多系统漏洞的都是因为文件上传功能，请关闭上传功能。
+     */
+    private Boolean uploadEnabled = true;
+
+    /**
      * 上传存储路径 文件存储默认策略，后缀 + 日期 + 文件全称
      */
-    private String uploadPath = "/file";
+    private String uploadPath = "/tmp/file";
 
     /**
      * 文件系统存储类型

@@ -5,12 +5,12 @@
   <parent>
     <groupId>cn.structured</groupId>
     <artifactId>structure-dependencies</artifactId>
-    <version>1.2.1.RELEASE</version>
+    <version>1.2.4</version>
     <relativePath></relativePath>
   </parent>
   <groupId>cn.structured</groupId>
   <artifactId>structure-admin</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.3</version>
   <packaging>pom</packaging>
   <name>structure-admin</name>
   <description>脚手架集成管理平台</description>
@@ -25,13 +25,12 @@
     <module>structure-admin-api</module>
   </modules>
   <properties>
-    <function.version>1.0.1</function.version>
-    <structure-user.version>1.0.1</structure-user.version>
-    <revision>1.0.1</revision>
-    <structure-basic.version>1.0.1</structure-basic.version>
-    <structure-security.version>1.0.1</structure-security.version>
+    <structure-user.version>1.0.4</structure-user.version>
+    <revision>1.0.3</revision>
+    <structure-basic.version>1.0.2</structure-basic.version>
+    <structure-security.version>1.0.2</structure-security.version>
     <mysql.version>8.0.13</mysql.version>
-    <structure.version>1.2.1.RELEASE</structure.version>
+    <structure.version>1.2.4</structure.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -53,7 +52,7 @@
       <dependency>
         <groupId>cn.structured</groupId>
         <artifactId>structure-admin-core</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.3</version>
       </dependency>
       <dependency>
         <groupId>cn.structured</groupId>
@@ -63,6 +62,11 @@
       <dependency>
         <groupId>cn.structured</groupId>
         <artifactId>structure-user-core</artifactId>
+        <version>${structure-user.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>cn.structured</groupId>
+        <artifactId>structure-user-biz</artifactId>
         <version>${structure-user.version}</version>
       </dependency>
       <dependency>
