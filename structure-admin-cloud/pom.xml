@@ -19,7 +19,7 @@
     <packaging>jar</packaging>
 
     <properties>
-        <revision>1.0.3</revision>
+        <revision>1.0.4</revision>
         <structure.version>1.2.4</structure.version>
         <structure-oauth.version>1.0.2</structure-oauth.version>
         <structure-cloud.version>1.0.2</structure-cloud.version>

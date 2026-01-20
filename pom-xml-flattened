@@ -10,7 +10,7 @@
   </parent>
   <groupId>cn.structured</groupId>
   <artifactId>structure-admin</artifactId>
-  <version>1.0.3</version>
+  <version>1.0.4</version>
   <packaging>pom</packaging>
   <name>structure-admin</name>
   <description>脚手架集成管理平台</description>
@@ -26,7 +26,7 @@
   </modules>
   <properties>
     <structure-user.version>1.0.4</structure-user.version>
-    <revision>1.0.3</revision>
+    <revision>1.0.4</revision>
     <structure-basic.version>1.0.2</structure-basic.version>
     <structure-security.version>1.0.2</structure-security.version>
     <mysql.version>8.0.13</mysql.version>
@@ -52,7 +52,7 @@
       <dependency>
         <groupId>cn.structured</groupId>
         <artifactId>structure-admin-core</artifactId>
-        <version>1.0.3</version>
+        <version>1.0.4</version>
       </dependency>
       <dependency>
         <groupId>cn.structured</groupId>

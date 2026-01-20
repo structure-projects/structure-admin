@@ -5,11 +5,11 @@
   <parent>
     <groupId>cn.structured</groupId>
     <artifactId>structure-admin</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
   </parent>
   <groupId>cn.structured</groupId>
   <artifactId>structure-admin-core</artifactId>
-  <version>1.0.3</version>
+  <version>1.0.4</version>
   <name>structure-admin-core</name>
   <description>管理配置核心</description>
   <licenses>
