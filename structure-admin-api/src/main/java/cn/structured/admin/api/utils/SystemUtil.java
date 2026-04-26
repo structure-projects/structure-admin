@@ -22,12 +22,12 @@ public class SystemUtil {
      * @return Long
      */
     public static Long getOrganizationId() {
-        //从请求头中获取机构信息，如果获取不到则默认为0L
-        ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        //request
-        HttpServletRequest request = servletRequestAttributes.getRequest();
-        String headerOrganizationId = request.getHeader(AuthConstant.HEADER_ORGANIZATION_ID);
         try {
+            //从请求头中获取机构信息，如果获取不到则默认为0L
+            ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+            //request
+            HttpServletRequest request = servletRequestAttributes.getRequest();
+            String headerOrganizationId = request.getHeader(AuthConstant.HEADER_ORGANIZATION_ID);
             return Long.parseLong(headerOrganizationId);
         } catch (Exception e) {
             log.warn("租户不存在!");
