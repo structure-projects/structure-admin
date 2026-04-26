@@ -1,5 +1,6 @@
 package cn.structured.admin.configuration;
 
+import cn.structure.starter.tenant.TenantContextHolder;
 import cn.structured.admin.api.utils.SystemUtil;
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.core.metadata.TableFieldInfo;
@@ -32,11 +33,12 @@ public class AutoMybatisConfiguration {
             @Override
             public Expression getTenantId() {
                 // 默认租户为1
-                Long organizationId = SystemUtil.getOrganizationId();
-                if (null == organizationId) {
-                    return new LongValue("1");
+                try {
+                    String tenantId = TenantContextHolder.getTenantId();
+                    return new LongValue(tenantId);
+                }finally {
+                    TenantContextHolder.clear();
                 }
-                return new LongValue(organizationId);
             }
 
             @Override

@@ -23,7 +23,7 @@
 
     <properties>
         <revision>1.0.4</revision>
-        <structure.version>1.2.4</structure.version>
+        <structure.version>1.2.5</structure.version>
         <mysql.version>8.0.13</mysql.version>
         <structure-security.version>1.0.2</structure-security.version>
         <structure-user.version>1.0.4</structure-user.version>

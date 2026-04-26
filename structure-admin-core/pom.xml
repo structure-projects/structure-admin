@@ -76,6 +76,11 @@
             <version>${revision}</version>
         </dependency>
 
+        <dependency>
+            <groupId>cn.structured</groupId>
+            <artifactId>structure-tenant-starter</artifactId>
+        </dependency>
+
 
     </dependencies>
     <dependencyManagement>
