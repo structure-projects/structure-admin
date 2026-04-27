@@ -12,8 +12,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class JwtConfiguration {
 
-    @Bean
-    public LoginEndpoint loginEndpoint (){
-        return new LoginEndpoint();
-    }
+//    @Bean
+//    public LoginEndpoint loginEndpoint (){
+//        return new LoginEndpoint();
+//    }
 }

@@ -24,7 +24,7 @@ public class OperationAssembler {
         operationRecordVO.setUserAgent(operationRecord.getUserAgent());
         operationRecordVO.setCostTime(operationRecord.getCostTime());
         operationRecordVO.setOperationTime(operationRecord.getUpdateTime());
-        operationRecordVO.setOperationUser(operationRecordVO.getOperationUser());
+        operationRecordVO.setOperationUser(operationRecord.getOperationUser());
         return operationRecordVO;
     }
 

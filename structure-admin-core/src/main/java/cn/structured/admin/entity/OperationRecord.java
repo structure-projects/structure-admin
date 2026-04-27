@@ -1,8 +1,15 @@
 package cn.structured.admin.entity;
 
+import cn.structured.basic.api.group.SearchGroup;
+import cn.structured.mybatis.plus.starter.annotations.FieldJoin;
+import cn.structured.mybatis.plus.starter.annotations.Join;
+import cn.structured.mybatis.plus.starter.annotations.JoinCondition;
+import cn.structured.mybatis.plus.starter.enums.JoinResultEnum;
+import cn.structured.mybatis.plus.starter.enums.JoinTypeEnum;
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.apache.catalina.User;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -131,6 +138,12 @@ public class OperationRecord implements Serializable {
     private Boolean deleted;
 
     // 创建人名称
+    @FieldJoin(type = JoinResultEnum.ONE, result = String.class, value = {
+            @Join(group = {SearchGroup.class}, result = true, joinType = JoinTypeEnum.LEFT_JOIN,
+                    joinTarget = User.class, aliasName = "u",
+                    columns = {"nick_name"},
+                    value = {@JoinCondition(currentColumn = "update_by", targetColumn = "id")}),
+    })
     @TableField(exist = false)
     private String operationUser;
 

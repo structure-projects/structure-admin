@@ -1,6 +1,7 @@
 package cn.structured.admin.aspect;
 
 import cn.structure.common.constant.AuthConstant;
+import cn.structure.starter.tenant.TenantContextHolder;
 import cn.structured.admin.api.aop.OperationLog;
 import cn.structured.admin.entity.OperationRecord;
 import cn.structured.admin.service.IOperationRecordService;
@@ -21,8 +22,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
-import java.time.LocalDateTime;
-import java.util.Arrays;
 
 @Slf4j
 @Aspect
