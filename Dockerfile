@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine
+FROM eclipse-temurin:8-jdk-alpine
 ADD ./structure-admin-boot/target/admin-center.jar /app/boot/admin-center.jar
 ADD ./structure-admin-cloud/target/admin-center.jar /app/cloud/admin-center.jar
 ADD liveness.sh /app/liveness.sh
