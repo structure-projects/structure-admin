@@ -10,8 +10,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <name>structure-admin-core</name>
-    <artifactId>structure-admin-core</artifactId>
+    <name>structure-admin-domain</name>
+    <artifactId>structure-admin-domain</artifactId>
     <version>${revision}</version>
     <packaging>jar</packaging>
 

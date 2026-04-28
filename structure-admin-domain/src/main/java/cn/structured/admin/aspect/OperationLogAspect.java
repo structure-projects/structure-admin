@@ -64,7 +64,7 @@ public class OperationLogAspect {
             // 获取方法参数
             Object[] args = joinPoint.getArgs();
             try {
-                operationRecord.setOperationParams(objectMapper.writeValueAsString(args));
+                operationRecord.setOperationParams(JSON.toJSONString(args));
             } catch (Exception e) {
                 log.error("序列化参数失败", e);
                 operationRecord.setOperationParams("参数序列化失败");
@@ -76,7 +76,7 @@ public class OperationLogAspect {
             // 记录成功信息
             operationRecord.setStatus(1);
             try {
-                operationRecord.setOperationResult(objectMapper.writeValueAsString(result));
+                operationRecord.setOperationResult(JSON.toJSONString(result));
             } catch (Exception e) {
                 log.error("序列化结果失败", e);
                 operationRecord.setOperationResult("结果序列化失败");
@@ -106,8 +106,13 @@ public class OperationLogAspect {
     // 这里需要实现获取当前用户ID的方法
     private Long getCurrentUserId() {
         // 从上下文或会话中获取当前用户ID
-        SecurityUtils.getUser();
-        JSONObject user = JSON.parseObject(JSON.toJSONString(SecurityUtils.getUser()));
-        return null == user.getLong(AuthConstant.USER_ID) ? user.getLong("id") : user.getLong(AuthConstant.USER_ID);
+        try {
+            SecurityUtils.getUser();
+            JSONObject user = JSON.parseObject(JSON.toJSONString(SecurityUtils.getUser()));
+            return null == user.getLong(AuthConstant.USER_ID) ? user.getLong("id") : user.getLong(AuthConstant.USER_ID);
+        }catch (Exception  e) {
+            log.error("获取当前用户ID失败", e);
+        }
+        return null;
     }
 }

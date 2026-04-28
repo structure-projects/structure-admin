@@ -8,7 +8,9 @@ import cn.structured.admin.api.dto.OperationQuery;
 import cn.structured.admin.api.vo.OperationRecordVO;
 import cn.structured.admin.endpoint.assembler.OperationAssembler;
 import cn.structured.admin.entity.OperationRecord;
+import cn.structured.admin.manager.IUserManager;
 import cn.structured.admin.service.IOperationRecordService;
+import cn.structured.basic.api.group.SearchGroup;
 import cn.structured.mybatis.plus.starter.convert.ResPageConvert;
 import cn.structured.mybatis.plus.starter.core.QueryJoinPageListWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -45,6 +47,9 @@ public class OperationRecordEndpoint {
         wrapper.setBeginTime(query.getStartTime());
         wrapper.setEndTime(query.getEndTime());
         IPage<OperationRecord> page = operationRecordService.page(new Page<>(reqPage.getCurrentPage(), reqPage.getPageSize()), wrapper);
+        // 查询操作人
+
+
         return ResultUtilSimpleImpl.success(ResPageConvert.convert(page, OperationAssembler::assembler));
     }
 }

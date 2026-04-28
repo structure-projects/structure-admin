@@ -1,4 +1,4 @@
-package cn.structured.admin.configuration;
+package cn.structured.admin.biz.configuration;
 
 import cn.structured.basic.api.enums.FileSystem;
 import lombok.Getter;

@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Import;
  * @since JDK1.8
  */
 @Configuration
-@Import({AutoMybatisConfiguration.class, AutoAdminDefaultConfiguration.class})
+@Import( AutoAdminDefaultConfiguration.class)
 public class AutoAdminConfiguration {
 
 }

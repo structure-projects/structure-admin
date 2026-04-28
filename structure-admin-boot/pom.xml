@@ -16,8 +16,9 @@
     <version>${revision}</version>
 
     <properties>
-        <structure.version>1.2.4</structure.version>
-        <revision>1.0.4</revision>
+        <structure.version>1.2.10</structure.version>
+        <structure-jwt-security.version>1.0.3</structure-jwt-security.version>
+        <revision>1.0.5-SNAPSHOT</revision>
     </properties>
 
     <dependencies>
@@ -40,27 +41,15 @@
             <groupId>cn.structured</groupId>
             <artifactId>structure-log-starter</artifactId>
         </dependency>
-        <!-- 管理核心 -->
-        <dependency>
-            <groupId>cn.structured</groupId>
-            <artifactId>structure-admin-core</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
-
         <dependency>
             <groupId>cn.structured</groupId>
             <artifactId>structure-jwt-security-starter</artifactId>
+            <version>${structure-jwt-security.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>cn.structured</groupId>
-            <artifactId>structure-user-biz</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-mysql</artifactId>
@@ -69,13 +58,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+        <!-- 管理核心 -->
         <dependency>
             <groupId>cn.structured</groupId>
-            <artifactId>structure-admin-api</artifactId>
-            <version>1.0.5</version>
-            <scope>compile</scope>
+            <artifactId>structure-admin-biz</artifactId>
+            <version>${revision}</version>
         </dependency>
-
     </dependencies>
 
     <dependencyManagement>
@@ -87,13 +75,7 @@
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
-            <dependency>
-                <groupId>cn.structured</groupId>
-                <artifactId>structure-admin</artifactId>
-                <version>${revision}</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

@@ -1,4 +1,4 @@
-package cn.structured.admin.endpoint.api;
+package cn.structured.admin.biz.controller;
 
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.util.IdUtil;
@@ -6,7 +6,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.structure.common.entity.ResResultVO;
 import cn.structure.common.exception.CommonException;
 import cn.structure.common.utils.ResultUtilSimpleImpl;
-import cn.structured.admin.configuration.AdminProperties;
+import cn.structured.admin.biz.configuration.AdminProperties;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

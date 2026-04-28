@@ -1,7 +1,6 @@
-package cn.structured.admin.configuration;
+package cn.structured.admin.biz.configuration;
 
 import cn.structure.starter.tenant.TenantContextHolder;
-import cn.structured.admin.api.utils.SystemUtil;
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.core.metadata.TableFieldInfo;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;
@@ -13,12 +12,14 @@ import com.baomidou.mybatisplus.extension.plugins.inner.TenantLineInnerIntercept
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.LongValue;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @author chuck
  */
-@MapperScan(basePackages = "cn.structured.admin.mapper.**")
+@Configuration
 public class AutoMybatisConfiguration {
 
     private static final String TENANT_ID = "organization_id";
@@ -36,7 +37,7 @@ public class AutoMybatisConfiguration {
                 try {
                     String tenantId = TenantContextHolder.getTenantId();
                     return new LongValue(tenantId);
-                }finally {
+                } finally {
                     TenantContextHolder.clear();
                 }
             }
