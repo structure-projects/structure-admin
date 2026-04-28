@@ -10,6 +10,9 @@
     </parent>
 
     <artifactId>structure-admin-biz</artifactId>
+    <name>集成管理业务模块</name>
+    <packaging>jar</packaging>
+    <description>集成管理业务模块</description>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -17,7 +20,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <description>集成管理业务模块</description>
 
     <dependencies>
         <dependency>
