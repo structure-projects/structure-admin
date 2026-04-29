@@ -27,7 +27,7 @@
         <structure.version>1.2.10</structure.version>
         <mysql.version>8.0.13</mysql.version>
         <structure-security.version>1.0.3</structure-security.version>
-        <structure-user.version>1.0.6</structure-user.version>
+        <structure-user.version>1.0.8</structure-user.version>
         <structure-basic.version>1.0.2</structure-basic.version>
     </properties>
 
