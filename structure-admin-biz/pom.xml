@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>structure-admin-biz</artifactId>
-    <name>集成管理业务模块</name>
+    <name>structure-admin-biz</name>
     <packaging>jar</packaging>
     <description>集成管理业务模块</description>
 

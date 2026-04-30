@@ -13,6 +13,7 @@
 
     <groupId>cn.structured</groupId>
     <artifactId>structure-admin-boot</artifactId>
+    <name>structure-admin-boot</name>
     <version>${revision}</version>
 
     <properties>
