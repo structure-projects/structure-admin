@@ -13,7 +13,7 @@
 
     <groupId>cn.structured</groupId>
     <artifactId>structure-admin-cloud</artifactId>
-
+    <name>structure-admin-cloud</name>
     <version>${revision}</version>
 
     <packaging>jar</packaging>
