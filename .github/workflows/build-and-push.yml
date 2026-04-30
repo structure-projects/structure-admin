@@ -37,6 +37,10 @@ jobs:
           echo "RELEASE_VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
         fi
 
+    - name: Build project
+      run: |
+        mvn clean install -Dmaven.test.skip=true -Drevision=$RELEASE_VERSION -s .mvn/settings.xml
+
     - name: Build structure-admin-boot
       run: |
         cd structure-admin-boot
