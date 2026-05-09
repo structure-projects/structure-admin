@@ -20,6 +20,14 @@ spring:
         smtp:
           socketFactory:
             class: javax.net.ssl.SSLSocketFactory #SSL连接配置
+          auth: true
+          ssl:
+            enable: true
+            protocols: TLSv1.2
+          starttls:
+            enable: false
+          connectiontimeout: 5000
+          timeout: 5000
   flyway:
     enabled: true # 开启flyway
     clean-disabled: true # 禁止清理数据表
@@ -29,11 +37,11 @@ spring:
     baseline-version: 1 # 和baseline-on-migrate搭配使用，小于此版本的不执行
     # schemas: 不设置使用默认Spring连接数据的地址和数据库
     validate-on-migrate: true # 执行迁移时是否自动调用验证
-    locations: classpath:migration
+    locations: classpath:db/migration
   # 配置数据库，flyway那边就无需再进行数据的配置了
 structure:
   jwt:
-    secret: 12345646
+    secret: 12345646xsdfsdfsdfsdfsdfsdfsdfsfsdf
     antMatchers:
       unAuthenticated:
         # 不经过身份验证的接口
@@ -43,6 +51,20 @@ structure:
         - /swagger-resources/**
         - /v2/api-docs/**
         - /api/files/viewImg/**
+        - /actuator/health
+  oauth:
+    resource:
+      resource-id: admin
+      antMatchers:
+        unAuthenticated:
+          # 不经过身份验证的接口
+          - /doc.html
+          - /webjars/**
+          - /swagger-resources/**
+          - /v2/api-docs/**
+          - /api/auth-code/**
+          - /open-api/**
+          - /actuator/health
   log:
     aop:
       expression: execution(public * cn.structured.admin.controller..*Controller.*(..))
