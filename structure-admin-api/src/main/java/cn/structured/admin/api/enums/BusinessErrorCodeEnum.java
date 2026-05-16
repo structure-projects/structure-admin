@@ -19,4 +19,9 @@ public enum BusinessErrorCodeEnum {
     //10xxxxx预留给组件脚手架非业务的异常码
     //业务200101 开始定义为业务异常
 
+    CAPTCHA_ERR("200101", "验证码错误");
+
+    private final String code;
+    private final String msg;
+
 }

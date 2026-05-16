@@ -3,11 +3,13 @@ package cn.structured.admin.controller;
 import cn.structure.common.entity.ResResultVO;
 import cn.structure.common.exception.CommonException;
 import cn.structure.common.utils.ResultUtilSimpleImpl;
-import cn.structure.starter.jwt.dto.LoginRequestDTO;
 import cn.structure.starter.jwt.endpoint.LoginEndpoint;
 import cn.structure.starter.jwt.enums.LoginErrCodeEnum;
+import cn.structured.admin.api.enums.BusinessErrorCodeEnum;
 import cn.structure.starter.jwt.interfaces.ITokenStore;
 import cn.structured.admin.api.aop.OperationLog;
+import cn.structured.admin.api.dto.LoginRequestDTO;
+import cn.structured.admin.service.CaptchaService;
 import cn.structured.security.entity.StructureAuthUser;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,14 +36,18 @@ public class AdminLoginEndpoint extends LoginEndpoint {
     @Resource
     private ITokenStore tokenStore;
 
+    @Resource
+    private CaptchaService captchaService;
+
     @PostMapping(value = "/login")
     @ApiOperation(value = "登录请求")
     @OperationLog(value = "登录", module = "user")
     public ResResultVO<String> login(@Validated @RequestBody LoginRequestDTO loginDto) {
         UsernamePasswordAuthenticationToken params = new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
         try {
-
-            // 验证验证码
+            if (!captchaService.validateCaptcha(loginDto.getCaptchaId(), loginDto.getCaptcha())) {
+                return ResultUtilSimpleImpl.fail(BusinessErrorCodeEnum.CAPTCHA_ERR.getCode(), BusinessErrorCodeEnum.CAPTCHA_ERR.getMsg(), null);
+            }
 
             Authentication authenticate = authenticationManager.authenticate(params);
             Object principal = authenticate.getPrincipal();
