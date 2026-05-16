@@ -32,7 +32,7 @@
         </dependency>
         <dependency>
             <groupId>cn.structured</groupId>
-            <artifactId>structure-user-biz</artifactId>
+            <artifactId>structure-user-domain</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.structured</groupId>

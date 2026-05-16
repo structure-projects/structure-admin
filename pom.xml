@@ -71,6 +71,11 @@
                 <version>${structure-user.version}</version>
             </dependency>
             <dependency>
+                <groupId>cn.structured</groupId>
+                <artifactId>structure-user-domain</artifactId>
+                <version>${structure-user.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
