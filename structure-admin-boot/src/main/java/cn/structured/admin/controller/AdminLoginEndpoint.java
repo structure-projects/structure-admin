@@ -5,6 +5,7 @@ import cn.structure.common.exception.CommonException;
 import cn.structure.common.utils.ResultUtilSimpleImpl;
 import cn.structure.starter.jwt.endpoint.LoginEndpoint;
 import cn.structure.starter.jwt.enums.LoginErrCodeEnum;
+import cn.structure.starter.jwt.interfaces.ITokenService;
 import cn.structured.admin.api.enums.BusinessErrorCodeEnum;
 import cn.structure.starter.jwt.interfaces.ITokenStore;
 import cn.structured.admin.api.aop.OperationLog;
@@ -27,7 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 @Api(tags = "登录控制器")
 @RestController
 @RequestMapping("/api/user")
-public class AdminLoginEndpoint extends LoginEndpoint {
+public class AdminLoginEndpoint {
 
 
     @Resource
@@ -38,6 +39,9 @@ public class AdminLoginEndpoint extends LoginEndpoint {
 
     @Resource
     private CaptchaService captchaService;
+
+    @Resource
+    private ITokenService tokenService;
 
     @PostMapping(value = "/login")
     @ApiOperation(value = "登录请求")
@@ -70,7 +74,9 @@ public class AdminLoginEndpoint extends LoginEndpoint {
     @ApiOperation(value = "登出")
     @OperationLog(value = "登出", module = "user")
     public ResResultVO<Void> logout(HttpServletRequest request) {
-        return super.logout(request);
+        String token = this.tokenService.getToken(request);
+        this.tokenStore.clearStore(token);
+        return ResultUtilSimpleImpl.success(null);
     }
 
 }
