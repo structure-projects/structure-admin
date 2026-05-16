@@ -37,7 +37,7 @@ spring:
     baseline-version: 1 # 和baseline-on-migrate搭配使用，小于此版本的不执行
     # schemas: 不设置使用默认Spring连接数据的地址和数据库
     validate-on-migrate: true # 执行迁移时是否自动调用验证
-    locations: classpath:db/migration
+    locations: classpath:migration
   # 配置数据库，flyway那边就无需再进行数据的配置了
 structure:
   jwt:

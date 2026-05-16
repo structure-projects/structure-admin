@@ -33,6 +33,9 @@ management:
       show-details: always
   server:
     port: 7777
+  health:
+    mail:
+      enabled: false
 structure:
   log:
     aop:

@@ -45,6 +45,7 @@ structure:
         - /swagger-resources/**
         - /v2/api-docs/**
         - /api/files/viewImg/**
+        - /actuator/health
   log:
     aop:
       expression: execution(public * cn.structured.admin.controller..*Controller.*(..))

@@ -111,7 +111,7 @@ public class OperationLogAspect {
             JSONObject user = JSON.parseObject(JSON.toJSONString(SecurityUtils.getUser()));
             return null == user.getLong(AuthConstant.USER_ID) ? user.getLong("id") : user.getLong(AuthConstant.USER_ID);
         }catch (Exception  e) {
-            log.error("获取当前用户ID失败", e);
+            log.warn("获取当前用户ID失败", e);
         }
         return null;
     }
