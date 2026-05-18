@@ -1,4 +1,4 @@
-package cn.structured.admin.service;
+package cn.structured.admin.biz.service;
 
 import cn.structured.admin.api.dto.CaptchaDTO;
 
