@@ -1,4 +1,4 @@
-package cn.structured.admin.biz.configuration;
+package cn.structured.admin.core.biz.configuration;
 
 import cn.structure.common.constant.AuthConstant;
 import cn.structured.security.util.SecurityUtils;

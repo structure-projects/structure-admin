@@ -1,4 +1,4 @@
-package cn.structured.admin.manager;
+package cn.structured.admin.core.manager;
 
 import cn.structured.security.entity.StructureAuthUser;
 import cn.structured.user.common.dto.OptionDTO;

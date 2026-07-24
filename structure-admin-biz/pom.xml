@@ -40,7 +40,7 @@
         </dependency>
         <dependency>
             <groupId>cn.structured</groupId>
-            <artifactId>structure-admin-domain</artifactId>
+            <artifactId>structure-admin-core</artifactId>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>

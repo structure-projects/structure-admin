@@ -1,1 +1,1 @@
-package cn.structured.admin.biz;
+package cn.structured.admin.core.biz;

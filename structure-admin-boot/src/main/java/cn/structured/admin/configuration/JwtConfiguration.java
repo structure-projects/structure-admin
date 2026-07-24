@@ -1,4 +1,4 @@
-package cn.structured.admin.configuration;
+package cn.structured.admin.core.configuration;
 
 import cn.structure.starter.jwt.endpoint.LoginEndpoint;
 import org.springframework.context.annotation.Bean;

@@ -1,6 +1,6 @@
-package cn.structured.admin.biz.service;
+package cn.structured.admin.core.biz.service;
 
-import cn.structured.admin.manager.IUserManager;
+import cn.structured.admin.core.manager.IUserManager;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

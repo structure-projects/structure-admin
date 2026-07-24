@@ -1,0 +1,27 @@
+package cn.structured.admin.core.service;
+
+import cn.structured.admin.core.entity.DictItem;
+import com.baomidou.mybatisplus.extension.service.IService;
+/**
+ * 字典管理
+ *
+ * @author chuck
+ * @version 2024/07/13 下午4:37
+ * @since 1.8
+ */
+public interface IDictService extends IService<DictItem> {
+
+    /**
+     * 启用
+     *
+     * @param dictItemId 字典项ID
+     */
+    void enableItem(Long dictItemId);
+
+    /**
+     * 停用
+     *
+     * @param dictItemId 字典项ID
+     */
+    void disableItem(Long dictItemId);
+}

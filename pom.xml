@@ -15,8 +15,8 @@
     <version>${revision}</version>
 
     <modules>
-        <module>structure-admin-domain</module>
-        <module>structure-admin-api</module>
+        <module>structure-admin-core</module>
+        <module>structure-admin-common</module>
         <module>structure-admin-biz</module>
         <module>structure-admin-boot</module>
         <module>structure-admin-cloud</module>
@@ -53,7 +53,7 @@
 
             <dependency>
                 <groupId>cn.structured</groupId>
-                <artifactId>structure-admin-domain</artifactId>
+                <artifactId>structure-admin-core</artifactId>
                 <version>${revision}</version>
             </dependency>
 

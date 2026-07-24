@@ -1,6 +1,6 @@
-package cn.structured.admin.biz.service;
+package cn.structured.admin.core.biz.service;
 
-import cn.structured.admin.api.dto.CaptchaDTO;
+import cn.structured.admin.common.dto.CaptchaDTO;
 
 /**
  * 验证码服务接口

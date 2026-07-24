@@ -1,7 +1,7 @@
-package cn.structured.admin.biz.service.impl;
+package cn.structured.admin.core.biz.service.impl;
 
-import cn.structured.admin.api.dto.CaptchaDTO;
-import cn.structured.admin.biz.service.CaptchaService;
+import cn.structured.admin.common.dto.CaptchaDTO;
+import cn.structured.admin.core.biz.service.CaptchaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;

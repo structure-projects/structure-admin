@@ -1,4 +1,4 @@
-//package cn.structured.admin.service.impl;
+//package cn.structured.admin.core.service.impl;
 //
 //import cn.hutool.extra.spring.SpringUtil;
 //import cn.structure.common.constant.SymbolConstant;
