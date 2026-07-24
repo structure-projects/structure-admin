@@ -21,7 +21,7 @@
 //import org.springframework.mail.javamail.JavaMailSender;
 //import org.springframework.mail.javamail.MimeMessageHelper;
 //
-//import javax.annotation.Resource;
+//import jakarta.annotation.Resource;
 //import javax.mail.MessagingException;
 //import javax.mail.internet.MimeMessage;
 //import java.util.Random;

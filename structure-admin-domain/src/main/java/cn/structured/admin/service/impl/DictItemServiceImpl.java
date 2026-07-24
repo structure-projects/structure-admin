@@ -3,7 +3,7 @@ package cn.structured.admin.service.impl;
 import cn.structured.admin.mapper.DictItemMapper;
 import cn.structured.admin.service.IDictService;
 import cn.structured.admin.entity.DictItem;
-import cn.structured.mybatis.plus.starter.base.BaseServiceImpl;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * @since 1.8
  */
 @Service
-public class DictItemServiceImpl extends BaseServiceImpl<DictItemMapper, DictItem> implements IDictService {
+public class DictItemServiceImpl extends ServiceImpl<DictItemMapper, DictItem> implements IDictService {
 
 
     @Override

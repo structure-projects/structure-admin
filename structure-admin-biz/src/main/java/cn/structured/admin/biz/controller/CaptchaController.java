@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 @Api(tags = "验证码控制器")
 @RestController

@@ -1,7 +1,7 @@
 package cn.structured.admin.service;
 
 import cn.structured.admin.entity.DictCategory;
-import cn.structured.mybatis.plus.starter.base.IBaseService;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * 字典管理
@@ -9,7 +9,7 @@ import cn.structured.mybatis.plus.starter.base.IBaseService;
  * @author chuck
  * @since JDK1.8
  */
-public interface IDictCategoryService extends IBaseService<DictCategory> {
+public interface IDictCategoryService extends IService<DictCategory> {
 
     /**
      * 启用

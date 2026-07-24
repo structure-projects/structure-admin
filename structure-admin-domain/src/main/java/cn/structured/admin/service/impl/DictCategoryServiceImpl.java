@@ -3,7 +3,7 @@ package cn.structured.admin.service.impl;
 import cn.structured.admin.entity.DictCategory;
 import cn.structured.admin.mapper.DictCategoryMapper;
 import cn.structured.admin.service.IDictCategoryService;
-import cn.structured.mybatis.plus.starter.base.BaseServiceImpl;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class DictCategoryServiceImpl extends BaseServiceImpl<DictCategoryMapper, DictCategory> implements IDictCategoryService {
+public class DictCategoryServiceImpl extends ServiceImpl<DictCategoryMapper, DictCategory> implements IDictCategoryService {
 
     @Override
     public void enable(Long dictCategoryId) {

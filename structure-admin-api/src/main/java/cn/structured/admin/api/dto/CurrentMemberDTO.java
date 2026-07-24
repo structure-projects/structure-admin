@@ -1,6 +1,6 @@
 package cn.structured.admin.api.dto;
 
-import cn.structured.user.api.dto.user.UserDetailDTO;
+import cn.structured.user.common.dto.user.UserDetailDTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

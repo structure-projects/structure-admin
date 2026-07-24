@@ -18,8 +18,9 @@
     <description>管理配置中心api</description>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
@@ -28,8 +29,8 @@
             <artifactId>lombok</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -41,15 +42,11 @@
         </dependency>
         <dependency>
             <groupId>cn.structured</groupId>
-            <artifactId>structure-user-api</artifactId>
+            <artifactId>structure-user-common</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.structured</groupId>
             <artifactId>structure-security-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>cn.structured</groupId>
-            <artifactId>structure-basic-api</artifactId>
         </dependency>
     </dependencies>
 </project>

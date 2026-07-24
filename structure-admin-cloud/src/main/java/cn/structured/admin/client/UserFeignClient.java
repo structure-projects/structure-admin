@@ -1,9 +1,9 @@
 package cn.structured.admin.client;
 
 import cn.structure.common.entity.ResResultVO;
-import cn.structured.user.api.dto.user.AssigningRoleDTO;
-import cn.structured.user.api.dto.user.RegisterPlatformUserDTO;
-import cn.structured.user.api.dto.user.RestPasswordDTO;
+import cn.structured.user.common.dto.user.RegisterPlatformUserDTO;
+import cn.structured.user.common.dto.user.RestPasswordDTO;
+import cn.structured.user.common.dto.user.AssigningRoleDTO;
 import cn.structured.security.entity.StructureAuthUser;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -19,7 +19,7 @@ import java.util.Set;
  * @version 2024/07/19 下午11:40
  * @since 1.8
  */
-@FeignClient(value = "user-center")
+@FeignClient(value = "user-service")
 public interface UserFeignClient {
 
     /**

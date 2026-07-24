@@ -1,6 +1,6 @@
 package cn.structured.admin.manager;
 
-import cn.structured.user.api.dto.user.RegisterPlatformUserDTO;
+import cn.structured.user.common.dto.user.RegisterPlatformUserDTO;
 import cn.structured.security.entity.StructureAuthUser;
 
 import java.util.List;

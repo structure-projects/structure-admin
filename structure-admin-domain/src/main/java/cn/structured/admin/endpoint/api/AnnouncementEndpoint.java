@@ -73,7 +73,7 @@ public class AnnouncementEndpoint {
     @GetMapping("/list")
     @ApiOperation(value = "查询系统公告列表")
     public ResResultVO<ResPage<AnnouncementVO>> list(ReqPage reqPage, AnnouncementQuery announcementQuery) {
-        Page<Announcement> page = announcementService.page(new Page<>(reqPage.getCurrentPage(), reqPage.getPageSize()),
+        Page<Announcement> page = announcementService.page(new Page<>(reqPage.getPage(), reqPage.getSize()),
                 Wrappers.<Announcement>lambdaQuery()
                         .eq(ObjectUtil.isNotNull(announcementQuery.getScope()), Announcement::getScope, announcementQuery.getScope())
                         .eq(ObjectUtil.isNotNull(announcementQuery.getType()), Announcement::getType, announcementQuery.getType())
@@ -90,7 +90,7 @@ public class AnnouncementEndpoint {
     @GetMapping("/listByScope")
     @ApiOperation(value = "根据系统类型，查询系统公告列表")
     public ResResultVO<ResPage<AppAnnouncementVO>> listByScope(ReqPage reqPage, Integer scope) {
-        Page<Announcement> page = announcementService.page(new Page<>(reqPage.getCurrentPage(), reqPage.getPageSize()),
+        Page<Announcement> page = announcementService.page(new Page<>(reqPage.getPage(), reqPage.getSize()),
                 Wrappers.<Announcement>lambdaQuery()
                         .eq(ObjectUtil.isNotNull(scope), Announcement::getScope, scope)
                         .eq(Announcement::getState, 1)

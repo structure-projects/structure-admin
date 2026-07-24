@@ -1,15 +1,16 @@
 package cn.structured.admin.manager;
 
 import cn.structured.security.entity.StructureAuthUser;
-import cn.structured.user.api.dto.user.RegisterPlatformUserDTO;
-import cn.structured.user.entity.Role;
-import cn.structured.user.entity.User;
-import cn.structured.user.service.IUserService;
+import cn.structured.user.common.dto.OptionDTO;
+import cn.structured.user.common.dto.user.RegisterPlatformUserDTO;
+import cn.structured.user.application.service.IUserService;
+import cn.structured.user.domain.domain.entity.UserEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -32,12 +33,12 @@ public class UserManagerImpl implements IUserManager {
 
     @Override
     public List<String> getUserRole(Long userId) {
-        return userService.getUserRole(userId).stream().map(Role::getCode).collect(Collectors.toList());
+        return userService.getUserRole(userId).stream().map(OptionDTO::getValue).collect(Collectors.toList());
     }
 
     @Override
     public List<Long> getUserRoleIds(Long userId) {
-        return userService.getUserRole(userId).stream().map(Role::getId).collect(Collectors.toList());
+        return userService.getUserRole(userId).stream().map(OptionDTO::getId).collect(Collectors.toList());
     }
 
     @Override
@@ -52,7 +53,7 @@ public class UserManagerImpl implements IUserManager {
 
     @Override
     public StructureAuthUser loadUserByUsername(String username) {
-        User user = userService.loadUserByUserName(username);
+        UserEntity user = userService.loadUserByUserName(username);
         StructureAuthUser authUser = new StructureAuthUser();
         authUser.setId(user.getId());
         authUser.setUsername(user.getUsername());
@@ -87,12 +88,12 @@ public class UserManagerImpl implements IUserManager {
 
     @Override
     public void removeById(Long userId) {
-        userService.removeById(userId);
+        userService.deleteById(userId);
     }
 
     @Override
     public void removeByIds(Set<Long> userIds) {
-        userService.removeByIds(userIds);
+        userService.deleteByIds(new ArrayList<>(userIds));
     }
 
 }

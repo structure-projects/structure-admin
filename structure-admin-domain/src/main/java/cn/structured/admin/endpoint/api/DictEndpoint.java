@@ -11,8 +11,8 @@ import cn.structured.admin.entity.DictItem;
 import cn.structured.admin.service.IDictService;
 import cn.structured.admin.api.vo.DictItemVO;
 import cn.structured.admin.api.vo.OptionVO;
-import cn.structured.basic.api.groups.Create;
-import cn.structured.basic.api.groups.Update;
+import cn.structured.admin.api.groups.Create;
+import cn.structured.admin.api.groups.Update;
 
 import cn.structured.mybatis.plus.starter.convert.ResPageConvert;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -26,7 +26,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.util.List;
 import java.util.stream.Collectors;
 /**

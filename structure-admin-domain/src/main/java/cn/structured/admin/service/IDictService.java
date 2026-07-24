@@ -1,7 +1,7 @@
 package cn.structured.admin.service;
 
 import cn.structured.admin.entity.DictItem;
-import cn.structured.mybatis.plus.starter.base.IBaseService;
+import com.baomidou.mybatisplus.extension.service.IService;
 /**
  * 字典管理
  *
@@ -9,7 +9,7 @@ import cn.structured.mybatis.plus.starter.base.IBaseService;
  * @version 2024/07/13 下午4:37
  * @since 1.8
  */
-public interface IDictService extends IBaseService<DictItem> {
+public interface IDictService extends IService<DictItem> {
 
     /**
      * 启用

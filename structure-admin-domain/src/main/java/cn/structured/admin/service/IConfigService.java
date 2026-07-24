@@ -1,7 +1,7 @@
 package cn.structured.admin.service;
 
 import cn.structured.admin.entity.Config;
-import cn.structured.mybatis.plus.starter.base.IBaseService;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * 系统配置
@@ -9,6 +9,6 @@ import cn.structured.mybatis.plus.starter.base.IBaseService;
  * @author chuck
  * @since JDK1.8
  */
-public interface IConfigService extends IBaseService<Config> {
+public interface IConfigService extends IService<Config> {
 
 }

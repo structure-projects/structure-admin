@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.18</version>
+        <version>4.0.6</version>
         <relativePath/><!-- lookup parent from repository -->
     </parent>
 
@@ -17,13 +17,16 @@
     <version>${revision}</version>
 
     <properties>
-        <structure.version>1.2.10</structure.version>
-        <structure-jwt-security.version>1.0.3</structure-jwt-security.version>
-        <revision>1.0.5-SNAPSHOT</revision>
+        <structure.version>1.4.4</structure.version>
+        <structure-security.version>1.1.4</structure-security.version>
+        <revision>2.0.0-SNAPSHOT</revision>
+        <spring-boot.version>4.0.6</spring-boot.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
-        <!-- spring 启动依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -32,12 +35,10 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-        <!-- web-restful风格依赖 -->
         <dependency>
             <groupId>cn.structured</groupId>
             <artifactId>structure-restful-web-starter</artifactId>
         </dependency>
-        <!-- 日志插件依赖 -->
         <dependency>
             <groupId>cn.structured</groupId>
             <artifactId>structure-log-starter</artifactId>
@@ -48,8 +49,8 @@
         </dependency>
         <dependency>
             <groupId>cn.structured</groupId>
-            <artifactId>structure-jwt-security-starter</artifactId>
-            <version>${structure-jwt-security.version}</version>
+            <artifactId>structure-security-jwt-starter</artifactId>
+            <version>${structure-security.version}</version>
         </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
@@ -59,10 +60,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-        <!-- 管理核心 -->
         <dependency>
             <groupId>cn.structured</groupId>
             <artifactId>structure-admin-biz</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.structured</groupId>
+            <artifactId>structure-user-application</artifactId>
             <version>${revision}</version>
         </dependency>
     </dependencies>
@@ -76,21 +81,17 @@
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
     <build>
-        <finalName>admin-center</finalName>
+        <finalName>admin-service</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.7.18</version>
                 <configuration>
-                    <fork>
-                        true
-                    </fork>
+                    <fork>true</fork>
                 </configuration>
                 <executions>
                     <execution>
@@ -100,7 +101,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 

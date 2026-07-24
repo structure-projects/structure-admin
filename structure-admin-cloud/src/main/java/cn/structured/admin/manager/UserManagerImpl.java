@@ -1,9 +1,9 @@
 package cn.structured.admin.manager;
 
 import cn.structured.admin.client.UserFeignClient;
-import cn.structured.user.api.dto.user.AssigningRoleDTO;
-import cn.structured.user.api.dto.user.RegisterPlatformUserDTO;
-import cn.structured.user.api.dto.user.RestPasswordDTO;
+import cn.structured.user.common.dto.user.RegisterPlatformUserDTO;
+import cn.structured.user.common.dto.user.RestPasswordDTO;
+import cn.structured.user.common.dto.user.AssigningRoleDTO;
 import cn.structured.security.entity.StructureAuthUser;
 import com.google.common.collect.Sets;
 import lombok.RequiredArgsConstructor;

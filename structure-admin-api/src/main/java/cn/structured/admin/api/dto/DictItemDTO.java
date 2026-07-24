@@ -1,11 +1,11 @@
 package cn.structured.admin.api.dto;
 
-import cn.structured.basic.api.groups.Create;
+import cn.structured.admin.api.groups.Create;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 /**
  * 字典项DTO
