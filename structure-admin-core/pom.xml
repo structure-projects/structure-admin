@@ -111,21 +111,6 @@
                 <version>${spring-boot.version}</version>
             </plugin>
             <plugin>
-                <groupId>cn.structured</groupId>
-                <artifactId>structure-mybatis-plus-generate</artifactId>
-                <version>${structure.version}</version>
-                <configuration>
-                    <configurationFile>${basedir}/src/main/resources/generator-config.yaml</configurationFile>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-j</artifactId>
-                        <version>${mysql.version}</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
