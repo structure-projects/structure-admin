@@ -51,8 +51,16 @@
             <groupId>cn.structured</groupId>
         </dependency>
         <dependency>
+            <groupId>cn.structured</groupId>
+            <artifactId>structure-security-core</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-mysql</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-flyway</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -83,6 +91,11 @@
             <artifactId>structure-admin-biz</artifactId>
             <version>${revision}</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>cn.structured</groupId>
+            <artifactId>structure-admin-core</artifactId>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>cn.structured</groupId>

@@ -1,4 +1,4 @@
-package cn.structured.admin.core.biz.service;
+package cn.structured.admin.biz.service;
 
 import cn.structured.admin.core.manager.IUserManager;
 import org.springframework.security.core.userdetails.UserDetails;

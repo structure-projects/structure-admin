@@ -1,4 +1,4 @@
-package cn.structured.admin.core.controller;
+package cn.structured.admin.controller;
 
 import cn.structure.common.entity.ResResultVO;
 import cn.structure.common.exception.CommonException;
@@ -9,7 +9,7 @@ import cn.structured.admin.common.enums.BusinessErrorCodeEnum;
 import cn.structure.starter.jwt.interfaces.ITokenStore;
 import cn.structured.admin.common.aop.OperationLog;
 import cn.structured.admin.common.dto.LoginRequestDTO;
-import cn.structured.admin.core.biz.service.CaptchaService;
+import cn.structured.admin.biz.service.CaptchaService;
 import cn.structured.security.entity.StructureAuthUser;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

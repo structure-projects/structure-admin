@@ -3,7 +3,6 @@ package cn.structured.admin.core.manager;
 import cn.structured.user.common.dto.user.RegisterPlatformUserDTO;
 import cn.structured.security.entity.StructureAuthUser;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -12,30 +11,6 @@ import java.util.Set;
  * @since 1.8
  */
 public interface IUserManager {
-
-    /**
-     * 获取用户权限
-     *
-     * @param userId 用户ID
-     * @return List<String>
-     */
-    List<String> getUserAuthorities(Long userId);
-
-    /**
-     * 查询用户角色
-     *
-     * @param userId 用户ID
-     * @return List<String>
-     */
-    List<String> getUserRole(Long userId);
-
-    /**
-     * 查询用户角色
-     *
-     * @param userId 用户ID
-     * @return List<Long>
-     */
-    List<Long> getUserRoleIds(Long userId);
 
     /**
      * 注册平台用户
@@ -59,15 +34,6 @@ public interface IUserManager {
      * @return StructureAuthUser
      */
     StructureAuthUser loadUserByUsername(String username);
-
-    /**
-     * 分配角色
-     *
-     * @param roleIds 角色IDS
-     * @param userId  用户ID
-     */
-    void assigningRole(List<Long> roleIds, Long userId);
-
 
     /**
      * 启用用户

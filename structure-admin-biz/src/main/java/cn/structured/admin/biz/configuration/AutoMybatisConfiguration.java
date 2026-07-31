@@ -1,4 +1,4 @@
-package cn.structured.admin.core.biz.configuration;
+package cn.structured.admin.biz.configuration;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;

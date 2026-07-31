@@ -1,9 +1,8 @@
-package cn.structured.admin.core.client;
+package cn.structured.admin.client;
 
 import cn.structure.common.entity.ResResultVO;
 import cn.structured.user.common.dto.user.RegisterPlatformUserDTO;
 import cn.structured.user.common.dto.user.RestPasswordDTO;
-import cn.structured.user.common.dto.user.AssigningRoleDTO;
 import cn.structured.security.entity.StructureAuthUser;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -11,7 +10,6 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -19,34 +17,8 @@ import java.util.Set;
  * @version 2024/07/19 下午11:40
  * @since 1.8
  */
-@FeignClient(value = "user-service")
+@FeignClient(value = "user-service", path = "/user")
 public interface UserFeignClient {
-
-    /**
-     * 获取用户权限
-     *
-     * @param userId 用户ID
-     * @return 用户权限
-     */
-    @GetMapping(value = "/open-api/getUserAuthorities/{userId}")
-    ResResultVO<List<String>> getUserAuthorities(@Parameter(description = "用户ID", example = "18888888888")
-                                                 @PathVariable("userId") Long userId);
-
-    /**
-     * 查询用户角色
-     *
-     * @param userId 用户ID
-     * @return 用户角色
-     */
-    @GetMapping(value = "/open-api/getUserRole/{userId}")
-    ResResultVO<List<String>> getUserRole(@Parameter(description = "用户ID", example = "18888888888")
-                                          @PathVariable("userId") Long userId);
-
-
-    @Operation(summary = "查询用户角色ids")
-    @GetMapping(value = "/open-api/getUserRoleIds/{userId}")
-    ResResultVO<List<Long>> getUserRoleIds(@Parameter(description = "用户ID", example = "18888888888")
-                                           @PathVariable("userId") Long userId);
 
     /**
      * 注册平台用户
@@ -74,10 +46,6 @@ public interface UserFeignClient {
     @GetMapping(value = "/open-api/getUserByUsername")
     ResResultVO<StructureAuthUser> getUserByUsername(@Parameter(description = "用户名", example = "admin")
                                                      @RequestParam("username") String username);
-
-    @PutMapping(value = "/open-api/assigningRole}")
-    ResResultVO<Void> assigningRole(@RequestBody @Validated AssigningRoleDTO assigningRoleDto);
-
 
     @PutMapping(value = "/open-api/enable/{userId}")
     ResResultVO<Void> enable(@Parameter(description = "用户ID", example = "1645717015337684992")

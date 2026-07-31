@@ -24,18 +24,19 @@ spring:
       connection-test-query: SELECT 1
 
   # Redis配置（生产环境）
-  redis:
-    host: redis
-    port: 6379
-    password: structure-cloud
-    database: 0
-    timeout: 5000ms
-    lettuce:
-      pool:
-        max-active: 8
-        max-wait: -1ms
-        max-idle: 8
-        min-idle: 0
+  data:
+    redis:
+      host: redis
+      port: 6379
+      password: structure-cloud
+      database: 0
+      timeout: 5000ms
+      lettuce: 
+        pool: 
+          max-active: 8
+          max-wait: -1ms
+          max-idle: 8
+          min-idle: 0
 
   # Flyway配置
   flyway:
@@ -92,10 +93,9 @@ mybatis-plus:
 
 # Structure配置
 structure:
-  oauth:
-    resource:
-      resource-id: admin-service
-      antMatchers:
-        unAuthenticated:
-          - /actuator/health
-          - /open-api/**
+  security:
+    resource-id: admin-service
+    antMatchers:
+      unAuthenticated:
+        - /actuator/health
+        - /open-api/**

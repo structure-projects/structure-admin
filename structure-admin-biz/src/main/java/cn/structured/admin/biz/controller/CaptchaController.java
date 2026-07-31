@@ -1,9 +1,9 @@
-package cn.structured.admin.core.biz.controller;
+package cn.structured.admin.biz.controller;
 
 import cn.structure.common.entity.ResResultVO;
 import cn.structure.common.utils.ResultUtilSimpleImpl;
 import cn.structured.admin.common.dto.CaptchaDTO;
-import cn.structured.admin.core.biz.service.CaptchaService;
+import cn.structured.admin.biz.service.CaptchaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;

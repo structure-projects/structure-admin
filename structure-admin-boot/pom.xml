@@ -18,7 +18,7 @@
 
     <properties>
         <structure.version>1.4.4</structure.version>
-        <structure-security.version>1.1.4</structure-security.version>
+        <structure-security.version>1.1.5</structure-security.version>
         <revision>2.0.0-SNAPSHOT</revision>
         <spring-boot.version>4.0.6</spring-boot.version>
         <maven.compiler.source>17</maven.compiler.source>
@@ -58,16 +58,31 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-flyway</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.structured</groupId>
             <artifactId>structure-admin-biz</artifactId>
             <version>${revision}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>cn.structured</groupId>
+                    <artifactId>structure-security-oauth-resource-starter</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>cn.structured</groupId>
             <artifactId>structure-user-application</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.structured</groupId>
+            <artifactId>structure-user-repository-mybatis</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>
@@ -83,6 +98,12 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- H2 内存数据库（单元测试用） -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -101,13 +122,23 @@
 
     <build>
         <finalName>admin-service</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <parameters>true</parameters>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <fork>true</fork>
-                </configuration>
                 <executions>
                     <execution>
                         <goals>

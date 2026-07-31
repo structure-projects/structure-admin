@@ -9,7 +9,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 /**
  * @author chuck
  */
-@EnableSwagger
 @EnableFeignClients
 @EnableDiscoveryClient
 @SpringBootApplication
