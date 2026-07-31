@@ -44,5 +44,15 @@ logs
 ### Env ###
 .env
 
+### Maven ###
+.mvn
+
+### Compiled classes ###
+bin/
+*.class
+
+### Merge artifacts ###
+*.orig
+
 ### Maven Flatten Plugin ###
 **/pom-xml-flattened
