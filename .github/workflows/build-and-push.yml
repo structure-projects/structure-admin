@@ -69,5 +69,5 @@ jobs:
         file: structure-admin-boot/Dockerfile
         push: true
         tags: |
-          registry.cn-hangzhou.aliyuncs.com/structured/structured-admin-center:${{ env.RELEASE_VERSION }}
-          registry.cn-hangzhou.aliyuncs.com/structured/structured-admin-center:latest
+          registry.cn-hangzhou.aliyuncs.com/structured/admin-service:${{ env.RELEASE_VERSION }}
+          registry.cn-hangzhou.aliyuncs.com/structured/admin-service:latest
