@@ -1,4 +1,4 @@
-﻿name: Release to Maven Central
+name: Release to Maven Central
 
 on:
   release:
@@ -51,7 +51,7 @@ jobs:
     - name: Deploy to Maven Central (exclude boot and cloud modules)
       run: |
         mvn clean deploy -P release,oss -DskipTests -Drevision=$RELEASE_VERSION \
-          -pl '!structure-admin-boot,!structure-admin-cloud' \
+          -pl '!:structure-admin-boot,!:structure-admin-cloud' \
           -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true \
           -s .mvn/settings.xml
       env:
