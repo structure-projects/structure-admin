@@ -30,9 +30,6 @@
         <structure.version>1.5.0</structure.version>
         <mysql.version>8.3.0</mysql.version>
         <structure-security.version>1.1.5</structure-security.version>
-        <!-- FastJSON 1.x：structure-security-oauth-resource-starter:1.1.5 的
-             AuthExceptionEntryPoint 使用 com.alibaba.fastjson.JSONObject，
-             而父 BOM structure-dependencies:1.5.0 仅管理 fastjson2，需显式声明 1.x -->
         <fastjson1.version>1.2.83</fastjson1.version>
         <structure-user.version>2.0.0-SNAPSHOT</structure-user.version>
 
@@ -47,6 +44,11 @@
             <dependency>
                 <groupId>cn.structured</groupId>
                 <artifactId>structure-security-core</artifactId>
+                <version>${structure-security.version}</version>
+            </dependency>
+            <dependency>
+                <artifactId>structure-security-oauth-resource-starter</artifactId>
+                <groupId>cn.structured</groupId>
                 <version>${structure-security.version}</version>
             </dependency>
             <dependency>
@@ -66,10 +68,6 @@
                 <artifactId>structure-security-jwt-starter</artifactId>
                 <version>${structure-security.version}</version>
             </dependency>
-            <!-- FastJSON 1.x：structure-security-oauth-resource-starter:1.1.5 的
-                 AuthExceptionEntryPoint 运行时依赖 com.alibaba.fastjson.JSONObject，
-                 父 BOM 仅管理 fastjson2，需在此显式管理 1.x 版本，避免 NoClassDefFoundError。
-                 同时用于 structure-admin-common 已声明的 fastjson 依赖版本管理。 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>

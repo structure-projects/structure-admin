@@ -24,7 +24,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-            <maven.deploy.skip>true</maven.deploy.skip>
+        <maven.deploy.skip>true</maven.deploy.skip>
     </properties>
 
     <dependencies>
@@ -69,12 +69,6 @@
             <groupId>cn.structured</groupId>
             <artifactId>structure-admin-biz</artifactId>
             <version>${revision}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>cn.structured</groupId>
-                    <artifactId>structure-security-oauth-resource-starter</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>cn.structured</groupId>
