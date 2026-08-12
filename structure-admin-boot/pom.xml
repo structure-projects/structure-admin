@@ -5,22 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.6</version>
-        <relativePath/><!-- lookup parent from repository -->
+        <groupId>cn.structured</groupId>
+        <artifactId>structure-admin</artifactId>
+        <version>${revision}</version>
     </parent>
 
-    <groupId>cn.structured</groupId>
     <artifactId>structure-admin-boot</artifactId>
     <name>structure-admin-boot</name>
-    <version>${revision}</version>
 
     <properties>
-        <structure.version>1.5.0</structure.version>
-        <structure-security.version>1.1.5</structure-security.version>
-        <revision>2.0.0-SNAPSHOT</revision>
-        <spring-boot.version>4.0.6</spring-boot.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -67,19 +60,18 @@
         </dependency>
         <dependency>
             <groupId>cn.structured</groupId>
-            <artifactId>structure-admin-biz</artifactId>
-            <version>${revision}</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.structured</groupId>
             <artifactId>structure-user-application</artifactId>
-            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>cn.structured</groupId>
             <artifactId>structure-user-repository-mybatis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.structured</groupId>
+            <artifactId>structure-admin-biz</artifactId>
             <version>${revision}</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
