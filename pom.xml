@@ -31,7 +31,7 @@
         <mysql.version>8.3.0</mysql.version>
         <structure-security.version>1.1.5</structure-security.version>
         <fastjson1.version>1.2.83</fastjson1.version>
-        <structure-user.version>2.0.0-SNAPSHOT</structure-user.version>
+        <structure-user.version>2.0.0</structure-user.version>
 
         <spring-cloud.version>2025.1.0</spring-cloud.version>
         <spring-alibaba.version>2025.1.0.0</spring-alibaba.version>
