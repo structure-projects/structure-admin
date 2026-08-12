@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:admin_test;DB_CLOSE_DELAY=-1;MODE=MySQL
+    username: sa
+    password:
+    hikari:
+      maximum-pool-size: 5
+  jpa:
+    hibernate:
+      ddl-auto: none
+  cloud:
+    nacos:
+      discovery:
+        enabled: false
+      config:
+        enabled: false
+  flyway:
+    enabled: false
+
+logging:
+  level:
+    root: WARN
+    cn.structured.admin: DEBUG

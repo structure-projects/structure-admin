@@ -6,7 +6,7 @@
     <parent>
         <groupId>cn.structured</groupId>
         <artifactId>structure-dependencies</artifactId>
-        <version>1.2.10</version>
+        <version>1.5.0</version>
         <relativePath/>
     </parent>
 
@@ -15,20 +15,29 @@
     <version>${revision}</version>
 
     <modules>
-        <module>structure-admin-domain</module>
-        <module>structure-admin-api</module>
+        <module>structure-admin-core</module>
+        <module>structure-admin-common</module>
         <module>structure-admin-biz</module>
+        <module>structure-admin-boot</module>
+        <module>structure-admin-cloud</module>
     </modules>
     <name>structure-admin</name>
     <description>脚手架集成管理平台</description>
 
     <properties>
-        <revision>1.0.5-SNAPSHOT</revision>
-        <structure.version>1.2.10</structure.version>
-        <mysql.version>8.0.13</mysql.version>
-        <structure-security.version>1.0.3</structure-security.version>
-        <structure-user.version>1.0.11</structure-user.version>
-        <structure-basic.version>1.0.2</structure-basic.version>
+        <revision>2.0.0-SNAPSHOT</revision>
+        <spring-boot.version>4.0.6</spring-boot.version>
+        <structure.version>1.5.0</structure.version>
+        <mysql.version>8.3.0</mysql.version>
+        <structure-security.version>1.1.5</structure-security.version>
+        <fastjson1.version>1.2.83</fastjson1.version>
+        <structure-user.version>2.0.0</structure-user.version>
+
+        <spring-cloud.version>2025.1.0</spring-cloud.version>
+        <spring-alibaba.version>2025.1.0.0</spring-alibaba.version>
+        <mybatis-plus.version>3.5.16</mybatis-plus.version>
+        <jsqlparser.version>4.9</jsqlparser.version>
+        <logback.version>1.5.32</logback.version>
     </properties>
 
     <dependencyManagement>
@@ -39,36 +48,26 @@
                 <version>${structure-security.version}</version>
             </dependency>
             <dependency>
+                <artifactId>structure-security-oauth-resource-starter</artifactId>
                 <groupId>cn.structured</groupId>
-                <artifactId>structure-user-api</artifactId>
-                <version>${structure-user.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.structured</groupId>
-                <artifactId>structure-basic-api</artifactId>
-                <version>${structure-basic.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.structured</groupId>
-                <artifactId>structure-admin-domain</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>cn.structured</groupId>
-                <artifactId>structure-jwt-security-starter</artifactId>
                 <version>${structure-security.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>cn.structured</groupId>
-                <artifactId>structure-user-core</artifactId>
-                <version>${structure-user.version}</version>
+                <artifactId>structure-admin-core</artifactId>
+                <version>${revision}</version>
             </dependency>
+
             <dependency>
                 <groupId>cn.structured</groupId>
-                <artifactId>structure-user-biz</artifactId>
-                <version>${structure-user.version}</version>
+                <artifactId>structure-security-jwt-starter</artifactId>
+                <version>${structure-security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson1.version}</version>
             </dependency>
             <dependency>
                 <groupId>cn.structured</groupId>
@@ -76,16 +75,25 @@
                 <version>${structure-user.version}</version>
             </dependency>
             <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql.version}</version>
+                <groupId>cn.structured</groupId>
+                <artifactId>structure-user-common</artifactId>
+                <version>${structure-user.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.structured</groupId>
+                <artifactId>structure-user-application</artifactId>
+                <version>${structure-user.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-parent</artifactId>
-                <version>${spring-boot.version}</version>
-                <scope>import</scope>
-                <type>pom</type>
+                <groupId>cn.structured</groupId>
+                <artifactId>structure-user-repository-mybatis</artifactId>
+                <version>${structure-user.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-j</artifactId>
+                <version>${mysql.version}</version>
             </dependency>
             <dependency>
                 <groupId>cn.structured</groupId>
@@ -94,7 +102,70 @@
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-spring-boot4-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.jsqlparser</groupId>
+                <artifactId>jsqlparser</artifactId>
+                <version>${jsqlparser.version}</version>
+            </dependency>
+            <!-- Logback 版本对齐：强制 logback-core 与 logback-classic 同版本，
+                 规避 structure-log-starter 引入旧版 logback 与 Spring Boot 4.x 不兼容导致的 NoSuchMethodError -->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.5.4</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>3.5.4</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.8.12</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
 </project>

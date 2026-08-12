@@ -1,6 +1,6 @@
 package cn.structured.admin.biz.configuration;
 
-import cn.structured.basic.api.enums.FileSystem;
+import cn.structured.admin.common.enums.FileSystem;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

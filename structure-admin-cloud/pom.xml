@@ -5,27 +5,24 @@
 
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.18</version>
-        <relativePath/><!-- lookup parent from repository -->
+        <groupId>cn.structured</groupId>
+        <artifactId>structure-admin</artifactId>
+        <version>${revision}</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>cn.structured</groupId>
     <artifactId>structure-admin-cloud</artifactId>
     <name>structure-admin-cloud</name>
-    <version>${revision}</version>
 
     <packaging>jar</packaging>
 
     <properties>
-        <revision>1.0.5-SNAPSHOT</revision>
-        <structure-oauth.version>1.0.3</structure-oauth.version>
-        <structure-cloud.version>1.0.3</structure-cloud.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
-        <!-- spring 启动依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -34,56 +31,61 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!-- web-restful风格依赖 -->
         <dependency>
             <groupId>cn.structured</groupId>
             <artifactId>structure-restful-web-starter</artifactId>
         </dependency>
-        <!-- 日志插件依赖 -->
         <dependency>
             <groupId>cn.structured</groupId>
             <artifactId>structure-log-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
         <dependency>
-            <artifactId>structure-oauth-resource-starter</artifactId>
+            <artifactId>structure-security-oauth-resource-starter</artifactId>
             <groupId>cn.structured</groupId>
+        </dependency>
+        <dependency>
+            <groupId>cn.structured</groupId>
+            <artifactId>structure-security-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-mysql</artifactId>
         </dependency>
-        <!-- Spring Cloud 基础 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-flyway</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
-        <!-- Registry 注册中心相关 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-        <!-- Config 配置中心相关 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
-        <!--远程调用-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
-        <!--负载均衡-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>swagger-bootstrap-ui</artifactId>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.structured</groupId>
@@ -92,41 +94,34 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>cn.structured</groupId>
+            <artifactId>structure-admin-core</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.structured</groupId>
+            <artifactId>structure-user-common</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
     </dependencies>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>cn.structured</groupId>
-                <artifactId>structure-cloud-dependencies</artifactId>
-                <version>${structure-cloud.version}</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-            <dependency>
-                <groupId>cn.structured</groupId>
-                <artifactId>structure-oauth-dependencies</artifactId>
-                <version>${structure-oauth.version}</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <build>
-        <finalName>admin-center</finalName>
+        <finalName>admin-service</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.7.18</version>
                 <configuration>
-                    <fork>
-                        true
-                    </fork>
+                    <fork>true</fork>
                 </configuration>
                 <executions>
                     <execution>
@@ -136,9 +131,7 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 
 </project>
-

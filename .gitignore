@@ -1,12 +1,60 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
 
-.idea
-*/target
-dist
-*/dist
-*.local
 node_modules
+dist
+*.local
 
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+### VS Code ###
+.vscode/
+
+### macOS ###
+.DS_Store
+
+### Logs ###
 logs
 *.log
-*.iml
-*/package-lock.json
+
+### Env ###
+.env
+
+### Maven ###
+.mvn/*
+!.mvn/wrapper/
+!.mvn/settings.xml
+
+### Compiled classes ###
+bin/
+*.class
+
+### Merge artifacts ###
+*.orig
+
+### Maven Flatten Plugin ###
+**/pom-xml-flattened

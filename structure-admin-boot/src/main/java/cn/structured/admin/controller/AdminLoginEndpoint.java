@@ -3,17 +3,16 @@ package cn.structured.admin.controller;
 import cn.structure.common.entity.ResResultVO;
 import cn.structure.common.exception.CommonException;
 import cn.structure.common.utils.ResultUtilSimpleImpl;
-import cn.structure.starter.jwt.endpoint.LoginEndpoint;
 import cn.structure.starter.jwt.enums.LoginErrCodeEnum;
 import cn.structure.starter.jwt.interfaces.ITokenService;
-import cn.structured.admin.api.enums.BusinessErrorCodeEnum;
+import cn.structured.admin.common.enums.BusinessErrorCodeEnum;
 import cn.structure.starter.jwt.interfaces.ITokenStore;
-import cn.structured.admin.api.aop.OperationLog;
-import cn.structured.admin.api.dto.LoginRequestDTO;
-import cn.structured.admin.service.CaptchaService;
+import cn.structured.admin.common.aop.OperationLog;
+import cn.structured.admin.common.dto.LoginRequestDTO;
+import cn.structured.admin.biz.service.CaptchaService;
 import cn.structured.security.entity.StructureAuthUser;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.validation.annotation.Validated;
@@ -22,10 +21,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 
-@Api(tags = "登录控制器")
+@Tag(name = "登录控制器")
 @RestController
 @RequestMapping("/api/user")
 public class AdminLoginEndpoint {
@@ -44,7 +43,7 @@ public class AdminLoginEndpoint {
     private ITokenService tokenService;
 
     @PostMapping(value = "/login")
-    @ApiOperation(value = "登录请求")
+    @Operation(summary = "登录请求")
     @OperationLog(value = "登录", module = "user")
     public ResResultVO<String> login(@Validated @RequestBody LoginRequestDTO loginDto) {
         UsernamePasswordAuthenticationToken params = new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
@@ -71,7 +70,7 @@ public class AdminLoginEndpoint {
     }
 
     @PostMapping(value = "/logout")
-    @ApiOperation(value = "登出")
+    @Operation(summary = "登出")
     @OperationLog(value = "登出", module = "user")
     public ResResultVO<Void> logout(HttpServletRequest request) {
         String token = this.tokenService.getToken(request);

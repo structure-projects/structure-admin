@@ -7,15 +7,15 @@ import cn.structure.common.entity.ResResultVO;
 import cn.structure.common.exception.CommonException;
 import cn.structure.common.utils.ResultUtilSimpleImpl;
 import cn.structured.admin.biz.configuration.AdminProperties;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.entity.ContentType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -29,7 +29,7 @@ import java.nio.file.Files;
  * @since JDK1.8
  */
 @Slf4j
-@Api(tags = "文件管理")
+@Tag(name = "文件管理")
 @RestController
 @RequestMapping(value = "/api/files")
 public class FileEndpoint {
@@ -37,7 +37,7 @@ public class FileEndpoint {
     @Resource
     private AdminProperties properties;
 
-    @ApiOperation(value = "上传文件", notes = "返回文件存储路径")
+    @Operation(summary = "上传文件", description = "返回文件存储路径")
     @PostMapping(value = "/upload")
     public ResResultVO<String> upload(MultipartFile file) {
         // 上传功能是否启用
@@ -58,7 +58,7 @@ public class FileEndpoint {
         return ResultUtilSimpleImpl.success(fileUrl);
     }
 
-    @ApiOperation(value = "预览图片")
+    @Operation(summary = "预览图片")
     @GetMapping(value = "/viewImg/{fileName}")
     public void viewImg(@PathVariable(value = "fileName") String fileName, HttpServletResponse response) {
         try (InputStream fileInputStream = Files.newInputStream(new File(properties.getUploadPath(), fileName).toPath())) {
@@ -71,7 +71,7 @@ public class FileEndpoint {
         }
     }
 
-    @ApiOperation(value = "下载文件")
+    @Operation(summary = "下载文件")
     @GetMapping(value = "/download/{fileName}")
     public void download(@PathVariable(value = "fileName") String fileName, HttpServletResponse response) {
         try (FileInputStream fileInputStream = new FileInputStream(new File(properties.getUploadPath(), fileName))) {

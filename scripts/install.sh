@@ -2,7 +2,7 @@
 #在本地仓库安装.RELEASE
 version=$1
 if [ -z "$version" ]; then
-    version=1.0.2
+    version=1.0.9
 fi
 cd ../
 mvn clean install -Dmaven.test.skip=true -Drevision=$version

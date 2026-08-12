@@ -1,4 +1,4 @@
-name: Build and Push to Aliyun
+﻿name: Build and Push to Aliyun
 
 on:
   release:
@@ -18,14 +18,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Set up JDK 8
+    - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
-        java-version: '8'
+        java-version: '17'
         distribution: 'temurin'
 
     - name: Cache Maven packages
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
@@ -41,17 +41,16 @@ jobs:
 
     - name: Build project
       run: |
-        mvn clean install -Dmaven.test.skip=true -Drevision=$RELEASE_VERSION -s .mvn/settings.xml
+        mvn clean install -DskipTests -Drevision=$RELEASE_VERSION -s .mvn/settings.xml
+
+    - name: Run Tests
+      run: |
+        mvn test -Drevision=$RELEASE_VERSION -s .mvn/settings.xml
 
     - name: Build structure-admin-boot
       run: |
         cd structure-admin-boot
-        mvn clean package -Dmaven.test.skip=true -Drevision=$RELEASE_VERSION
-
-    - name: Build structure-admin-cloud
-      run: |
-        cd structure-admin-cloud
-        mvn clean package -Dmaven.test.skip=true -Drevision=$RELEASE_VERSION
+        mvn clean package -DskipTests -Drevision=$RELEASE_VERSION
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
@@ -66,7 +65,8 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
-        context: .
+        context: structure-admin-boot
+        file: structure-admin-boot/Dockerfile
         push: true
         tags: |
           registry.cn-hangzhou.aliyuncs.com/structured/structured-admin-center:${{ env.RELEASE_VERSION }}

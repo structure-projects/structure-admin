@@ -1,7 +1,7 @@
 #!/bin/bash
 version=$1
 if [ -z "$version" ]; then
-    version=1.0.2
+    version=1.0.9
 fi
 echo 'maven-build'
 sh install.sh

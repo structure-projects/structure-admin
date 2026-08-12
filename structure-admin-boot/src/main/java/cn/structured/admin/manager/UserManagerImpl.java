@@ -1,18 +1,17 @@
 package cn.structured.admin.manager;
 
+import cn.structured.admin.core.manager.IUserManager;
 import cn.structured.security.entity.StructureAuthUser;
-import cn.structured.user.api.dto.user.RegisterPlatformUserDTO;
-import cn.structured.user.entity.Role;
-import cn.structured.user.entity.User;
-import cn.structured.user.service.IUserService;
+import cn.structured.user.common.dto.user.RegisterPlatformUserDTO;
+import cn.structured.user.application.service.IUserService;
+import cn.structured.user.domain.entity.UserEntity;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * @author chuck
@@ -26,21 +25,6 @@ public class UserManagerImpl implements IUserManager {
     private IUserService userService;
 
     @Override
-    public List<String> getUserAuthorities(Long userId) {
-        return userService.getUserAuthorities(userId);
-    }
-
-    @Override
-    public List<String> getUserRole(Long userId) {
-        return userService.getUserRole(userId).stream().map(Role::getCode).collect(Collectors.toList());
-    }
-
-    @Override
-    public List<Long> getUserRoleIds(Long userId) {
-        return userService.getUserRole(userId).stream().map(Role::getId).collect(Collectors.toList());
-    }
-
-    @Override
     public Long registerPlatformUser(RegisterPlatformUserDTO registerPlatformUserDto) {
         return userService.registerPlatformUser(registerPlatformUserDto);
     }
@@ -52,7 +36,7 @@ public class UserManagerImpl implements IUserManager {
 
     @Override
     public StructureAuthUser loadUserByUsername(String username) {
-        User user = userService.loadUserByUserName(username);
+        UserEntity user = userService.loadUserByUserName(username);
         StructureAuthUser authUser = new StructureAuthUser();
         authUser.setId(user.getId());
         authUser.setUsername(user.getUsername());
@@ -62,17 +46,9 @@ public class UserManagerImpl implements IUserManager {
         authUser.setUnexpired(user.getUnexpired());
         authUser.setCreateTime(user.getCreateTime());
         authUser.setUpdateTime(user.getUpdateTime());
-        List<String> userAuthorities = userService.getUserAuthorities(user.getId());
-        authUser.setAuthorities(userAuthorities
-                .stream()
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList()));
+        // 权限由 resource-service 管理，不在此处加载
+        authUser.setAuthorities(List.of());
         return authUser;
-    }
-
-    @Override
-    public void assigningRole(List<Long> roleIds, Long userId) {
-        userService.assigningRole(roleIds, userId);
     }
 
     @Override
@@ -87,12 +63,12 @@ public class UserManagerImpl implements IUserManager {
 
     @Override
     public void removeById(Long userId) {
-        userService.removeById(userId);
+        userService.deleteById(userId);
     }
 
     @Override
     public void removeByIds(Set<Long> userIds) {
-        userService.removeByIds(userIds);
+        userService.deleteByIds(new ArrayList<>(userIds));
     }
 
 }
