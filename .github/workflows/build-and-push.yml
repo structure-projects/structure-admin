@@ -1,4 +1,4 @@
-﻿name: Build and Push to Aliyun
+name: Build and Push to Aliyun
 
 on:
   release:
@@ -68,6 +68,8 @@ jobs:
         context: structure-admin-boot
         file: structure-admin-boot/Dockerfile
         push: true
+          provenance: false
+          sbom: false
         tags: |
-          registry.cn-hangzhou.aliyuncs.com/structured/structured-admin-center:${{ env.RELEASE_VERSION }}
-          registry.cn-hangzhou.aliyuncs.com/structured/structured-admin-center:latest
+          registry.cn-hangzhou.aliyuncs.com/yunjida/admin-service:${{ env.RELEASE_VERSION }}
+          registry.cn-hangzhou.aliyuncs.com/yunjida/admin-service:latest
